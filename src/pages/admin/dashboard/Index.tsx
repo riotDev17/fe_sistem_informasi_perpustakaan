@@ -1,3 +1,4 @@
+import BadgeNotificationIconText from '../../../components/badges/notification/BadgeNotificationIconText';
 import BreadcrumbsBasic from '../../../components/breadcrumbs/BreadcrumbsBasic';
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 import SearchBox from '../../../components/searchs/SearchBox';
@@ -32,6 +33,7 @@ const Index = () => {
       {/* <h1>Hello World</h1> */}
       <BreadcrumbsBasic menus={menus} />
       <BreadcrumbsDefault menus={menus2} />
+      <BadgeNotificationIconText icon="bx:bx-bell" label="Notifications" backgroundColor="btn-success" />
       {/* <SearchRounded /> */}
       {/* <SearchBox /> */}
       {/* <SearchOverlay /> */}

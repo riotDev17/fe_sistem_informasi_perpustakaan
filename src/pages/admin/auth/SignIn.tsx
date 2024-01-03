@@ -1,13 +1,17 @@
-import { useDispatch } from 'react-redux';
-import { setPageTitle } from '../../../store/themeConfigSlice';
-import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { setPageTitle } from '../../../store/themeConfigSlice';
 import { Form, Formik } from 'formik';
 import { validationSchema } from './validation/validationSchema';
 import InputText from '../../../components/forms/Input/InputText';
 import InputPassword from '../../../components/forms/Input/InputPassword';
 import InputCheckbox from '../../../components/forms/Input/InputCheckbox';
 import ButtonSolidPrimary from '../../../components/buttons/solid/ButtonSolidPrimary';
+import API from '../../../configs/api';
+import auth from '../../../configs/auth';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -16,8 +20,43 @@ const SignIn = () => {
     dispatch(setPageTitle('Admin | Login'));
   });
 
-  const handleSubmit = (values: any) => {
-    console.log(values);
+  const handleSubmit = async (e: { username: any; password: any }): Promise<any> => {
+    try {
+      const data = { username: e.username, password: e.password };
+      const response = await API.post('/auth/admin/login', data);
+      if (response.status === 200) {
+        const { data } = response;
+        const token = data.data.token;
+
+        auth.setToken(token);
+        const toast = Swal.mixin({
+          toast: true,
+          position: 'top',
+          showConfirmButton: false,
+          timer: 3000,
+        });
+        toast.fire({
+          icon: 'success',
+          title: 'Selamat Datang Admin',
+          padding: '10px 20px',
+        });
+
+        navigate('/');
+      }
+    } catch (error) {
+      console.log(error);
+      const toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+      });
+      toast.fire({
+        icon: 'error',
+        title: 'Username atau Password Salah',
+        padding: '10px 20px',
+      });
+    }
   };
 
   return (
@@ -36,7 +75,7 @@ const SignIn = () => {
               password: '',
             }}
             validationSchema={validationSchema}
-            onSubmit={(values) => handleSubmit(values)}
+            onSubmit={handleSubmit}
           >
             {({ errors, handleChange, submitCount, values }) => (
               <Form className="space-y-5">
@@ -67,16 +106,7 @@ const SignIn = () => {
                 <div>
                   <InputCheckbox id={'rememberMe'} name={'rememberMe'} text={'Ingatkan Saya'} />
                 </div>
-                <ButtonSolidPrimary
-                  text={'Login'}
-                  onClick={() => {
-                    if (values.username && values.password && !errors.username && !errors.password) {
-                      handleSubmit(values);
-                    } else {
-                      console.log('error');
-                    }
-                  }}
-                />
+                <ButtonSolidPrimary text={'Login'} />
               </Form>
             )}
           </Formik>

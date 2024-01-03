@@ -6,7 +6,7 @@ import { setPageTitle } from '../../../store/themeConfigSlice';
 const LoginCover = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setPageTitle('Login Cover'));
+    dispatch(setPageTitle('Admin | Login'));
   });
   const navigate = useNavigate();
 

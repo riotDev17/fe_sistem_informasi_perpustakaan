@@ -1,7 +1,7 @@
 import axios from 'axios';
 import auth from './auth';
 
-interface Api {
+interface API {
   defaults: {
     headers: {
       Authorization: string;
@@ -14,7 +14,7 @@ interface Api {
   delete: (url: string) => Promise<any>;
 }
 
-const Api: Api = <Api>(<unknown>axios.create({
+const API: API = <API>(<unknown>axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   headers: {
     'Content-Type': 'application/json',
@@ -22,4 +22,4 @@ const Api: Api = <Api>(<unknown>axios.create({
   },
 }));
 
-export default Api;
+export default API;

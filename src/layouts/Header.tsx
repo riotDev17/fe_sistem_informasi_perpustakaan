@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { IRootState } from '../store';
 import { toggleTheme, toggleSidebar } from '../store/themeConfigSlice';
 import Dropdown from '../components/Dropdown';
@@ -10,8 +10,12 @@ import IconMoon from '../components/Icons/IconMoon';
 import IconLaptop from '../components/Icons/IconLaptop';
 import IconUser from '../components/Icons/IconUser';
 import IconLogout from '../components/Icons/IconLogout';
+import auth from '../configs/auth';
+import API from '../configs/api';
+import Swal from 'sweetalert2';
 
 const Header = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
     const selector = document.querySelector('ul.horizontal-menu a[href="' + window.location.pathname + '"]');
@@ -38,6 +42,41 @@ const Header = () => {
 
   const themeConfig = useSelector((state: IRootState) => state.themeConfig);
   const dispatch = useDispatch();
+
+  const handleLogout = async () => {
+    try {
+      const response = await API.delete('/api/admin/logout');
+      if (response.status === 200) {
+        auth.removeToken();
+        const toast = Swal.mixin({
+          toast: true,
+          position: 'top',
+          showConfirmButton: false,
+          timer: 3000,
+        });
+        toast.fire({
+          icon: 'success',
+          title: 'Anda Berhasil Logout',
+          padding: '10px 20px',
+        });
+
+        navigate('/auth/admin/login');
+      }
+    } catch (error) {
+      console.log(error);
+      const toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+      });
+      toast.fire({
+        icon: 'error',
+        title: 'Anda Gagal Logout',
+        padding: '10px 20px',
+      });
+    }
+  };
 
   return (
     <header className={`z-40 ${themeConfig.semidark && themeConfig.menu === 'horizontal' ? 'dark' : ''}`}>
@@ -132,10 +171,10 @@ const Header = () => {
                   </li>
 
                   <li className="border-t border-white-light dark:border-white-light/10">
-                    <Link to="/auth/admin/login" className="text-danger !py-3">
+                    <button type="button" onClick={handleLogout} className="dark:hover:text-white text-danger">
                       <IconLogout className="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 rotate-90 shrink-0" />
-                      Sign Out
-                    </Link>
+                      Logout
+                    </button>
                   </li>
                 </ul>
               </Dropdown>

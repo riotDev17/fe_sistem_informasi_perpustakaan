@@ -5,12 +5,12 @@ import { setPageTitle } from '../../../store/themeConfigSlice';
 const Index = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setPageTitle('Admin | Dashboard'));
+    dispatch(setPageTitle('Admin | Kelas'));
   });
 
   return (
     <>
-      <h1>Dashboard</h1>
+      <h1>Kelas</h1>
     </>
   );
 };

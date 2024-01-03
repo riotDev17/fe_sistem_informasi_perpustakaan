@@ -1,21 +1,23 @@
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
 import { Link, useNavigate } from 'react-router-dom';
-import { ChangeEvent, useEffect } from 'react';
+import { useEffect } from 'react';
+import { Form, Formik } from 'formik';
+import { validationSchema } from './validation/validationSchema';
 import InputText from '../../../components/forms/Input/InputText';
 import InputPassword from '../../../components/forms/Input/InputPassword';
+import InputCheckbox from '../../../components/forms/Input/InputCheckbox';
 import ButtonSolidPrimary from '../../../components/buttons/solid/ButtonSolidPrimary';
-import CheckboxDefaultPrimary from '../../../components/forms/checkbox/default/CheckboxDefaultPrimary';
 
-const LoginCover = () => {
+const SignIn = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setPageTitle('Admin | Login'));
   });
-  const navigate = useNavigate();
 
-  const submitForm = () => {
-    navigate('/');
+  const handleSubmit = (values: any) => {
+    console.log(values);
   };
 
   return (
@@ -24,45 +26,64 @@ const LoginCover = () => {
         <img src="/assets/images/auth/library.jpg" alt="image login" className="w-screen h-screen" />
       </div>
       <div className="w-full lg:w-1/2 relative flex justify-center items-center">
-        <div className="w-96 lg:p-0 p-5">
-          <h2 className="font-bold text-3xl mb-3">Sign In</h2>
-          <p className="mb-7">Enter your username and password to login</p>
-          <form className="space-y-5" onSubmit={submitForm}>
-            <div>
-              <InputText
-                id={'username'}
-                name={'username'}
-                label={'Username'}
-                value={''}
-                error={''}
-                placeholder={'Enter Username'}
-                onChange={function (e: ChangeEvent<HTMLInputElement>): void {
-                  throw new Error('Function not implemented.');
-                }}
-              />
-            </div>
-            <div>
-              <InputPassword
-                id={'password'}
-                name={'password'}
-                label={'Password'}
-                value={''}
-                error={''}
-                placeholder={'Enter password'}
-                onChange={function (e: ChangeEvent<HTMLInputElement>): void {
-                  throw new Error('Function not implemented.');
-                }}
-              />
-            </div>
-            <div>
-              <CheckboxDefaultPrimary text={'Remember me'} />
-            </div>
-            <ButtonSolidPrimary text={'SIGN IN'} />
-          </form>
+        <div className="w-96 xl:p-0 lg:p-5 p-5">
+          <h2 className="font-bold text-3xl mb-3">Login Admin</h2>
+          <p className="mb-7">Masukkan username dan password untuk login</p>
+
+          <Formik
+            initialValues={{
+              username: '',
+              password: '',
+            }}
+            validationSchema={validationSchema}
+            onSubmit={(values) => handleSubmit(values)}
+          >
+            {({ errors, handleChange, submitCount, values }) => (
+              <Form className="space-y-5">
+                <div className={submitCount ? (errors.username ? 'has-error' : 'has-success') : ''}>
+                  <InputText
+                    id={'username'}
+                    name={'username'}
+                    label={'Username'}
+                    value={values.username}
+                    onChange={handleChange}
+                    error={errors.username || ''}
+                    placeholder={'Masukkan Username'}
+                    isInputFilled={'Username Sudah Terisi'}
+                  />
+                </div>
+                <div className={submitCount ? (errors.password ? 'has-error' : 'has-success') : ''}>
+                  <InputPassword
+                    id={'password'}
+                    name={'password'}
+                    label={'Password'}
+                    value={values.password}
+                    onChange={handleChange}
+                    error={errors.password || ''}
+                    placeholder={'Masukkan Password'}
+                    isInputFilled={'Password Sudah Terisi'}
+                  />
+                </div>
+                <div>
+                  <InputCheckbox id={'rememberMe'} name={'rememberMe'} text={'Ingatkan Saya'} />
+                </div>
+                <ButtonSolidPrimary
+                  text={'Login'}
+                  onClick={() => {
+                    if (values.username && values.password && !errors.username && !errors.password) {
+                      handleSubmit(values);
+                    } else {
+                      console.log('error');
+                    }
+                  }}
+                />
+              </Form>
+            )}
+          </Formik>
         </div>
       </div>
     </div>
   );
 };
 
-export default LoginCover;
+export default SignIn;

@@ -51,7 +51,7 @@ const routes = [
     element: <RiwayatPeminjaman />,
   },
   {
-    path: '/profile',
+    path: '/profile/:id_admin',
     element: <Profile />,
   },
   {

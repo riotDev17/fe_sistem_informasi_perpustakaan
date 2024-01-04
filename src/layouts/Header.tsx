@@ -155,7 +155,7 @@ const Header = () => {
                     <div className="flex items-center px-4 py-4">
                       <img className="rounded-md w-10 h-10 object-cover" src="/assets/images/user-profile.jpeg" alt="userProfile" />
                       <div className="ltr:pl-4 rtl:pr-4 truncate">
-                        <h4 className="text-base">
+                        <h4 className="text-base dark:text-white">
                           {auth.getUsername()}
                           <span className="text-xs bg-success-light rounded text-success px-1 ltr:ml-2 rtl:ml-2">Admin</span>
                         </h4>
@@ -163,7 +163,7 @@ const Header = () => {
                     </div>
                   </li>
                   <li>
-                    <Link to="/profile" className="dark:hover:text-white">
+                    <Link to="/profile" className="dark:hover:text-white-dark dark:text-white">
                       <IconUser className="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 shrink-0" />
                       Profile
                     </Link>

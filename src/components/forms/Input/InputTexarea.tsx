@@ -13,7 +13,7 @@ interface InputTextareaProps {
 }
 
 const InputTextarea: React.FC<InputTextareaProps> = ({ id, name, rows, value, onChange, placeholder, label, error, isInputFilled }) => {
-  const isFilled = value.trim() !== '';
+  const isFilled = value !== '';
 
   return (
     <>

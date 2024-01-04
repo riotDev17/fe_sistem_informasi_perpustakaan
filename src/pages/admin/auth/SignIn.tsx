@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setPageTitle } from '../../../store/themeConfigSlice';
@@ -105,7 +105,7 @@ const SignIn = () => {
                   />
                 </div>
 
-                <ButtonSolidPrimary text={'Login'} />
+                <ButtonSolidPrimary text={'Login'} width={'w-full'} />
               </Form>
             )}
           </Formik>

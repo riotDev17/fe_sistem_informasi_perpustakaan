@@ -12,7 +12,7 @@ interface InputPasswordProps {
 }
 
 const InputPassword: React.FC<InputPasswordProps> = ({ id, name, value, onChange, placeholder, label, error, isInputFilled }) => {
-  const isFilled = value.trim() !== '';
+  const isFilled = value !== '';
 
   return (
     <>

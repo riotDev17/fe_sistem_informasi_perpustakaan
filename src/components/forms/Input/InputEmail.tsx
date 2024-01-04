@@ -12,7 +12,7 @@ interface InputEmailProps {
 }
 
 const InputEmail: React.FC<InputEmailProps> = ({ id, name, value, onChange, placeholder, label, error, isInputFilled }) => {
-  const isFilled = value.trim() !== '';
+  const isFilled = value !== '';
 
   return (
     <>

@@ -12,7 +12,7 @@ interface InputTelephoneProps {
 }
 
 const InputTelephone: React.FC<InputTelephoneProps> = ({ id, name, value, onChange, placeholder, label, error, isInputFilled }) => {
-  const isFilled = value.toString().trim() !== '';
+  const isFilled = value.toString() !== '';
 
   return (
     <>

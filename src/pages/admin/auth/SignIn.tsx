@@ -1,21 +1,22 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setPageTitle } from '../../../store/themeConfigSlice';
 import { Form, Formik } from 'formik';
 import { validationSchema } from './validation/validationSchema';
+import API from '../../../configs/api';
+import auth from '../../../configs/auth';
+import Swal from 'sweetalert2';
 import InputText from '../../../components/forms/Input/InputText';
 import InputPassword from '../../../components/forms/Input/InputPassword';
 import InputCheckbox from '../../../components/forms/Input/InputCheckbox';
 import ButtonSolidPrimary from '../../../components/buttons/solid/ButtonSolidPrimary';
-import API from '../../../configs/api';
-import auth from '../../../configs/auth';
-import Swal from 'sweetalert2';
-import axios from 'axios';
 
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [rememberMe, setRememberMe] = React.useState(false);
+
   useEffect(() => {
     dispatch(setPageTitle('Admin | Login'));
   });
@@ -27,8 +28,10 @@ const SignIn = () => {
       if (response.status === 200) {
         const { data } = response;
         const token = data.data.token;
+        const username = data.data.username;
 
         auth.setToken(token);
+        auth.setUsername(username);
         const toast = Swal.mixin({
           toast: true,
           position: 'top',
@@ -37,7 +40,7 @@ const SignIn = () => {
         });
         toast.fire({
           icon: 'success',
-          title: 'Selamat Datang Admin',
+          title: `Selamat Datang ${username}`,
           padding: '10px 20px',
         });
 
@@ -103,9 +106,7 @@ const SignIn = () => {
                     isInputFilled={'Password Sudah Terisi'}
                   />
                 </div>
-                <div>
-                  <InputCheckbox id={'rememberMe'} name={'rememberMe'} text={'Ingatkan Saya'} />
-                </div>
+
                 <ButtonSolidPrimary text={'Login'} />
               </Form>
             )}

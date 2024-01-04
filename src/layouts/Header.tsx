@@ -48,6 +48,8 @@ const Header = () => {
       const response = await API.delete('/api/admin/logout');
       if (response.status === 200) {
         auth.removeToken();
+        auth.removeUsername();
+
         const toast = Swal.mixin({
           toast: true,
           position: 'top',

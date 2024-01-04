@@ -9,13 +9,11 @@ import auth from '../../../configs/auth';
 import Swal from 'sweetalert2';
 import InputText from '../../../components/forms/Input/InputText';
 import InputPassword from '../../../components/forms/Input/InputPassword';
-import InputCheckbox from '../../../components/forms/Input/InputCheckbox';
 import ButtonSolidPrimary from '../../../components/buttons/solid/ButtonSolidPrimary';
 
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [rememberMe, setRememberMe] = React.useState(false);
 
   useEffect(() => {
     dispatch(setPageTitle('Admin | Login'));

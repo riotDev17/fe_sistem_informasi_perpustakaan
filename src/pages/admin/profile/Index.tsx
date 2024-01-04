@@ -12,7 +12,6 @@ import Swal from 'sweetalert2';
 const Index = () => {
   const dispatch = useDispatch();
   const [admin, setAdmin] = React.useState<any>({ data: { username: '', foto_admin: '' } });
-  const [image, setImage] = React.useState<any>('');
   const [imagePreview, setImagePreview] = React.useState<any>('');
 
   useEffect(() => {
@@ -70,7 +69,6 @@ const Index = () => {
 
   const handleUploadImage = async (e: any) => {
     const file = e.target.files[0];
-    setImage(file);
     setImagePreview(URL.createObjectURL(file));
   };
 
@@ -120,8 +118,9 @@ const Index = () => {
                         label={'Foto Profil'}
                         value={values.foto_admin || ''}
                         error={typeof errors.foto_admin === 'string' ? errors.foto_admin : ''}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        onChange={(e) => {
                           handleUploadImage(e);
+                          handleChange(e);
                         }}
                         isInputFilled={'Foto Sudah Terisi'}
                       />

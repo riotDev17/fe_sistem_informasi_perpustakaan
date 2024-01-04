@@ -12,14 +12,12 @@ interface InputFileProps {
 
 const InputFile: React.FC<InputFileProps> = ({ id, name, value, onChange, label, error, isInputFilled }) => {
   const isFilled = value !== '';
-  const fileName = value ? value.split('\\').pop() : '';
 
   return (
     <>
       <div className="mb-5">
         <div className="flex justify-between">
           <label htmlFor={label}>{label}</label>
-          <span className="ml-2">{fileName}</span>
         </div>
         <input
           id={id}

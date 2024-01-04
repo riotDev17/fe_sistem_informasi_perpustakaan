@@ -11,6 +11,10 @@ class Auth {
     return window.localStorage.getItem('token');
   };
 
+  getUsername = () => {
+    return window.localStorage.getItem('username');
+  };
+
   removeToken = () => {
     return window.localStorage.removeItem('token');
   };

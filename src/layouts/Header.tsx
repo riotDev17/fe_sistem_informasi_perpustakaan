@@ -174,10 +174,8 @@ const Header = () => {
                     <div className="flex items-center px-4 py-4">
                       <img className="rounded-md w-10 h-10 object-cover" src={`${import.meta.env.VITE_API_URL}/${admin?.data?.foto_admin}`} alt="Admin Profile" />
                       <div className="ltr:pl-4 rtl:pr-4 truncate">
-                        <h4 className="text-base dark:text-white">
-                          {admin?.data?.username}
-                          <span className="text-xs bg-success-light rounded text-success px-1 ltr:ml-2 rtl:ml-2">Admin</span>
-                        </h4>
+                        <span className="text-xs bg-success-light rounded text-success px-1">Admin</span>
+                        <h4 className="text-base dark:text-white">{admin?.data?.username}</h4>
                       </div>
                     </div>
                   </li>

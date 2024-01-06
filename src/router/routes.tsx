@@ -3,6 +3,7 @@ import Error404 from '../pages/Error404';
 
 const Dashboard = lazy(() => import('../pages/admin/dashboard/Index'));
 const Agama = lazy(() => import('../pages/admin/agama/Index'));
+const TambahAgama = lazy(() => import('../pages/admin/agama/FormInput/Index'));
 const Kelas = lazy(() => import('../pages/admin/kelas/Index'));
 const RakBuku = lazy(() => import('../pages/admin/masterBuku/rakBuku/Index'));
 const Buku = lazy(() => import('../pages/admin/masterBuku/buku/Index'));
@@ -21,6 +22,10 @@ const routes = [
   {
     path: '/agama',
     element: <Agama />,
+  },
+  {
+    path: '/agama/tambah-agama',
+    element: <TambahAgama />,
   },
   {
     path: '/kelas',

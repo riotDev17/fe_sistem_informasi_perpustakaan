@@ -10,10 +10,8 @@ import IconMoon from '../components/Icons/IconMoon';
 import IconLaptop from '../components/Icons/IconLaptop';
 import IconUser from '../components/Icons/IconUser';
 import IconLogout from '../components/Icons/IconLogout';
-import auth from '../configs/auth';
-import API from '../configs/api';
-import Swal from 'sweetalert2';
 import { LOGOUT } from '../pages/admin/auth/api/LOGOUT';
+import { GET } from '../pages/admin/auth/api/GET';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -47,19 +45,19 @@ const Header = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const getAdmin = async () => {
+      try {
+        const adminData = await GET();
+        if (adminData) {
+          setAdmin(adminData);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     getAdmin();
   }, []);
-
-  const getAdmin = async () => {
-    try {
-      const response = await API.get('/api/admin');
-      if (response.status === 200) {
-        setAdmin(response.data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handleLogout = async () => {
     try {
@@ -67,7 +65,6 @@ const Header = () => {
       navigate('/auth/admin/login');
     } catch (error) {
       console.error(error);
-      // Handle any potential error if needed
     }
   };
 

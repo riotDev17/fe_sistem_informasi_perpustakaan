@@ -1,13 +1,14 @@
+import { GET } from './api/GET';
+import { Link } from 'react-router-dom';
 import { DELETE } from './api/DELETE';
 import { debounce } from 'lodash';
-import { GET } from './api/GET';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
 import { useCallback, useEffect, useState } from 'react';
-import Table from './table/Index';
+import Table from './Table/Index';
 import SearchBasic from '../../../components/searchs/SearchBasic';
 import ButtonIconTextLeft from '../../../components/buttons/icon/ButtonIconTextLeft';
-import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
+import BreadcrumbsBasic from '../../../components/breadcrumbs/BreadcrumbsBasic';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -53,17 +54,20 @@ const Index = () => {
 
   return (
     <>
-      <BreadcrumbsDefault
+      <BreadcrumbsBasic
         menus={[
           {
             label: 'Agama',
             link: '/agama',
-            icon: 'mdi:religion-christian',
+            // icon: 'mdi:religion-christian',
           },
         ]}
       />
       <div className="flex justify-end gap-3">
-        <ButtonIconTextLeft icon="ic:baseline-plus" text="Tambah Agama" backgroundColor="btn-primary" />
+        <Link to={'/agama/tambah-agama'}>
+          <ButtonIconTextLeft icon="ic:baseline-plus" text="Tambah Agama" backgroundColor="btn-primary" />
+        </Link>
+
         <SearchBasic value={search} placeholder="Cari agama" onChange={handleSearchChange} />
       </div>
 

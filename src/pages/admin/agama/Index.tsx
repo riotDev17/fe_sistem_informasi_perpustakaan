@@ -44,8 +44,10 @@ const Index = () => {
   const handleDelete = async (id_agama: string) => {
     const isDeleted = await DELETE(id_agama);
     if (isDeleted) {
-      const newRecords = (initialRecords as any[]).filter((item) => item.id_agama !== id_agama);
-      setInitialRecords(newRecords as never[]);
+      GetAgama().then((agamaData) => {
+        setAgama(agamaData);
+        setInitialRecords(agamaData);
+      });
     }
   };
 

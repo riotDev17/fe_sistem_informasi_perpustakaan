@@ -27,7 +27,7 @@ export const LOGIN = async (username: string, password: string): Promise<any> =>
         padding: '10px 20px',
       });
 
-      return { success: true, username };
+      return true;
     }
   } catch (error) {
     console.log(error);
@@ -43,6 +43,6 @@ export const LOGIN = async (username: string, password: string): Promise<any> =>
       padding: '10px 20px',
     });
 
-    return { success: false, error };
+    return false;
   }
 };

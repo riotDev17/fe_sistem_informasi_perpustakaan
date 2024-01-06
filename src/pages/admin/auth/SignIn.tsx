@@ -1,16 +1,13 @@
+import { LOGIN } from './api/LOGIN';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setPageTitle } from '../../../store/themeConfigSlice';
 import { Form, Formik } from 'formik';
-import { validationSchema } from './validation/validationSchema';
-import API from '../../../configs/api';
-import auth from '../../../configs/auth';
-import Swal from 'sweetalert2';
+import { validationSchema } from './validationSchema';
 import InputText from '../../../components/forms/Input/InputText';
 import InputPassword from '../../../components/forms/Input/InputPassword';
 import ButtonSolidPrimary from '../../../components/buttons/solid/ButtonSolidPrimary';
-import { LOGIN } from './api/LOGIN';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -23,9 +20,9 @@ const SignIn = () => {
   const handleSubmit = async (e: { username: string; password: string }): Promise<any> => {
     try {
       const { username, password } = e;
-      const loginResult = await LOGIN(username, password);
+      const request = await LOGIN(username, password);
 
-      if (loginResult.success) {
+      if (request) {
         navigate('/');
       }
     } catch (error) {
@@ -78,7 +75,7 @@ const SignIn = () => {
                   />
                 </div>
 
-                <ButtonSolidPrimary text={'Login'} width={'w-full'} />
+                <ButtonSolidPrimary text={'Login'} width={'w-full'} onClick={() => handleSubmit(values)} />
               </Form>
             )}
           </Formik>

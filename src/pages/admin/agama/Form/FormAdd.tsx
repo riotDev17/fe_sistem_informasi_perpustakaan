@@ -7,7 +7,7 @@ import BreadcrumbsBasic from '../../../../components/breadcrumbs/BreadcrumbsBasi
 import ButtonSolidPrimary from '../../../../components/buttons/solid/ButtonSolidPrimary';
 import ButtonSolidDanger from '../../../../components/buttons/solid/ButtonSolidDanger';
 
-const FormInput = () => {
+const FormAdd = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e: { nama_agama: string }): Promise<any> => {
@@ -22,6 +22,8 @@ const FormInput = () => {
       console.log(error);
     }
   };
+
+
 
   return (
     <>
@@ -75,4 +77,4 @@ const FormInput = () => {
   );
 };
 
-export default FormInput;
+export default FormAdd;

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import ButtonOutlineDanger from '../../../../components/buttons/outline/ButtonOutlineDanger';
 import ButtonOutlineSuccess from '../../../../components/buttons/outline/ButtonOutlineSuccess';
 
@@ -27,7 +28,9 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
       render: (item: any) => (
         <>
           <div className="flex gap-4">
-            <ButtonOutlineSuccess text="Edit" />
+            <Link to={`/agama/edit-agama/${item.id_agama}`}>
+              <ButtonOutlineSuccess text="Edit" />
+            </Link>
             <ButtonOutlineDanger text="Hapus" onClick={() => handleDelete(item.id_agama)} />
           </div>
         </>

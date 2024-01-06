@@ -13,6 +13,7 @@ import IconLogout from '../components/Icons/IconLogout';
 import auth from '../configs/auth';
 import API from '../configs/api';
 import Swal from 'sweetalert2';
+import { LOGOUT } from '../pages/admin/auth/api/LOGOUT';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -62,38 +63,11 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await API.delete('/api/admin/logout');
-      if (response.status === 200) {
-        auth.removeToken();
-        auth.removeUsername();
-
-        const toast = Swal.mixin({
-          toast: true,
-          position: 'top',
-          showConfirmButton: false,
-          timer: 3000,
-        });
-        toast.fire({
-          icon: 'success',
-          title: 'Anda Berhasil Logout',
-          padding: '10px 20px',
-        });
-
-        navigate('/auth/admin/login');
-      }
+      await LOGOUT();
+      navigate('/auth/admin/login');
     } catch (error) {
-      console.log(error);
-      const toast = Swal.mixin({
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 3000,
-      });
-      toast.fire({
-        icon: 'error',
-        title: 'Anda Gagal Logout',
-        padding: '10px 20px',
-      });
+      console.error(error);
+      // Handle any potential error if needed
     }
   };
 

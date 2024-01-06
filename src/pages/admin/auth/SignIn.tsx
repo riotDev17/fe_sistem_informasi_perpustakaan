@@ -33,9 +33,9 @@ const SignIn = () => {
   return (
     <div className="flex min-h-screen">
       <div className="min-h-screen hidden lg:flex flex-col items-center justify-center text-white dark:text-black">
-        <img src="/assets/images/auth/library.jpg" alt="image login" className="w-screen h-screen" />
+        <img src="/assets/images/auth/login-cover.jpg" alt="image login" className="w-screen h-screen" />
       </div>
-      <div className="w-full lg:w-1/2 relative flex justify-center items-center">
+      <div className="w-full lg:w-1/3 relative flex justify-center items-center">
         <div className="w-96 xl:p-0 lg:p-5 p-5">
           <h2 className="font-bold text-3xl mb-3">Login Admin</h2>
           <p className="mb-7">Masukkan username dan password untuk login</p>

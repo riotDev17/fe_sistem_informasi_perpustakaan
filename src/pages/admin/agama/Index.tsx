@@ -1,13 +1,13 @@
+import { DELETE } from './api/DELETE';
 import { debounce } from 'lodash';
 import { GetAgama } from './api/GET';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
 import { useCallback, useEffect, useState } from 'react';
+import Table from './table/Index';
 import SearchBasic from '../../../components/searchs/SearchBasic';
 import ButtonIconTextLeft from '../../../components/buttons/icon/ButtonIconTextLeft';
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
-import Table from './table/Index';
-import { DELETE } from './api/DELETE';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -44,12 +44,8 @@ const Index = () => {
   const handleDelete = async (id_agama: string) => {
     const isDeleted = await DELETE(id_agama);
     if (isDeleted) {
-      // const newRecords = (initialRecords as any[]).filter((item) => item.id_agama !== id_agama);
-      // setInitialRecords(newRecords as never[]);
-      GetAgama().then((agamaData) => {
-        setAgama(agamaData);
-        setInitialRecords(agamaData);
-      });
+      const newRecords = (initialRecords as any[]).filter((item) => item.id_agama !== id_agama);
+      setInitialRecords(newRecords as never[]);
     }
   };
 

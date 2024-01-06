@@ -16,7 +16,7 @@ const BreadcrumbsBasic: React.FC<BreadcrumbsBasicProps> = ({ menus }) => {
           <li key={index} className={index > 0 ? "before:content-['/'] before:px-1.5" : ''}>
             {menu.link ? (
               <Link to={menu.link}>
-                <button className={index === 0 ? 'text-primary text-base' : 'text-gray-800 hover:text-gray-500/70 dark:hover:text-white-dark/70 text-base'}>{menu.label}</button>
+                <button className={index === 0 ? 'text-primary text-base' : 'text-gray-800 hover:text-gray-500/70 dark:hover:text-white-dark/70 text-base dark:text-white'}>{menu.label}</button>
               </Link>
             ) : (
               <button className={index === 0 ? 'text-primary hover:text-gray-700/70 dark:hover:text-white-dark/70' : 'hover:text-gray-500/70 dark:hover:text-white-dark/70'}>{menu.label}</button>

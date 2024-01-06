@@ -16,23 +16,33 @@ export const DELETE = async (id_agama: string) => {
     if (alert.isConfirmed) {
       try {
         await API.delete(`/api/agama/${id_agama}`);
-        Swal.fire({
-          icon: 'success',
-          title: 'Terhapus',
-          text: 'Agama berhasil dihapus.',
-          padding: '2em',
-          customClass: 'sweet-alerts',
+        const toast = Swal.mixin({
+          toast: true,
+          position: 'top',
+          showConfirmButton: false,
+          timer: 3000,
         });
+        toast.fire({
+          icon: 'success',
+          title: 'Agama Berhasil Dihapus',
+          padding: '10px 20px',
+        });
+
         return true;
       } catch (error) {
         console.log(error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Gagal',
-          text: 'Agama gagal dihapus.',
-          padding: '2em',
-          customClass: 'sweet-alerts',
+        const toast = Swal.mixin({
+          toast: true,
+          position: 'top',
+          showConfirmButton: false,
+          timer: 3000,
         });
+        toast.fire({
+          icon: 'error',
+          title: 'Agama Gagal Dihapus',
+          padding: '10px 20px',
+        });
+
         return false;
       }
     }

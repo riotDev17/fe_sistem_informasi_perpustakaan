@@ -4,9 +4,10 @@ import TableSkinBordered from '../../../../components/tables/skin/TableSkinBorde
 
 interface TableProps {
   agama: any[];
+  handleDelete: (id_agama: string) => void;
 }
 
-const Table: React.FC<TableProps> = ({ agama: initialAgama }) => {
+const Table: React.FC<TableProps> = ({ agama: initialAgama, handleDelete }) => {
   const PAGE_SIZES = [10, 25, 50, 100];
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
@@ -29,13 +30,13 @@ const Table: React.FC<TableProps> = ({ agama: initialAgama }) => {
     <>
       <TableSkinBordered
         page={page}
-        columns={Columns()}
         records={recordsData}
         recordsPerPage={pageSize}
         totalRecords={initialAgama.length}
         onPageChange={(page: number) => setPage(page)}
         recordsPerPageOptions={PAGE_SIZES}
         onRecordsPerPageChange={setPageSize}
+        columns={Columns({ handleDelete })}
       />
     </>
   );

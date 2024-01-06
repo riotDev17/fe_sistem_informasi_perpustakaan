@@ -1,7 +1,11 @@
 import ButtonOutlineDanger from '../../../../components/buttons/outline/ButtonOutlineDanger';
 import ButtonOutlineSuccess from '../../../../components/buttons/outline/ButtonOutlineSuccess';
 
-const Columns = () => {
+interface ColumnsProps {
+  handleDelete: (id_agama: string) => void;
+}
+
+const Columns = ({ handleDelete }: ColumnsProps) => {
   return [
     {
       key: 'id_agama',
@@ -20,11 +24,11 @@ const Columns = () => {
     {
       title: 'Aksi',
       accessor: 'aksi',
-      render: () => (
+      render: (item: any) => (
         <>
           <div className="flex gap-4">
             <ButtonOutlineSuccess text="Edit" />
-            <ButtonOutlineDanger text="Hapus" />
+            <ButtonOutlineDanger text="Hapus" onClick={() => handleDelete(item.id_agama)} />
           </div>
         </>
       ),

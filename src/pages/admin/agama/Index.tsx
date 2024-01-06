@@ -7,6 +7,7 @@ import SearchBasic from '../../../components/searchs/SearchBasic';
 import ButtonIconTextLeft from '../../../components/buttons/icon/ButtonIconTextLeft';
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 import Table from './table/Index';
+import { DELETE } from './api/DELETE';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,18 @@ const Index = () => {
     debounceSearch(searchQuery);
   };
 
+  const handleDelete = async (id_agama: string) => {
+    const isDeleted = await DELETE(id_agama);
+    if (isDeleted) {
+      // const newRecords = (initialRecords as any[]).filter((item) => item.id_agama !== id_agama);
+      // setInitialRecords(newRecords as never[]);
+      GetAgama().then((agamaData) => {
+        setAgama(agamaData);
+        setInitialRecords(agamaData);
+      });
+    }
+  };
+
   return (
     <>
       <BreadcrumbsDefault
@@ -57,7 +70,7 @@ const Index = () => {
       </div>
 
       <div className="mt-5">
-        <Table agama={initialRecords} />
+        <Table agama={initialRecords} handleDelete={handleDelete} />
       </div>
     </>
   );

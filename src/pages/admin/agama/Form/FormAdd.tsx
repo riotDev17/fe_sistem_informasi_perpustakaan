@@ -10,7 +10,7 @@ import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDe
 const FormAdd = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: { nama_agama: string }): Promise<any> => {
+  const handleCreate = async (e: { nama_agama: string }): Promise<any> => {
     try {
       const { nama_agama } = e;
       const request = await requestCreate(nama_agama);
@@ -25,21 +25,20 @@ const FormAdd = () => {
 
   return (
     <>
-      <div className="flex justify-end">
-        <BreadcrumbsDefault
-          menus={[
-            {
-              label: 'Agama',
-              link: '/agama',
-              icon: 'mdi:religion-christian',
-            },
-            {
-              label: 'Tambah Agama',
-              link: '/agama/tambah-agama',
-            },
-          ]}
-        />
-      </div>
+      <BreadcrumbsDefault
+        header="Agama"
+        menus={[
+          {
+            label: 'Agama',
+            link: '/agama',
+            icon: 'mdi:religion-christian',
+          },
+          {
+            label: 'Tambah Agama',
+            link: '/agama/tambah-agama',
+          },
+        ]}
+      />
 
       <div className="mt-10">
         <Formik
@@ -47,7 +46,7 @@ const FormAdd = () => {
             nama_agama: '',
           }}
           validationSchema={validationSchema}
-          onSubmit={handleSubmit}
+          onSubmit={handleCreate}
         >
           {({ errors, handleChange, submitCount, values }) => (
             <Form className="space-y-5">
@@ -55,17 +54,17 @@ const FormAdd = () => {
                 <InputText
                   id={'nama_agama'}
                   name={'nama_agama'}
-                  label={'Agama'}
+                  label={'Nama Agama'}
                   value={values.nama_agama}
                   onChange={handleChange}
                   error={errors.nama_agama || ''}
                   placeholder={'Masukkan Nama Agama'}
-                  isInputFilled={'Agama Sudah Terisi'}
+                  isInputFilled={'Form Nama Agama Sudah Terisi'}
                 />
               </div>
 
               <div className="flex gap-3 justify-end">
-                <ButtonSolidPrimary text={'Tambah Agama'} width={'w-auto'} onClick={() => handleSubmit(values)} />
+                <ButtonSolidPrimary text={'Tambah Agama'} width={'w-auto'} onClick={() => handleCreate(values)} />
                 <Link to={'/agama'}>
                   <ButtonSolidDanger text={'Batal'} width={'w-auto'} />
                 </Link>

@@ -20,7 +20,7 @@ const FormEdit = () => {
     });
   }, []);
 
-  const handleSubmit = async (e: { nama_agama: string }): Promise<any> => {
+  const handleUpdate = async (e: { nama_agama: string }): Promise<any> => {
     try {
       const { nama_agama } = e;
       const request = await requestUpdate(id_agama ?? '', nama_agama);
@@ -35,21 +35,20 @@ const FormEdit = () => {
 
   return (
     <>
-      <div className="flex justify-end">
-        <BreadcrumbsDefault
-          menus={[
-            {
-              label: 'Agama',
-              link: '/agama',
-              icon: 'mdi:religion-christian',
-            },
-            {
-              label: 'Edit Agama',
-              link: `/agama/edit-agama/${id_agama}`,
-            },
-          ]}
-        />
-      </div>
+      <BreadcrumbsDefault
+        header="Agama"
+        menus={[
+          {
+            label: 'Agama',
+            link: '/agama',
+            icon: 'mdi:religion-christian',
+          },
+          {
+            label: 'Edit Agama',
+            link: `/agama/edit-agama/${id_agama}`,
+          },
+        ]}
+      />
 
       <div className="mt-10">
         <Formik
@@ -58,7 +57,7 @@ const FormEdit = () => {
             nama_agama: namaAgama,
           }}
           validationSchema={validationSchema}
-          onSubmit={handleSubmit}
+          onSubmit={handleUpdate}
         >
           {({ errors, handleChange, submitCount, values }) => (
             <Form className="space-y-5">
@@ -66,17 +65,17 @@ const FormEdit = () => {
                 <InputText
                   id={'nama_agama'}
                   name={'nama_agama'}
-                  label={'Agama'}
+                  label={'Nama Agama'}
                   value={values.nama_agama}
                   onChange={handleChange}
                   error={errors.nama_agama || ''}
                   placeholder={'Masukkan Nama Agama'}
-                  isInputFilled={'Agama Sudah Terisi'}
+                  isInputFilled={'Form Nama Agama Sudah Terisi'}
                 />
               </div>
 
               <div className="flex gap-3 justify-end">
-                <ButtonSolidSuccess text={'Edit Agama'} width={'w-auto'} onClick={() => handleSubmit(values)} />
+                <ButtonSolidSuccess text={'Edit Agama'} width={'w-auto'} onClick={() => handleUpdate(values)} />
                 <Link to={'/agama'}>
                   <ButtonSolidDanger text={'Batal'} width={'w-auto'} />
                 </Link>

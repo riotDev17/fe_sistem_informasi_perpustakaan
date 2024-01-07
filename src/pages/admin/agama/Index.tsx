@@ -19,14 +19,12 @@ const Index = () => {
   useEffect(() => {
     dispatch(setPageTitle('Admin | Agama'));
 
-    // Panggil fungsi GET API AGAMA dan set state setelah mendapatkan data
     requestGet().then((agamaData) => {
       setAgama(agamaData);
       setInitialRecords(agamaData);
     });
   }, [dispatch]);
 
-  // Search Debounce
   const debounceSearch = useCallback(
     debounce((searchQuery) => {
       const filteredData = (initialRecords as any[]).filter((item) => item.nama_agama.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -35,8 +33,7 @@ const Index = () => {
     [agama]
   );
 
-  // Handle Search
-  const handleSearchChange = (e: any) => {
+  const handleSearch = (e: any) => {
     const searchQuery = e.target.value;
     setSearch(searchQuery);
     debounceSearch(searchQuery);
@@ -58,20 +55,19 @@ const Index = () => {
 
   return (
     <>
-      <div className="flex justify-end">
-        <BreadcrumbsDefault
-          menus={[
-            {
-              label: 'Agama',
-              link: '/agama',
-              icon: 'mdi:religion-christian',
-            },
-          ]}
-        />
-      </div>
+      <BreadcrumbsDefault
+        header="Agama"
+        menus={[
+          {
+            label: 'Agama',
+            link: '/agama',
+            icon: 'mdi:religion-christian',
+          },
+        ]}
+      />
 
       <div className="flex justify-between gap-3 mt-10">
-        <SearchBasic value={search} placeholder="Cari agama" onChange={handleSearchChange} width="w-1/2" />
+        <SearchBasic value={search} placeholder="Cari agama" onChange={handleSearch} width="w-1/2" />
         <div className="flex gap-3">
           <Link to={'/agama/tambah-agama'}>
             <ButtonIconTextLeft icon="ic:baseline-plus" text="Tambah Agama" backgroundColor="btn-primary" />

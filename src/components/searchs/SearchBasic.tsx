@@ -19,7 +19,7 @@ const SearchBasic: React.FC<SearchBasicProps> = ({ onChange, placeholder, value,
             type="text"
             value={value}
             onChange={onChange}
-            className="form-input ltr:pl-9 rtl:pr-9 ltr:sm:pr-4 rtl:sm:pl-4 ltr:pr-9 rtl:pl-9 peer sm:bg-transparent bg-gray-100 placeholder:tracking-widest placeholder:dark:text-white dark:text-white"
+            className="form-input ltr:pl-9 rtl:pr-9 ltr:sm:pr-4 rtl:sm:pl-4 ltr:pr-9 rtl:pl-9 peer sm:bg-transparent bg-gray-100 placeholder:tracking-widest placeholder:dark:text-white dark:text-white border border-gray-300"
             placeholder={placeholder}
           />
           <button type="button" className="absolute w-9 h-9 inset-0 ltr:right-auto rtl:left-auto appearance-none peer-focus:text-primary dark:text-white ">

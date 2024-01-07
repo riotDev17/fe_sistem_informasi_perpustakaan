@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import ButtonOutlineDanger from '../../../../components/buttons/outline/ButtonOutlineDanger';
 import ButtonOutlineSuccess from '../../../../components/buttons/outline/ButtonOutlineSuccess';
+import IconPencil from '../../../../components/Icons/IconPencil';
+import IconTrash from '../../../../components/Icons/IconTrash';
+import TippyDefault from '../../../../components/tippys/default/TippyDefault';
 
 interface ColumnsProps {
   handleDelete: (id_agama: string) => void;
@@ -43,9 +46,15 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
         <>
           <div className="flex space-x-1 rtl:space-x-reverse gap-2" key={item.id_agama}>
             <Link to={`/agama/edit-agama/${item.id_agama}`}>
-              <ButtonOutlineSuccess text="Edit" />
+              <TippyDefault content="Edit">
+                <IconPencil />
+              </TippyDefault>
             </Link>
-            <ButtonOutlineDanger text="Hapus" onClick={() => handleDelete(item.id_agama)} />
+            <button onClick={() => handleDelete(item.id_agama)}>
+              <TippyDefault content="Hapus">
+                <IconTrash />
+              </TippyDefault>
+            </button>
           </div>
         </>
       ),

@@ -1,5 +1,5 @@
-import { POST } from '../api/POST';
 import { Formik } from 'formik';
+import { requestCreate } from '../api/requestCreate';
 import { validationSchema } from './validationSchema';
 import { Form, Link, useNavigate } from 'react-router-dom';
 import InputText from '../../../../components/forms/Input/InputText';
@@ -13,7 +13,7 @@ const FormAdd = () => {
   const handleSubmit = async (e: { nama_agama: string }): Promise<any> => {
     try {
       const { nama_agama } = e;
-      const request = await POST(nama_agama);
+      const request = await requestCreate(nama_agama);
 
       if (request) {
         navigate('/agama');
@@ -22,8 +22,6 @@ const FormAdd = () => {
       console.log(error);
     }
   };
-
-
 
   return (
     <>

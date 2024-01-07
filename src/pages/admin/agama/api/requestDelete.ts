@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
 import API from '../../../../configs/api';
 
-export const DELETE = async (id_agama: string) => {
+export const requestDelete = async (id_agama: string) => {
   try {
     const alert = await Swal.fire({
       icon: 'warning',

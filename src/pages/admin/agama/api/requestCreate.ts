@@ -1,11 +1,10 @@
 import Swal from 'sweetalert2';
 import API from '../../../../configs/api';
 
-export const PUT = async (id_agama: string, nama_agama: string) => {
+export const requestCreate = async (nama_agama: any): Promise<any> => {
   try {
-    const response = await API.put(`/api/agama/${id_agama}`, {
-      nama_agama: nama_agama,
-    });
+    const data = { nama_agama };
+    const response = await API.post('/api/agama', data);
 
     if (response.status === 200) {
       const toast = Swal.mixin({
@@ -16,7 +15,7 @@ export const PUT = async (id_agama: string, nama_agama: string) => {
       });
       toast.fire({
         icon: 'success',
-        title: `Agama Berhasil Diedit`,
+        title: `Agama Berhasil Ditambahkan`,
         padding: '10px 20px',
       });
 
@@ -24,6 +23,7 @@ export const PUT = async (id_agama: string, nama_agama: string) => {
     }
   } catch (error) {
     console.log(error);
+
     const toast = Swal.mixin({
       toast: true,
       position: 'top',
@@ -32,7 +32,7 @@ export const PUT = async (id_agama: string, nama_agama: string) => {
     });
     toast.fire({
       icon: 'error',
-      title: 'Agama Gagal Diedit!',
+      title: 'Agama Gagal Ditambahkan!',
       padding: '10px 20px',
     });
 

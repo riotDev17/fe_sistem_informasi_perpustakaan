@@ -1,6 +1,6 @@
-import { GET } from './api/GET';
+import { requestGet } from './api/requestGet';
 import { Link } from 'react-router-dom';
-import { DELETE } from './api/DELETE';
+import { requestDelete } from './api/requestDelete';
 import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
@@ -20,7 +20,7 @@ const Index = () => {
     dispatch(setPageTitle('Admin | Agama'));
 
     // Panggil fungsi GET API AGAMA dan set state setelah mendapatkan data
-    GET().then((agamaData) => {
+    requestGet().then((agamaData) => {
       setAgama(agamaData);
       setInitialRecords(agamaData);
     });
@@ -43,9 +43,9 @@ const Index = () => {
   };
 
   const handleDelete = async (id_agama: string) => {
-    const isDeleted = await DELETE(id_agama);
+    const isDeleted = await requestDelete(id_agama);
     if (isDeleted) {
-      GET().then((agamaData) => {
+      requestGet().then((agamaData) => {
         setAgama(agamaData);
         setInitialRecords(agamaData);
       });

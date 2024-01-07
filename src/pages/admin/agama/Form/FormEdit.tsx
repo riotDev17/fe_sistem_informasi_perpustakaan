@@ -1,22 +1,21 @@
-import React, { useEffect } from 'react';
-import { PUT } from '../api/PUT';
-import { GETBYID } from '../api/GETBYID';
 import { Formik } from 'formik';
+import { requestUpdate } from '../api/requestUpdate';
+import { requestGetByID } from '../api/requestGetByID';
 import { validationSchema } from './validationSchema';
+import { useState, useEffect } from 'react';
 import { Form, Link, useNavigate, useParams } from 'react-router-dom';
 import InputText from '../../../../components/forms/Input/InputText';
 import BreadcrumbsBasic from '../../../../components/breadcrumbs/BreadcrumbsBasic';
 import ButtonSolidDanger from '../../../../components/buttons/solid/ButtonSolidDanger';
 import ButtonSolidSuccess from '../../../../components/buttons/solid/ButtonSolidSuccess';
 
-
 const FormEdit = () => {
   const navigate = useNavigate();
   const { id_agama } = useParams();
-  const [namaAgama, setNamaAgama] = React.useState('');
+  const [namaAgama, setNamaAgama] = useState('');
 
   useEffect(() => {
-    GETBYID(id_agama ?? '').then((response) => {
+    requestGetByID(id_agama ?? '').then((response) => {
       setNamaAgama(response?.data?.nama_agama || '');
     });
   }, []);
@@ -24,7 +23,7 @@ const FormEdit = () => {
   const handleSubmit = async (e: { nama_agama: string }): Promise<any> => {
     try {
       const { nama_agama } = e;
-      const request = await PUT(id_agama ?? '', nama_agama);
+      const request = await requestUpdate(id_agama ?? '', nama_agama);
 
       if (request) {
         navigate('/agama');

@@ -2,10 +2,17 @@ import { lazy } from 'react';
 import Error404 from '../pages/Error404';
 
 const Dashboard = lazy(() => import('../pages/admin/dashboard/Index'));
+
+// Agama
 const Agama = lazy(() => import('../pages/admin/agama/Index'));
 const FormAddAgama = lazy(() => import('../pages/admin/agama/Form/FormAdd'));
 const FormEditAgama = lazy(() => import('../pages/admin/agama/Form/FormEdit'));
+
+// Kelas
 const Kelas = lazy(() => import('../pages/admin/kelas/Index'));
+const FormAddKelas = lazy(() => import('../pages/admin/kelas/Form/FormAdd'));
+const FormEditKelas = lazy(() => import('../pages/admin/kelas/Form/FormEdit'));
+
 const RakBuku = lazy(() => import('../pages/admin/masterBuku/rakBuku/Index'));
 const Buku = lazy(() => import('../pages/admin/masterBuku/buku/Index'));
 const Siswa = lazy(() => import('../pages/admin/siswa/Index'));
@@ -35,6 +42,14 @@ const routes = [
   {
     path: '/kelas',
     element: <Kelas />,
+  },
+  {
+    path: '/kelas/tambah-kelas',
+    element: <FormAddKelas />,
+  },
+  {
+    path: '/kelas/edit-kelas/:id_kelas',
+    element: <FormEditKelas />,
   },
   {
     path: '/rak-buku',

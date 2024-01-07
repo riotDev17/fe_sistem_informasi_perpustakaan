@@ -1,12 +1,10 @@
+import { LOGIN } from './api/LOGIN';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setPageTitle } from '../../../store/themeConfigSlice';
 import { Form, Formik } from 'formik';
-import { validationSchema } from './validation/validationSchema';
-import API from '../../../configs/api';
-import auth from '../../../configs/auth';
-import Swal from 'sweetalert2';
+import { validationSchema } from './validationSchema';
 import InputText from '../../../components/forms/Input/InputText';
 import InputPassword from '../../../components/forms/Input/InputPassword';
 import ButtonSolidPrimary from '../../../components/buttons/solid/ButtonSolidPrimary';
@@ -19,57 +17,29 @@ const SignIn = () => {
     dispatch(setPageTitle('Admin | Login'));
   });
 
-  const handleSubmit = async (e: { username: any; password: any }): Promise<any> => {
+  const handleSubmit = async (e: { username: string; password: string }): Promise<any> => {
     try {
-      const data = { username: e.username, password: e.password };
-      const response = await API.post('/auth/admin/login', data);
-      if (response.status === 200) {
-        const { data } = response;
-        const token = data.data.token;
-        const username = data.data.username;
+      const { username, password } = e;
+      const request = await LOGIN(username, password);
 
-        auth.setToken(token);
-        auth.setUsername(username);
-        const toast = Swal.mixin({
-          toast: true,
-          position: 'top',
-          showConfirmButton: false,
-          timer: 3000,
-        });
-        toast.fire({
-          icon: 'success',
-          title: `Selamat Datang ${username}`,
-          padding: '10px 20px',
-        });
-
+      if (request) {
         navigate('/');
       }
     } catch (error) {
       console.log(error);
-      const toast = Swal.mixin({
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 3000,
-      });
-      toast.fire({
-        icon: 'error',
-        title: 'Username atau Password Salah',
-        padding: '10px 20px',
-      });
     }
   };
 
   return (
     <div className="flex min-h-screen">
       <div className="min-h-screen hidden lg:flex flex-col items-center justify-center text-white dark:text-black">
-        <img src="/assets/images/auth/library.jpg" alt="image login" className="w-screen h-screen" />
+        <img src="/assets/images/auth/login-cover.jpg" alt="image login" className="w-screen h-screen" />
       </div>
-      <div className="w-full lg:w-1/2 relative flex justify-center items-center">
+      <div className="w-full lg:w-1/3 relative flex flex-col justify-center items-center z-10">
         <div className="w-96 xl:p-0 lg:p-5 p-5">
+          <img src="/logo-icon.png" alt="" className="w-52 mx-auto absolute top-0 right-0 left-0" />
           <h2 className="font-bold text-3xl mb-3">Login Admin</h2>
           <p className="mb-7">Masukkan username dan password untuk login</p>
-
           <Formik
             initialValues={{
               username: '',
@@ -105,7 +75,7 @@ const SignIn = () => {
                   />
                 </div>
 
-                <ButtonSolidPrimary text={'Login'} width={'w-full'} />
+                <ButtonSolidPrimary text={'Login'} width={'w-full'} onClick={() => handleSubmit(values)} />
               </Form>
             )}
           </Formik>

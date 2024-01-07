@@ -10,9 +10,8 @@ import IconMoon from '../components/Icons/IconMoon';
 import IconLaptop from '../components/Icons/IconLaptop';
 import IconUser from '../components/Icons/IconUser';
 import IconLogout from '../components/Icons/IconLogout';
-import auth from '../configs/auth';
-import API from '../configs/api';
-import Swal from 'sweetalert2';
+import { LOGOUT } from '../pages/admin/auth/api/LOGOUT';
+import { GET } from '../pages/admin/auth/api/GET';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -46,54 +45,26 @@ const Header = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const getAdmin = async () => {
+      try {
+        const adminData = await GET();
+        if (adminData) {
+          setAdmin(adminData);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     getAdmin();
   }, []);
 
-  const getAdmin = async () => {
-    try {
-      const response = await API.get('/api/admin');
-      if (response.status === 200) {
-        setAdmin(response.data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const handleLogout = async () => {
     try {
-      const response = await API.delete('/api/admin/logout');
-      if (response.status === 200) {
-        auth.removeToken();
-        auth.removeUsername();
-
-        const toast = Swal.mixin({
-          toast: true,
-          position: 'top',
-          showConfirmButton: false,
-          timer: 3000,
-        });
-        toast.fire({
-          icon: 'success',
-          title: 'Anda Berhasil Logout',
-          padding: '10px 20px',
-        });
-
-        navigate('/auth/admin/login');
-      }
+      await LOGOUT();
+      navigate('/auth/admin/login');
     } catch (error) {
-      console.log(error);
-      const toast = Swal.mixin({
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 3000,
-      });
-      toast.fire({
-        icon: 'error',
-        title: 'Anda Gagal Logout',
-        padding: '10px 20px',
-      });
+      console.error(error);
     }
   };
 
@@ -103,7 +74,7 @@ const Header = () => {
         <div className="relative bg-white flex w-full items-center px-5 py-2.5 dark:bg-black">
           <div className="horizontal-logo flex lg:hidden justify-between items-center ltr:mr-2 rtl:ml-2">
             <Link to="/" className="main-logo flex items-center shrink-0">
-              <img className="w-10 ltr:-ml-1 rtl:-mr-1 inline" src="/assets/images/logo2.png" alt="logo" />
+              <img className="w-10 ltr:-ml-1 rtl:-mr-1 inline" src="/logo.png" alt="logo" />
               <span className="text-2xl ltr:ml-3 rtl:mr-1.5  font-semibold  align-middle hidden md:inline dark:text-white-light transition-all duration-300">IntelliBook</span>
             </Link>
             <button

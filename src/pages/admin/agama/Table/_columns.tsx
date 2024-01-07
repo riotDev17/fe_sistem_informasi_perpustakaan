@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom';
-import ButtonOutlineDanger from '../../../../components/buttons/outline/ButtonOutlineDanger';
-import ButtonOutlineSuccess from '../../../../components/buttons/outline/ButtonOutlineSuccess';
 import IconPencil from '../../../../components/Icons/IconPencil';
 import IconTrash from '../../../../components/Icons/IconTrash';
 import TippyDefault from '../../../../components/tippys/default/TippyDefault';

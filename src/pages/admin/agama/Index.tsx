@@ -52,6 +52,10 @@ const Index = () => {
     }
   };
 
+  const handleRefresh = () => {
+    window.location.reload();
+  };
+
   return (
     <>
       <BreadcrumbsBasic
@@ -62,12 +66,15 @@ const Index = () => {
           },
         ]}
       />
-      <div className="flex justify-end gap-3">
-        <Link to={'/agama/tambah-agama'}>
-          <ButtonIconTextLeft icon="ic:baseline-plus" text="Tambah Agama" backgroundColor="btn-primary" />
-        </Link>
+      <div className="flex justify-between gap-3 mt-5">
+        <SearchBasic value={search} placeholder="Cari agama" onChange={handleSearchChange} width="w-1/2" />
+        <div className="flex gap-3">
+          <Link to={'/agama/tambah-agama'}>
+            <ButtonIconTextLeft icon="ic:baseline-plus" text="Tambah Agama" backgroundColor="btn-primary" />
+          </Link>
 
-        <SearchBasic value={search} placeholder="Cari agama" onChange={handleSearchChange} />
+          <ButtonIconTextLeft icon="material-symbols:refresh" text="Refresh Halaman" backgroundColor="btn-info" onClick={handleRefresh} />
+        </div>
       </div>
 
       <div className="mt-5">

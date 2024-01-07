@@ -20,7 +20,7 @@ const TableSkinBordered: React.FC<TableSkinBorderedProps> = ({ page, onPageChang
           <DataTable
             className="whitespace-nowrap table-bordered dark:text-white text-black"
             page={page}
-            height={500}
+            minHeight={100}
             records={records}
             columns={columns}
             totalRecords={totalRecords}

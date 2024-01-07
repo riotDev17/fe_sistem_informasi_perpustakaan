@@ -10,7 +10,7 @@ import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDe
 const FormAdd = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: { nama_kelas: string }): Promise<any> => {
+  const handleCreate = async (e: { nama_kelas: string }): Promise<any> => {
     try {
       const { nama_kelas } = e;
       const request = await requestCreate(nama_kelas);
@@ -25,21 +25,20 @@ const FormAdd = () => {
 
   return (
     <>
-      <div className="flex justify-end">
-        <BreadcrumbsDefault
-          menus={[
-            {
-              label: 'Kelas',
-              link: '/kelas',
-              icon: 'streamline:class-lesson-solid',
-            },
-            {
-              label: 'Tambah Kelas',
-              link: '/kelas/tambah-kelas',
-            },
-          ]}
-        />
-      </div>
+      <BreadcrumbsDefault
+        header="Kelas"
+        menus={[
+          {
+            label: 'Kelas',
+            link: '/kelas',
+            icon: 'streamline:class-lesson-solid',
+          },
+          {
+            label: 'Tambah Kelas',
+            link: '/kelas/tambah-kelas',
+          },
+        ]}
+      />
 
       <div className="mt-10">
         <Formik
@@ -47,7 +46,7 @@ const FormAdd = () => {
             nama_kelas: '',
           }}
           validationSchema={validationSchema}
-          onSubmit={handleSubmit}
+          onSubmit={handleCreate}
         >
           {({ errors, handleChange, submitCount, values }) => (
             <Form className="space-y-5">
@@ -55,17 +54,17 @@ const FormAdd = () => {
                 <InputText
                   id={'nama_kelas'}
                   name={'nama_kelas'}
-                  label={'Kelas'}
+                  label={'Nama Kelas'}
                   value={values.nama_kelas}
                   onChange={handleChange}
                   error={errors.nama_kelas || ''}
                   placeholder={'Masukkan Nama Kelas'}
-                  isInputFilled={'Kelas Sudah Terisi'}
+                  isInputFilled={'Form Nama Kelas Sudah Terisi'}
                 />
               </div>
 
               <div className="flex gap-3 justify-end">
-                <ButtonSolidPrimary text={'Tambah kelas'} width={'w-auto'} onClick={() => handleSubmit(values)} />
+                <ButtonSolidPrimary text={'Tambah kelas'} width={'w-auto'} onClick={() => handleCreate(values)} />
                 <Link to={'/kelas'}>
                   <ButtonSolidDanger text={'Batal'} width={'w-auto'} />
                 </Link>

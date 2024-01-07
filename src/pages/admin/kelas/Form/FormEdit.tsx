@@ -20,7 +20,7 @@ const FormEdit = () => {
     });
   }, []);
 
-  const handleSubmit = async (e: { nama_kelas: string }): Promise<any> => {
+  const handleUpdate = async (e: { nama_kelas: string }): Promise<any> => {
     try {
       const { nama_kelas } = e;
       const request = await requestUpdate(id_kelas ?? '', nama_kelas);
@@ -35,21 +35,20 @@ const FormEdit = () => {
 
   return (
     <>
-      <div className="flex justify-end">
-        <BreadcrumbsDefault
-          menus={[
-            {
-              label: 'Kelas',
-              link: '/kelas',
-              icon: 'streamline:class-lesson-solid',
-            },
-            {
-              label: 'Edit Kelas',
-              link: `/kelas/edit-kelas/${id_kelas}`,
-            },
-          ]}
-        />
-      </div>
+      <BreadcrumbsDefault
+        header="Kelas"
+        menus={[
+          {
+            label: 'Kelas',
+            link: '/kelas',
+            icon: 'streamline:class-lesson-solid',
+          },
+          {
+            label: 'Edit Kelas',
+            link: `/kelas/edit-kelas/${id_kelas}`,
+          },
+        ]}
+      />
 
       <div className="mt-10">
         <Formik
@@ -58,7 +57,7 @@ const FormEdit = () => {
             nama_kelas: namaKelas,
           }}
           validationSchema={validationSchema}
-          onSubmit={handleSubmit}
+          onSubmit={handleUpdate}
         >
           {({ errors, handleChange, submitCount, values }) => (
             <Form className="space-y-5">
@@ -66,17 +65,17 @@ const FormEdit = () => {
                 <InputText
                   id={'nama_kelas'}
                   name={'nama_kelas'}
-                  label={'Kelas'}
+                  label={'Nama Kelas'}
                   value={values.nama_kelas}
                   onChange={handleChange}
                   error={errors.nama_kelas || ''}
                   placeholder={'Masukkan Nama Kelas'}
-                  isInputFilled={'Kelas Sudah Terisi'}
+                  isInputFilled={'Form Nama Kelas Sudah Terisi'}
                 />
               </div>
 
               <div className="flex gap-3 justify-end">
-                <ButtonSolidSuccess text={'Edit Kelas'} width={'w-auto'} onClick={() => handleSubmit(values)} />
+                <ButtonSolidSuccess text={'Edit Kelas'} width={'w-auto'} onClick={() => handleUpdate(values)} />
                 <Link to={'/kelas'}>
                   <ButtonSolidDanger text={'Batal'} width={'w-auto'} />
                 </Link>

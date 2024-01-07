@@ -19,7 +19,6 @@ const Table: React.FC<TableProps> = ({ kelas, handleDelete }) => {
     setRecordsData(kelas.slice(0, pageSize));
   }, [kelas, pageSize]);
 
-  // Pagination
   useEffect(() => {
     const from = (page - 1) * pageSize;
     const to = from + pageSize;

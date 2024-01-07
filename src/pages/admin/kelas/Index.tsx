@@ -33,7 +33,7 @@ const Index = () => {
     [kelas]
   );
 
-  const handleSearchChange = (e: any) => {
+  const handleSearch = (e: any) => {
     const searchQuery = e.target.value;
     setSearch(searchQuery);
     debounceSearch(searchQuery);
@@ -55,20 +55,19 @@ const Index = () => {
 
   return (
     <>
-      <div className="flex justify-end">
-        <BreadcrumbsDefault
-          menus={[
-            {
-              label: 'Kelas',
-              link: '/kelas',
-              icon: 'streamline:class-lesson-solid',
-            },
-          ]}
-        />
-      </div>
+      <BreadcrumbsDefault
+        header="Kelas"
+        menus={[
+          {
+            label: 'Kelas',
+            link: '/kelas',
+            icon: 'streamline:class-lesson-solid',
+          },
+        ]}
+      />
 
       <div className="flex justify-between items-center gap-3 mt-10">
-        <SearchBasic value={search} placeholder="Cari Kelas" onChange={handleSearchChange} width="w-1/2" />
+        <SearchBasic value={search} placeholder="Cari Kelas" onChange={handleSearch} width="w-1/2" />
         <div className="flex gap-3">
           <Link to={'/kelas/tambah-kelas'}>
             <ButtonIconTextLeft icon="ic:baseline-plus" text="Tambah Kelas" backgroundColor="btn-primary" />

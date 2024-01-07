@@ -7,17 +7,17 @@ interface TableProps {
   handleDelete: (id_agama: string) => void;
 }
 
-const Table: React.FC<TableProps> = ({ agama: initialAgama, handleDelete }) => {
+const Table: React.FC<TableProps> = ({ agama, handleDelete }) => {
   const PAGE_SIZES = [10, 25, 50, 100];
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
-  const [initialRecords, setInitialRecords] = useState(initialAgama);
+  const [initialRecords, setInitialRecords] = useState(agama);
   const [recordsData, setRecordsData] = useState(initialRecords);
 
   useEffect(() => {
-    setInitialRecords(initialAgama);
-    setRecordsData(initialAgama.slice(0, pageSize));
-  }, [initialAgama, pageSize]);
+    setInitialRecords(agama);
+    setRecordsData(agama.slice(0, pageSize));
+  }, [agama, pageSize]);
 
   // Pagination
   useEffect(() => {
@@ -31,12 +31,12 @@ const Table: React.FC<TableProps> = ({ agama: initialAgama, handleDelete }) => {
       <TableSkinBordered
         page={page}
         records={recordsData}
+        columns={Columns({ handleDelete })}
         recordsPerPage={pageSize}
-        totalRecords={initialAgama.length}
+        totalRecords={agama.length}
         onPageChange={(page: number) => setPage(page)}
         recordsPerPageOptions={PAGE_SIZES}
         onRecordsPerPageChange={setPageSize}
-        columns={Columns({ handleDelete })}
       />
     </>
   );

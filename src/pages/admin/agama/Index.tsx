@@ -59,7 +59,6 @@ const Index = () => {
           {
             label: 'Agama',
             link: '/agama',
-            // icon: 'mdi:religion-christian',
           },
         ]}
       />

@@ -7,6 +7,5 @@ export const GET = async () => {
     return agama;
   } catch (error) {
     console.log(error);
-    return [];
   }
 };

@@ -37,6 +37,7 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
     {
       key: 'aksi',
       title: 'Aksi',
+      width: 400,
       accessor: 'aksi',
       render: (item: any) => (
         <>

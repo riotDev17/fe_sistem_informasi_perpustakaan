@@ -37,7 +37,7 @@ const SignIn = () => {
       </div>
       <div className="w-full lg:w-1/3 relative flex flex-col justify-center items-center z-10">
         <div className="w-96 xl:p-0 lg:p-5 p-5">
-          <img src="/assets/images/logo-icon.png" alt="" className="w-52 mx-auto absolute top-0 right-0 left-0" />
+          <img src="/logo-icon.png" alt="" className="w-52 mx-auto absolute top-0 right-0 left-0" />
           <h2 className="font-bold text-3xl mb-3">Login Admin</h2>
           <p className="mb-7">Masukkan username dan password untuk login</p>
           <Formik

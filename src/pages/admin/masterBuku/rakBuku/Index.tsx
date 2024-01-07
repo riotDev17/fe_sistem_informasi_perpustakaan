@@ -55,17 +55,16 @@ const Index = () => {
 
   return (
     <>
-      <div className="flex justify-end">
-        <BreadcrumbsDefault
-          menus={[
-            {
-              label: 'Rak Buku',
-              link: '/rak-buku',
-              icon: 'bxs:book',
-            },
-          ]}
-        />
-      </div>
+      <BreadcrumbsDefault
+        header="Rak Buku"
+        menus={[
+          {
+            label: 'Rak Buku',
+            link: '/rak-buku',
+            icon: 'bxs:book',
+          },
+        ]}
+      />
 
       <div className="flex justify-between gap-3 mt-10">
         <SearchBasic value={search} placeholder="Cari Rak Buku" onChange={handleSearch} width="w-1/2" />

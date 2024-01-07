@@ -20,7 +20,7 @@ const FormEdit = () => {
     });
   }, []);
 
-  const handleSubmit = async (e: { nama_rak_buku: string }): Promise<any> => {
+  const handleUpdate = async (e: { nama_rak_buku: string }): Promise<any> => {
     try {
       const { nama_rak_buku } = e;
       const request = await requestUpdate(id_rak_buku ?? '', nama_rak_buku);
@@ -35,21 +35,20 @@ const FormEdit = () => {
 
   return (
     <>
-      <div className="flex justify-end">
-        <BreadcrumbsDefault
-          menus={[
-            {
-              label: 'Rak Buku',
-              link: '/rak-buku',
-              icon: 'bxs:book',
-            },
-            {
-              label: 'Edit Rak Buku',
-              link: `/rak-buku/edit-rak-buku/${id_rak_buku}`,
-            },
-          ]}
-        />
-      </div>
+      <BreadcrumbsDefault
+        header="Rak Buku"
+        menus={[
+          {
+            label: 'Rak Buku',
+            link: '/rak-buku',
+            icon: 'bxs:book',
+          },
+          {
+            label: 'Edit Rak Buku',
+            link: `/rak-buku/edit-rak-buku/${id_rak_buku}`,
+          },
+        ]}
+      />
 
       <div className="mt-10">
         <Formik
@@ -58,7 +57,7 @@ const FormEdit = () => {
             nama_rak_buku: namaRakBuku,
           }}
           validationSchema={validationSchema}
-          onSubmit={handleSubmit}
+          onSubmit={handleUpdate}
         >
           {({ errors, handleChange, submitCount, values }) => (
             <Form className="space-y-5">
@@ -76,7 +75,7 @@ const FormEdit = () => {
               </div>
 
               <div className="flex gap-3 justify-end">
-                <ButtonSolidSuccess text={'Edit Rak Buku'} width={'w-auto'} onClick={() => handleSubmit(values)} />
+                <ButtonSolidSuccess text={'Edit Rak Buku'} width={'w-auto'} onClick={() => handleUpdate(values)} />
                 <Link to={'/rak-buku'}>
                   <ButtonSolidDanger text={'Batal'} width={'w-auto'} />
                 </Link>

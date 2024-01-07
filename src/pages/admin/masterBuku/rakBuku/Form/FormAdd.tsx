@@ -10,7 +10,7 @@ import BreadcrumbsDefault from '../../../../../components/breadcrumbs/Breadcrumb
 const FormAdd = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: { nama_rak_buku: string }): Promise<any> => {
+  const handleCreate = async (e: { nama_rak_buku: string }): Promise<any> => {
     try {
       const { nama_rak_buku } = e;
       const request = await requestCreate(nama_rak_buku);
@@ -25,21 +25,20 @@ const FormAdd = () => {
 
   return (
     <>
-      <div className="flex justify-end">
-        <BreadcrumbsDefault
-          menus={[
-            {
-              label: 'Rak Buku',
-              link: '/rak-buku',
-              icon: 'bxs:book',
-            },
-            {
-              label: 'Tambah Rak Buku',
-              link: '/rak-buku/tambah-rak-buku',
-            },
-          ]}
-        />
-      </div>
+      <BreadcrumbsDefault
+        header="Rak Buku"
+        menus={[
+          {
+            label: 'Rak Buku',
+            link: '/rak-buku',
+            icon: 'bxs:book',
+          },
+          {
+            label: 'Tambah Rak Buku',
+            link: '/rak-buku/tambah-rak-buku',
+          },
+        ]}
+      />
 
       <div className="mt-10">
         <Formik
@@ -47,7 +46,7 @@ const FormAdd = () => {
             nama_rak_buku: '',
           }}
           validationSchema={validationSchema}
-          onSubmit={handleSubmit}
+          onSubmit={handleCreate}
         >
           {({ errors, handleChange, submitCount, values }) => (
             <Form className="space-y-5">
@@ -65,7 +64,7 @@ const FormAdd = () => {
               </div>
 
               <div className="flex gap-3 justify-end">
-                <ButtonSolidPrimary text={'Tambah Rak Buku'} width={'w-auto'} onClick={() => handleSubmit(values)} />
+                <ButtonSolidPrimary text={'Tambah Rak Buku'} width={'w-auto'} onClick={() => handleCreate(values)} />
                 <Link to={'/rak-buku'}>
                   <ButtonSolidDanger text={'Batal'} width={'w-auto'} />
                 </Link>

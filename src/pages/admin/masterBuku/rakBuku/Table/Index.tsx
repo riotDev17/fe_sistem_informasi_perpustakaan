@@ -19,7 +19,6 @@ const Table: React.FC<TableProps> = ({ rakBuku, handleDelete }) => {
     setRecordsData(rakBuku.slice(0, pageSize));
   }, [rakBuku, pageSize]);
 
-  // Pagination
   useEffect(() => {
     const from = (page - 1) * pageSize;
     const to = from + pageSize;

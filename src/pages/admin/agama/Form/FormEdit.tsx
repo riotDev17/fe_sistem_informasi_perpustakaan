@@ -5,9 +5,9 @@ import { validationSchema } from './validationSchema';
 import { useState, useEffect } from 'react';
 import { Form, Link, useNavigate, useParams } from 'react-router-dom';
 import InputText from '../../../../components/forms/Input/InputText';
-import BreadcrumbsBasic from '../../../../components/breadcrumbs/BreadcrumbsBasic';
 import ButtonSolidDanger from '../../../../components/buttons/solid/ButtonSolidDanger';
 import ButtonSolidSuccess from '../../../../components/buttons/solid/ButtonSolidSuccess';
+import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const FormEdit = () => {
   const navigate = useNavigate();
@@ -35,18 +35,21 @@ const FormEdit = () => {
 
   return (
     <>
-      <BreadcrumbsBasic
-        menus={[
-          {
-            label: 'Agama',
-            link: '/agama',
-          },
-          {
-            label: 'Edit Agama',
-            link: `/agama/edit-agama/${id_agama}`,
-          },
-        ]}
-      />
+      <div className="flex justify-end">
+        <BreadcrumbsDefault
+          menus={[
+            {
+              label: 'Agama',
+              link: '/agama',
+              icon: 'mdi:religion-christian',
+            },
+            {
+              label: 'Edit Agama',
+              link: `/agama/edit-agama/${id_agama}`,
+            },
+          ]}
+        />
+      </div>
 
       <div className="mt-10">
         <Formik

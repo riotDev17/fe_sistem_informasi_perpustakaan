@@ -5,9 +5,9 @@ import { validationSchema } from './validationSchema';
 import { useEffect, useState } from 'react';
 import { Form, Link, useNavigate, useParams } from 'react-router-dom';
 import InputText from '../../../../components/forms/Input/InputText';
-import BreadcrumbsBasic from '../../../../components/breadcrumbs/BreadcrumbsBasic';
 import ButtonSolidDanger from '../../../../components/buttons/solid/ButtonSolidDanger';
 import ButtonSolidSuccess from '../../../../components/buttons/solid/ButtonSolidSuccess';
+import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const FormEdit = () => {
   const navigate = useNavigate();
@@ -35,18 +35,21 @@ const FormEdit = () => {
 
   return (
     <>
-      <BreadcrumbsBasic
-        menus={[
-          {
-            label: 'Kelas',
-            link: '/kelas',
-          },
-          {
-            label: 'Edit Kelas',
-            link: `/kelas/edit-kelas/${id_kelas}`,
-          },
-        ]}
-      />
+      <div className="flex justify-end">
+        <BreadcrumbsDefault
+          menus={[
+            {
+              label: 'Kelas',
+              link: '/kelas',
+              icon: 'streamline:class-lesson-solid',
+            },
+            {
+              label: 'Edit Kelas',
+              link: `/kelas/edit-kelas/${id_kelas}`,
+            },
+          ]}
+        />
+      </div>
 
       <div className="mt-10">
         <Formik

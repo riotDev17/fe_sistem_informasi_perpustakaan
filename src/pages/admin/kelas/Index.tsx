@@ -7,8 +7,8 @@ import { requestDelete } from './api/requestDelete';
 import { useCallback, useEffect, useState } from 'react';
 import Table from './Table/Index';
 import SearchBasic from '../../../components/searchs/SearchBasic';
-import BreadcrumbsBasic from '../../../components/breadcrumbs/BreadcrumbsBasic';
 import ButtonIconTextLeft from '../../../components/buttons/icon/ButtonIconTextLeft';
+import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -55,15 +55,19 @@ const Index = () => {
 
   return (
     <>
-      <BreadcrumbsBasic
-        menus={[
-          {
-            label: 'Kelas',
-            link: '/kelas',
-          },
-        ]}
-      />
-      <div className="flex justify-between items-center gap-3 mt-5">
+      <div className="flex justify-end">
+        <BreadcrumbsDefault
+          menus={[
+            {
+              label: 'Kelas',
+              link: '/kelas',
+              icon: 'streamline:class-lesson-solid',
+            },
+          ]}
+        />
+      </div>
+
+      <div className="flex justify-between items-center gap-3 mt-10">
         <SearchBasic value={search} placeholder="Cari Kelas" onChange={handleSearchChange} width="w-1/2" />
         <div className="flex gap-3">
           <Link to={'/kelas/tambah-kelas'}>

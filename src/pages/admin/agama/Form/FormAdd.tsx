@@ -3,9 +3,9 @@ import { requestCreate } from '../api/requestCreate';
 import { validationSchema } from './validationSchema';
 import { Form, Link, useNavigate } from 'react-router-dom';
 import InputText from '../../../../components/forms/Input/InputText';
-import BreadcrumbsBasic from '../../../../components/breadcrumbs/BreadcrumbsBasic';
-import ButtonSolidPrimary from '../../../../components/buttons/solid/ButtonSolidPrimary';
 import ButtonSolidDanger from '../../../../components/buttons/solid/ButtonSolidDanger';
+import ButtonSolidPrimary from '../../../../components/buttons/solid/ButtonSolidPrimary';
+import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const FormAdd = () => {
   const navigate = useNavigate();
@@ -25,18 +25,21 @@ const FormAdd = () => {
 
   return (
     <>
-      <BreadcrumbsBasic
-        menus={[
-          {
-            label: 'Agama',
-            link: '/agama',
-          },
-          {
-            label: 'Tambah Agama',
-            link: '/agama/tambah-agama',
-          },
-        ]}
-      />
+      <div className="flex justify-end">
+        <BreadcrumbsDefault
+          menus={[
+            {
+              label: 'Agama',
+              link: '/agama',
+              icon: 'mdi:religion-christian',
+            },
+            {
+              label: 'Tambah Agama',
+              link: '/agama/tambah-agama',
+            },
+          ]}
+        />
+      </div>
 
       <div className="mt-10">
         <Formik

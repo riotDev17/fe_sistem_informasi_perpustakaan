@@ -15,7 +15,7 @@ const BreadcrumbsDefault: React.FC<BreadcrumbsDefaultProps> = ({ menus }) => {
     <>
       <ol className="flex text-gray-500 font-semibold dark:text-white-dark gap-4">
         {menus.map((menu, index) => (
-          <li key={index} className={index > 0 ? "before:content-['/']  before:px-1.5 text-gray-800" : 'text-primary'}>
+          <li key={index} className={index > 0 ? "before:content-['/'] before:mr-4 text-gray-800 text-base" : 'text-primary'}>
             {menu.link ? (
               <Link to={menu.link}>
                 <button

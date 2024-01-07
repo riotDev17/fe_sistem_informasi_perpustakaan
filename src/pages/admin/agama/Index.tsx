@@ -8,7 +8,7 @@ import { useCallback, useEffect, useState } from 'react';
 import Table from './Table/Index';
 import SearchBasic from '../../../components/searchs/SearchBasic';
 import ButtonIconTextLeft from '../../../components/buttons/icon/ButtonIconTextLeft';
-import BreadcrumbsBasic from '../../../components/breadcrumbs/BreadcrumbsBasic';
+import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -58,15 +58,19 @@ const Index = () => {
 
   return (
     <>
-      <BreadcrumbsBasic
-        menus={[
-          {
-            label: 'Agama',
-            link: '/agama',
-          },
-        ]}
-      />
-      <div className="flex justify-between gap-3 mt-5">
+      <div className="flex justify-end">
+        <BreadcrumbsDefault
+          menus={[
+            {
+              label: 'Agama',
+              link: '/agama',
+              icon: 'mdi:religion-christian',
+            },
+          ]}
+        />
+      </div>
+
+      <div className="flex justify-between gap-3 mt-10">
         <SearchBasic value={search} placeholder="Cari agama" onChange={handleSearchChange} width="w-1/2" />
         <div className="flex gap-3">
           <Link to={'/agama/tambah-agama'}>

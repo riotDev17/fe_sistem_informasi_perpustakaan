@@ -3,9 +3,9 @@ import { requestCreate } from '../api/requestCreate';
 import { validationSchema } from './validationSchema';
 import { Form, Link, useNavigate } from 'react-router-dom';
 import InputText from '../../../../components/forms/Input/InputText';
-import BreadcrumbsBasic from '../../../../components/breadcrumbs/BreadcrumbsBasic';
 import ButtonSolidPrimary from '../../../../components/buttons/solid/ButtonSolidPrimary';
 import ButtonSolidDanger from '../../../../components/buttons/solid/ButtonSolidDanger';
+import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const FormAdd = () => {
   const navigate = useNavigate();
@@ -25,18 +25,21 @@ const FormAdd = () => {
 
   return (
     <>
-      <BreadcrumbsBasic
-        menus={[
-          {
-            label: 'Kelas',
-            link: '/kelas',
-          },
-          {
-            label: 'Tambah Kelas',
-            link: '/kelas/tambah-kelas',
-          },
-        ]}
-      />
+      <div className="flex justify-end">
+        <BreadcrumbsDefault
+          menus={[
+            {
+              label: 'Kelas',
+              link: '/kelas',
+              icon: 'streamline:class-lesson-solid',
+            },
+            {
+              label: 'Tambah Kelas',
+              link: '/kelas/tambah-kelas',
+            },
+          ]}
+        />
+      </div>
 
       <div className="mt-10">
         <Formik

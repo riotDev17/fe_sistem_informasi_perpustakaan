@@ -1,6 +1,8 @@
 import Swal from 'sweetalert2';
 import API from '../../../../configs/api';
 
+const URL = 'agama';
+
 export const requestDelete = async (id_agama: string) => {
   try {
     const alert = await Swal.fire({
@@ -15,7 +17,7 @@ export const requestDelete = async (id_agama: string) => {
 
     if (alert.isConfirmed) {
       try {
-        await API.delete(`/api/agama/${id_agama}`);
+        await API.delete(`/api/${URL}/${id_agama}`);
         const toast = Swal.mixin({
           toast: true,
           position: 'top',

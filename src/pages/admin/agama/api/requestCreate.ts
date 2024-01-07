@@ -1,10 +1,12 @@
 import Swal from 'sweetalert2';
 import API from '../../../../configs/api';
 
+const URL = 'agama';
+
 export const requestCreate = async (nama_agama: any): Promise<any> => {
   try {
     const data = { nama_agama };
-    const response = await API.post('/api/agama', data);
+    const response = await API.post(`/api/${URL}`, data);
 
     if (response.status === 200) {
       const toast = Swal.mixin({

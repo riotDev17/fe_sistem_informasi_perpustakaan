@@ -66,7 +66,7 @@ const Index = () => {
         ]}
       />
 
-      <div className="flex justify-between items-center gap-3 mt-10">
+      <div className="flex justify-between items-center mt-10">
         <SearchBasic value={search} placeholder="Cari Kelas" onChange={handleSearch} width="w-1/2" />
         <div className="flex gap-3">
           <Link to={'/kelas/tambah-kelas'}>

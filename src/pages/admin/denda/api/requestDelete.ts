@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import API from '../../../../configs/api';
+import API_JSON from '../../../../configs/API_JSON';
 
 const URL = 'denda';
 
@@ -17,7 +17,7 @@ export const requestDelete = async (id_denda: string) => {
 
     if (alert.isConfirmed) {
       try {
-        await API.delete(`/api/${URL}/${id_denda}`);
+        await API_JSON.delete(`/api/${URL}/${id_denda}`);
         const toast = Swal.mixin({
           toast: true,
           position: 'top',

@@ -1,12 +1,12 @@
 import Swal from 'sweetalert2';
-import API from '../../../../../configs/api';
+import API_JSON from '../../../../../configs/API_JSON';
 
 const URL = 'rak-buku';
 
 export const requestCreate = async (nama_rak_buku: any): Promise<any> => {
   try {
     const data = { nama_rak_buku };
-    const response = await API.post(`/api/${URL}`, data);
+    const response = await API_JSON.post(`/api/${URL}`, data);
 
     if (response.status === 200) {
       const toast = Swal.mixin({

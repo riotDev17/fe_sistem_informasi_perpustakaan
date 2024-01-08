@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import API from '../../../../../configs/api';
+import API_JSON from '../../../../../configs/API_JSON';
 
 const URL = 'rak-buku';
 
@@ -8,7 +8,7 @@ export const requestDelete = async (id_rak_buku: string) => {
     const alert = await Swal.fire({
       icon: 'warning',
       title: 'Apakah anda yakin?',
-      text: 'Ingin menghapus data rak buku ini?',
+      text: 'Ingin menghapus rak buku ini?',
       showCancelButton: true,
       confirmButtonText: 'Hapus',
       padding: '2em',
@@ -17,7 +17,7 @@ export const requestDelete = async (id_rak_buku: string) => {
 
     if (alert.isConfirmed) {
       try {
-        await API.delete(`/api/${URL}/${id_rak_buku}`);
+        await API_JSON.delete(`/api/${URL}/${id_rak_buku}`);
         const toast = Swal.mixin({
           toast: true,
           position: 'top',

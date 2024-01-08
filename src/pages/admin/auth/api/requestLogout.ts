@@ -1,10 +1,10 @@
 import Swal from 'sweetalert2';
-import API from '../../../../configs/api';
 import auth from '../../../../configs/auth';
+import API_JSON from '../../../../configs/API_JSON';
 
-export const LOGOUT = async () => {
+export const requestLogout = async () => {
   try {
-    const response = await API.delete('/api/admin/logout');
+    const response = await API_JSON.delete('/api/admin/logout');
     if (response.status === 200) {
       auth.removeToken();
       auth.removeUsername();

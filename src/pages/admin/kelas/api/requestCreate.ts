@@ -1,4 +1,4 @@
-import API from '../../../../configs/api';
+import API_JSON from '../../../../configs/API_JSON';
 import Swal from 'sweetalert2';
 
 const URL = 'kelas';
@@ -6,7 +6,7 @@ const URL = 'kelas';
 export const requestCreate = async (nama_kelas: any): Promise<any> => {
   try {
     const data = { nama_kelas };
-    const response = await API.post(`/api/${URL}`, data);
+    const response = await API_JSON.post(`/api/${URL}`, data);
 
     if (response.status === 200) {
       const toast = Swal.mixin({

@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import API from '../../../../../configs/api';
+import API from '../../../../../configs/API_JSON';
 
 const URL = 'buku';
 

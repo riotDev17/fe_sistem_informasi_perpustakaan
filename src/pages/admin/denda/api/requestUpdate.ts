@@ -1,11 +1,11 @@
 import Swal from 'sweetalert2';
-import API from '../../../../configs/api';
+import API_JSON from '../../../../configs/API_JSON';
 
 const URL = 'denda';
 
 export const requestUpdate = async (id_denda: string, nominal: number) => {
   try {
-    const response = await API.put(`/api/${URL}/${id_denda}`, {
+    const response = await API_JSON.put(`/api/${URL}/${id_denda}`, {
       nominal: nominal,
     });
 

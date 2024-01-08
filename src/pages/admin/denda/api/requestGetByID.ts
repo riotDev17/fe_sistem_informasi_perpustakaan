@@ -1,10 +1,10 @@
-import API from '../../../../configs/api';
+import API_JSON from '../../../../configs/API_JSON';
 
 const URL = 'denda';
 
 export const requestGetByID = async (id_denda: string) => {
   try {
-    const response = await API.get(`/api/${URL}/${id_denda}`);
+    const response = await API_JSON.get(`/api/${URL}/${id_denda}`);
     return response?.data;
   } catch (error) {
     console.log(error);

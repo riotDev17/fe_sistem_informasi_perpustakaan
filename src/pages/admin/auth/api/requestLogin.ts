@@ -1,11 +1,11 @@
 import Swal from 'sweetalert2';
-import API from '../../../../configs/api';
 import auth from '../../../../configs/auth';
+import API_JSON from '../../../../configs/API_JSON';
 
-export const LOGIN = async (username: string, password: string): Promise<any> => {
+export const requestLogin = async (username: string, password: string): Promise<any> => {
   try {
     const data = { username, password };
-    const response = await API.post('/auth/admin/login', data);
+    const response = await API_JSON.post('/auth/admin/login', data);
 
     if (response.status === 200) {
       const { data } = response;

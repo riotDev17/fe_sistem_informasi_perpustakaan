@@ -67,7 +67,7 @@ const Index = () => {
       />
 
       <div className="flex justify-between items-center mt-10">
-        <SearchBasic value={search} placeholder="Cari Buku" onChange={handleSearch} width="w-1/2" />
+        <SearchBasic value={search} placeholder="Cari Judul Buku" onChange={handleSearch} width="w-1/2" />
         <div className="flex gap-3">
           <Link to={'/buku/tambah-buku'}>
             <ButtonIconTextLeft icon="ic:baseline-plus" text="Tambah Buku" backgroundColor="btn-primary" />

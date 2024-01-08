@@ -11,7 +11,7 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
   return [
     {
       id: 'index',
-      key: 'id_agama',
+      key: 'index',
       title: 'No',
       width: 60,
       accessor: 'index',

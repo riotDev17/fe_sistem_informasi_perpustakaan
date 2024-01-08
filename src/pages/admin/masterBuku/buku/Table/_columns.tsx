@@ -95,6 +95,18 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
       ),
     },
     {
+      key: 'rak_buku',
+      title: 'Rak Buku',
+      accessor: 'rak_buku',
+      render: (item: any) => (
+        <>
+          <span className="dark:text-white" key={item.rak_buku?.nama_rak_buku}>
+            {item.rak_buku?.nama_rak_buku}
+          </span>
+        </>
+      ),
+    },
+    {
       key: 'foto_buku',
       title: 'Foto Buku',
       accessor: 'deskrfoto_bukuipsi',

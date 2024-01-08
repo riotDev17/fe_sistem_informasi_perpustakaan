@@ -10,103 +10,96 @@ interface ColumnsProps {
 const Columns = ({ handleDelete }: ColumnsProps) => {
   return [
     {
+      id: 'index',
       key: 'index',
       title: 'No',
       width: 60,
       accessor: 'index',
       render: (item: any) => (
         <>
-          <span className="dark:text-white" key={item.index}>
-            {item.index + 1}
-          </span>
+          <span className="dark:text-white">{item.index + 1}</span>
         </>
       ),
     },
     {
+      id: 'judul_buku',
       key: 'judul_buku',
       title: 'Judul Buku',
       accessor: 'judul_buku',
       render: (item: any) => (
         <>
-          <span className="dark:text-white" key={item.judul_buku}>
-            {item.judul_buku}
-          </span>
+          <span className="dark:text-white">{item.judul_buku}</span>
         </>
       ),
     },
     {
+      id: 'pengarang',
       key: 'pengarang',
       title: 'Pengarang',
       accessor: 'pengarang',
       render: (item: any) => (
         <>
-          <span className="dark:text-white" key={item.pengarang}>
-            {item.pengarang}
-          </span>
+          <span className="dark:text-white">{item.pengarang}</span>
         </>
       ),
     },
     {
+      id: 'penerbit',
       key: 'penerbit',
       title: 'Penerbit',
       accessor: 'penerbit',
       render: (item: any) => (
         <>
-          <span className="dark:text-white" key={item.penerbit}>
-            {item.penerbit}
-          </span>
+          <span className="dark:text-white">{item.penerbit}</span>
         </>
       ),
     },
     {
+      id: 'tahun_terbit',
       key: 'tahun_terbit',
       title: 'Tahun Terbit',
       accessor: 'tahun_terbit',
       render: (item: any) => (
         <>
-          <span className="dark:text-white" key={item.tahun_terbit}>
-            {item.tahun_terbit}
-          </span>
+          <span className="dark:text-white">{item.tahun_terbit}</span>
         </>
       ),
     },
     {
+      id: 'stok_buku',
       key: 'stok_buku',
       title: 'Stok Buku',
       accessor: 'stok_buku',
       render: (item: any) => (
         <>
-          <span className="dark:text-white" key={item.stok_buku}>
-            {item.stok_buku}
-          </span>
+          <span className="dark:text-white">{item.stok_buku}</span>
         </>
       ),
     },
     {
+      id: 'deskripsi',
       key: 'deskripsi',
       title: 'Deskripsi Buku',
       accessor: 'deskripsi',
       render: (item: any) => (
         <>
-          <span className="dark:text-white" key={item.deskripsi}>
-            {item.deskripsi}
-          </span>
+          <span className="dark:text-white">{item.deskripsi}</span>
         </>
       ),
     },
     {
+      id: 'rak_buku',
       key: 'rak_buku',
       title: 'Rak Buku',
       accessor: 'rak_buku',
       render: (item: any) => (
         <>
-          <span className="dark:text-white" key={item.rak_buku?.nama_rak_buku}>
-            {item.rak_buku?.nama_rak_buku}
-          </span>
+          <span className="dark:text-white">{item.rak_buku?.nama_rak_buku}</span>
         </>
       ),
     },
     {
+      id: 'foto_buku',
       key: 'foto_buku',
       title: 'Foto Buku',
       accessor: 'deskrfoto_bukuipsi',
@@ -117,6 +110,7 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
       ),
     },
     {
+      id: 'aksi',
       key: 'aksi',
       title: 'Aksi',
       accessor: 'aksi',

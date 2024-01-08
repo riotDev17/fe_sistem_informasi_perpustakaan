@@ -6,7 +6,7 @@ import InputText from '../../../../components/forms/Input/InputText';
 import ButtonSolidDanger from '../../../../components/buttons/solid/ButtonSolidDanger';
 import ButtonSolidPrimary from '../../../../components/buttons/solid/ButtonSolidPrimary';
 import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
-import FormatNumberWithCommas from '../../../../helpers/FormatNumberWithCommas';
+import InputNumber from '../../../../components/forms/Input/InputNumber';
 
 const FormAdd = () => {
   const navigate = useNavigate();
@@ -52,11 +52,11 @@ const FormAdd = () => {
           {({ errors, handleChange, submitCount, values }) => (
             <Form className="space-y-5">
               <div className={submitCount ? (errors.nominal ? 'has-error' : 'has-success') : ''}>
-                <InputText
+                <InputNumber
                   id={'nominal'}
                   name={'nominal'}
                   label={'Nominal Denda'}
-                  value={values.nominal.toString()}
+                  value={values.nominal}
                   onChange={handleChange}
                   error={errors.nominal || ''}
                   placeholder={'Masukkan Nominal Denda'}

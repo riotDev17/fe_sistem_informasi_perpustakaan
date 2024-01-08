@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import IconPencil from '../../../../components/Icons/IconPencil';
 import IconTrash from '../../../../components/Icons/IconTrash';
+import IconPencil from '../../../../components/Icons/IconPencil';
 import TippyDefault from '../../../../components/tippys/default/TippyDefault';
 
 interface ColumnsProps {
@@ -10,39 +10,38 @@ interface ColumnsProps {
 const Columns = ({ handleDelete }: ColumnsProps) => {
   return [
     {
+      id: 'index',
       key: 'id_agama',
       title: 'No',
       width: 60,
-      accessor: 'id_agama',
+      accessor: 'index',
       render: (item: any) => (
         <>
-          <span className="dark:text-white" key={item.id_agama}>
-            {item.index + 1}
-          </span>
+          <span className="dark:text-white">{item.index + 1}</span>
         </>
       ),
     },
     {
+      id: 'nama_agama',
       key: 'nama_agama',
       title: 'Nama Agama',
       width: 1000,
       accessor: 'nama_agama',
       render: (item: any) => (
         <>
-          <span className="dark:text-white" key={item.nama_agama}>
-            {item.nama_agama}
-          </span>
+          <span className="dark:text-white">{item.nama_agama}</span>
         </>
       ),
     },
     {
+      id: 'aksi',
       key: 'aksi',
       title: 'Aksi',
       width: 400,
       accessor: 'aksi',
       render: (item: any) => (
         <>
-          <div className="flex space-x-1 rtl:space-x-reverse gap-2" key={item.id_agama}>
+          <div className="flex space-x-1 rtl:space-x-reverse gap-2">
             <Link to={`/agama/edit-agama/${item.id_agama}`}>
               <TippyDefault content="Edit">
                 <IconPencil />

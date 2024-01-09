@@ -9,6 +9,8 @@ import Table from './Table/Index';
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 import SearchBasic from '../../../components/searchs/SearchBasic';
 import ButtonIconTextLeft from '../../../components/buttons/icon/ButtonIconTextLeft';
+import TippyDefault from '../../../components/tippys/default/TippyDefault';
+import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -70,7 +72,9 @@ const Index = () => {
         <SearchBasic value={search} placeholder="Cari Nominal Denda" onChange={handleSearch} width="w-1/2" />
         <div className="flex gap-3">
           <Link to={'/denda/tambah-denda'}>
-            <ButtonIconTextLeft icon="ic:baseline-plus" text="Tambah Denda" backgroundColor="btn-primary" />
+            <TippyDefault content="Tambah Denda">
+              <ButtonIcon icon="ic:baseline-plus" backgroundColor="btn-primary" />
+            </TippyDefault>
           </Link>
 
           <ButtonIconTextLeft icon="material-symbols:refresh" text="Refresh Halaman" backgroundColor="btn-info" onClick={handleRefresh} />

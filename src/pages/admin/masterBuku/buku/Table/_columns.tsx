@@ -13,7 +13,6 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
       id: 'index',
       key: 'index',
       title: 'No',
-      width: 60,
       accessor: 'index',
       render: (item: any) => (
         <>
@@ -82,7 +81,7 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
       title: 'Deskripsi Buku',
       accessor: 'deskripsi',
       render: (item: any) => {
-        const maxWords = 6; // Jumlah maksimal kata yang ingin ditampilkan
+        const maxWords = 5;
         const words = item.deskripsi.split(' ');
         const truncatedDescription = words.slice(0, maxWords).join(' ');
 

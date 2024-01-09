@@ -3,9 +3,18 @@ import API_FORM from '../../../../../configs/API_FORM';
 
 const URL = 'buku';
 
-export const requestCreate = async (judul_buku: string, pengarang: string, penerbit: string, tahun_terbit: number, deskripsi: string, stok_buku: string, foto_buku: string): Promise<any> => {
+export const requestCreate = async (
+  judul_buku: string,
+  pengarang: string,
+  penerbit: string,
+  tahun_terbit: number,
+  deskripsi: string,
+  stok_buku: number,
+  foto_buku: string,
+  id_rak_buku: string
+): Promise<any> => {
   try {
-    const data = { judul_buku, pengarang, penerbit, tahun_terbit, deskripsi, stok_buku, foto_buku };
+    const data = { judul_buku, pengarang, penerbit, tahun_terbit, deskripsi, stok_buku, foto_buku, id_rak_buku };
     const response = await API_FORM.post(`/api/${URL}`, data);
 
     if (response.status === 200) {

@@ -17,15 +17,13 @@ const SelectSearch: React.FC<SelectSearchProps> = ({ id, name, value, onChange, 
   const isFilled = value !== '';
 
   return (
-    <>
-      <div className="mb-5">
-        <label htmlFor={label}>{label}</label>
-        <Select id={id} name={name} value={value} onChange={onChange} placeholder={placeholder} options={options} className="mb-1" />
+    <div className="mb-5">
+      <label htmlFor={id}>{label}</label>
+      <Select id={id} name={name} value={options.value} onChange={onChange} placeholder={placeholder} options={options} className="mb-1" />
 
-        {error && <span className="text-danger">{error}</span>}
-        {isFilled && !error && <span className="text-success">{isInputFilled}</span>}
-      </div>
-    </>
+      {error && <span className="text-danger">{error}</span>}
+      {isFilled && !error && <span className="text-success">{isInputFilled}</span>}
+    </div>
   );
 };
 

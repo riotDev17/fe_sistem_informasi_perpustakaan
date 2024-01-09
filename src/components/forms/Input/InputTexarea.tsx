@@ -27,3 +27,5 @@ const InputTextarea: React.FC<InputTextareaProps> = ({ id, name, rows, value, on
     </>
   );
 };
+
+export default InputTextarea;

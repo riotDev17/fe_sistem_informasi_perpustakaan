@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
 import BreadcrumbsDefault from '../../../../../components/breadcrumbs/BreadcrumbsDefault';
 import { validationSchema } from './validationSchema';
-import { Form, Link } from 'react-router-dom';
+import { Form, Link, useNavigate } from 'react-router-dom';
 import InputText from '../../../../../components/forms/Input/InputText';
 import ButtonSolidPrimary from '../../../../../components/buttons/solid/ButtonSolidPrimary';
 import ButtonSolidDanger from '../../../../../components/buttons/solid/ButtonSolidDanger';
@@ -10,10 +10,33 @@ import QuillBasic from '../../../../../components/quills/QuillBasic';
 import InputFile from '../../../../../components/forms/Input/InputFile';
 import PreviewImage from './PreviewImage';
 import RakBukuSelect from '../../../../../utils/RakBukuSelect';
+import { requestCreate } from '../api/requestCreate';
+import InputTextarea from '../../../../../components/forms/Input/InputTexarea';
 
 const FormAdd = () => {
-  const handleRakBuku = (id_rak_buku: string) => {
-    console.log(id_rak_buku);
+  const navigate = useNavigate();
+
+  const handleCreate = async (e: {
+    judul_buku: string;
+    pengarang: string;
+    penerbit: string;
+    tahun_terbit: number;
+    deskripsi: string;
+    stok_buku: number;
+    foto_buku: string;
+    id_rak_buku: string;
+  }): Promise<any> => {
+    try {
+      const { judul_buku, pengarang, penerbit, tahun_terbit, deskripsi, stok_buku, foto_buku, id_rak_buku } = e;
+
+      const request = await requestCreate(judul_buku, pengarang, penerbit, tahun_terbit, deskripsi, stok_buku, foto_buku, id_rak_buku);
+
+      if (request) {
+        navigate('/buku');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -46,7 +69,7 @@ const FormAdd = () => {
             id_rak_buku: '',
           }}
           validationSchema={validationSchema}
-          onSubmit={'test'}
+          onSubmit={handleCreate}
         >
           {({ errors, handleChange, submitCount, values, setFieldValue, setTouched }) => (
             <Form className="space-y-5">
@@ -131,11 +154,14 @@ const FormAdd = () => {
               </div>
 
               <div className={submitCount ? (errors.deskripsi ? 'has-error' : 'has-success') : ''}>
-                <QuillBasic
+                <InputTextarea
                   id={'deskripsi'}
-                  label={'Deskripsi Buku'}
+                  name={'deskripsi'}
+                  rows={10}
                   value={values.deskripsi}
                   onChange={handleChange}
+                  placeholder={'Masukkan Deskripsi Buku'}
+                  label={'Deskripsi Buku'}
                   error={errors.deskripsi || ''}
                   isInputFilled={'Form Deskripsi Buku Sudah Terisi'}
                 />

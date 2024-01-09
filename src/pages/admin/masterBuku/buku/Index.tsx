@@ -5,10 +5,11 @@ import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../../store/themeConfigSlice';
 import { requestDelete } from './api/requestDelete';
 import { useCallback, useEffect, useState } from 'react';
-import SearchBasic from '../../../../components/searchs/SearchBasic';
-import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
-import ButtonIconTextLeft from '../../../../components/buttons/icon/ButtonIconTextLeft';
 import Table from './Table/Index';
+import ButtonIcon from '../../../../components/buttons/icon/ButtonIcon';
+import SearchBasic from '../../../../components/searchs/SearchBasic';
+import TippyDefault from '../../../../components/tippys/default/TippyDefault';
+import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -70,10 +71,13 @@ const Index = () => {
         <SearchBasic value={search} placeholder="Cari Judul Buku" onChange={handleSearch} width="w-1/2" />
         <div className="flex gap-3">
           <Link to={'/buku/tambah-buku'}>
-            <ButtonIconTextLeft icon="ic:baseline-plus" text="Tambah Buku" backgroundColor="btn-primary" />
+            <TippyDefault content="Tambah Buku">
+              <ButtonIcon icon="ic:baseline-plus" backgroundColor="btn-primary" />
+            </TippyDefault>
           </Link>
-
-          <ButtonIconTextLeft icon="material-symbols:refresh" text="Refresh Halaman" backgroundColor="btn-info" onClick={handleRefresh} />
+          <TippyDefault content="Refresh Halaman">
+            <ButtonIcon icon="material-symbols:refresh" backgroundColor="btn-info" onClick={handleRefresh} />
+          </TippyDefault>
         </div>
       </div>
 

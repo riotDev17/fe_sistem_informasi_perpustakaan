@@ -14,7 +14,7 @@ interface RakBukuSelectProps {
 }
 
 const RakBukuSelect = ({ id, name, label, placeholder, error, isInputFilled, onChange, value }: RakBukuSelectProps) => {
-  const [rakBuku, setRakBuku] = useState<any>([]);
+  const [rakBuku, setRakBuku] = useState<any[]>([]);
 
   useEffect(() => {
     requestGet().then((rakBukuData) => {

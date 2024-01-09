@@ -1,14 +1,14 @@
 import Swal from 'sweetalert2';
-import API_JSON from '../../../../configs/API_JSON';
+import API_JSON from '../../../../../configs/API_JSON';
 
-const URL = 'agama';
+const URL = 'buku';
 
-export const requestDelete = async (id_agama: string) => {
+export const requestDelete = async (id_buku: string) => {
   try {
     const alert = await Swal.fire({
       icon: 'warning',
       title: 'Apakah anda yakin?',
-      text: 'Ingin menghapus agama ini?',
+      text: 'Ingin menghapus buku ini?',
       showCancelButton: true,
       confirmButtonText: 'Hapus',
       padding: '2em',
@@ -17,7 +17,7 @@ export const requestDelete = async (id_agama: string) => {
 
     if (alert.isConfirmed) {
       try {
-        await API_JSON.delete(`/api/${URL}/${id_agama}`);
+        await API_JSON.delete(`/api/${URL}/${id_buku}`);
         const toast = Swal.mixin({
           toast: true,
           position: 'top',
@@ -26,7 +26,7 @@ export const requestDelete = async (id_agama: string) => {
         });
         toast.fire({
           icon: 'success',
-          title: 'Agama Berhasil Dihapus',
+          title: 'Buku Berhasil Dihapus',
           padding: '10px 20px',
         });
 
@@ -41,7 +41,7 @@ export const requestDelete = async (id_agama: string) => {
         });
         toast.fire({
           icon: 'error',
-          title: 'Agama Gagal Dihapus',
+          title: 'Buku Gagal Dihapus',
           padding: '10px 20px',
         });
 

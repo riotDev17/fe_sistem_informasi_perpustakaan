@@ -1,14 +1,20 @@
-import API_JSON from '../../../../configs/API_JSON';
 import Swal from 'sweetalert2';
+import auth from '../../../../configs/auth';
+import API_JSON from '../../../../configs/API_JSON';
 
-const URL = 'kelas';
-
-export const requestCreate = async (nama_kelas: any): Promise<any> => {
+export const requestLogin = async (username: string, password: string): Promise<any> => {
   try {
-    const data = { nama_kelas };
-    const response = await API_JSON.post(`/api/${URL}`, data);
+    const data = { username, password };
+    const response = await API_JSON.post('/auth/admin/login', data);
 
     if (response.status === 200) {
+      const { data } = response;
+      const token = data.data.token;
+      const username = data.data.username;
+
+      auth.setToken(token);
+      auth.setUsername(username);
+
       const toast = Swal.mixin({
         toast: true,
         position: 'top',
@@ -17,7 +23,7 @@ export const requestCreate = async (nama_kelas: any): Promise<any> => {
       });
       toast.fire({
         icon: 'success',
-        title: `Kelas Berhasil Ditambahkan`,
+        title: `Selamat Datang ${username}`,
         padding: '10px 20px',
       });
 
@@ -25,7 +31,6 @@ export const requestCreate = async (nama_kelas: any): Promise<any> => {
     }
   } catch (error) {
     console.log(error);
-
     const toast = Swal.mixin({
       toast: true,
       position: 'top',
@@ -34,7 +39,7 @@ export const requestCreate = async (nama_kelas: any): Promise<any> => {
     });
     toast.fire({
       icon: 'error',
-      title: 'Kelas Gagal Ditambahkan!',
+      title: 'Username atau Password Salah',
       padding: '10px 20px',
     });
 

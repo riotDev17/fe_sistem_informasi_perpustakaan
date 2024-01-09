@@ -1,7 +1,7 @@
 import axios from 'axios';
 import auth from './auth';
 
-interface API {
+interface API_FORM {
   defaults: {
     headers: {
       Authorization: string;
@@ -14,12 +14,12 @@ interface API {
   delete: (url: string) => Promise<any>;
 }
 
-const API: API = <API>(<unknown>axios.create({
+const API_FORM: API_FORM = <API_FORM>(<unknown>axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   headers: {
-    'Content-Type': 'application/json' || 'multipart/form-data',
+    'Content-Type': 'multipart/form-data',
     Authorization: `Bearer ${auth.getToken()}`,
   },
 }));
 
-export default API;
+export default API_FORM;

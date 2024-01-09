@@ -6,8 +6,9 @@ import { setPageTitle } from '../../../store/themeConfigSlice';
 import { requestDelete } from './api/requestDelete';
 import { useCallback, useEffect, useState } from 'react';
 import Table from './Table/Index';
+import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
 import SearchBasic from '../../../components/searchs/SearchBasic';
-import ButtonIconTextLeft from '../../../components/buttons/icon/ButtonIconTextLeft';
+import TippyDefault from '../../../components/tippys/default/TippyDefault';
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const Index = () => {
@@ -66,14 +67,18 @@ const Index = () => {
         ]}
       />
 
-      <div className="flex justify-between items-center gap-3 mt-10">
+      <div className="flex justify-between items-center mt-10">
         <SearchBasic value={search} placeholder="Cari Kelas" onChange={handleSearch} width="w-1/2" />
         <div className="flex gap-3">
           <Link to={'/kelas/tambah-kelas'}>
-            <ButtonIconTextLeft icon="ic:baseline-plus" text="Tambah Kelas" backgroundColor="btn-primary" />
+            <TippyDefault content="Tambah Kelas">
+              <ButtonIcon icon="ic:baseline-plus" backgroundColor="btn-primary" />
+            </TippyDefault>
           </Link>
 
-          <ButtonIconTextLeft icon="material-symbols:refresh" text="Refresh Halaman" backgroundColor="btn-info" onClick={handleRefresh} />
+          <TippyDefault content="Refresh Halaman">
+            <ButtonIcon icon="material-symbols:refresh" backgroundColor="btn-info" onClick={handleRefresh} />
+          </TippyDefault>
         </div>
       </div>
 

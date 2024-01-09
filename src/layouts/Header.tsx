@@ -10,8 +10,8 @@ import IconMoon from '../components/Icons/IconMoon';
 import IconLaptop from '../components/Icons/IconLaptop';
 import IconUser from '../components/Icons/IconUser';
 import IconLogout from '../components/Icons/IconLogout';
-import { LOGOUT } from '../pages/admin/auth/api/LOGOUT';
-import { GET } from '../pages/admin/auth/api/GET';
+import { requestLogout } from '../pages/admin/auth/api/requestLogout';
+import { requestGet } from '../pages/admin/auth/api/requestGet';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ const Header = () => {
   useEffect(() => {
     const getAdmin = async () => {
       try {
-        const adminData = await GET();
+        const adminData = await requestGet();
         if (adminData) {
           setAdmin(adminData);
         }
@@ -61,7 +61,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await LOGOUT();
+      await requestLogout();
       navigate('/auth/admin/login');
     } catch (error) {
       console.error(error);

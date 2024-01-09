@@ -18,7 +18,11 @@ const RakBuku = lazy(() => import('../pages/admin/masterBuku/rakBuku/Index'));
 const FormAddRakBuku = lazy(() => import('../pages/admin/masterBuku/rakBuku/Form/FormAdd'));
 const FormEditRakBuku = lazy(() => import('../pages/admin/masterBuku/rakBuku/Form/FormEdit'));
 
+// Buku
 const Buku = lazy(() => import('../pages/admin/masterBuku/buku/Index'));
+const FormAddBuku = lazy(() => import('../pages/admin/masterBuku/buku/Form/FormAdd'));
+const FormEditBuku = lazy(() => import('../pages/admin/masterBuku/buku/Form/FormEdit'));
+
 const Siswa = lazy(() => import('../pages/admin/siswa/Index'));
 const PeminjamanBuku = lazy(() => import('../pages/admin/peminjamanBuku/Index'));
 
@@ -78,9 +82,19 @@ const routes = [
     path: '/rak-buku/edit-rak-buku/:id_rak_buku',
     element: <FormEditRakBuku />,
   },
+
+  // Buku
   {
     path: '/buku',
     element: <Buku />,
+  },
+  {
+    path: '/buku/tambah-buku',
+    element: <FormAddBuku />,
+  },
+  {
+    path: '/buku/edit-buku/:id_buku',
+    element: <FormEditBuku />,
   },
   {
     path: '/siswa',

@@ -1,4 +1,4 @@
-import { LOGIN } from './api/LOGIN';
+import { requestLogin } from './api/requestLogin';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -20,7 +20,7 @@ const SignIn = () => {
   const handleSubmit = async (e: { username: string; password: string }): Promise<any> => {
     try {
       const { username, password } = e;
-      const request = await LOGIN(username, password);
+      const request = await requestLogin(username, password);
 
       if (request) {
         navigate('/');

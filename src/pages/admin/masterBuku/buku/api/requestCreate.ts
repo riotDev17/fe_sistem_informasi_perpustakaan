@@ -1,14 +1,14 @@
 import Swal from 'sweetalert2';
-import API from '../../../../configs/api';
-import auth from '../../../../configs/auth';
+import API_FORM from '../../../../../configs/API_FORM';
 
-export const LOGOUT = async () => {
+const URL = 'buku';
+
+export const requestCreate = async (judul_buku: string, pengarang: string, penerbit: string, tahun_terbit: number, deskripsi: string, stok_buku: number, foto_buku: string, id_rak_buku: string) => {
   try {
-    const response = await API.delete('/api/admin/logout');
-    if (response.status === 200) {
-      auth.removeToken();
-      auth.removeUsername();
+    const data = { judul_buku, pengarang, penerbit, tahun_terbit, deskripsi, stok_buku, foto_buku, id_rak_buku };
+    const response = await API_FORM.post(`/api/${URL}`, data);
 
+    if (response.status === 200) {
       const toast = Swal.mixin({
         toast: true,
         position: 'top',
@@ -17,7 +17,7 @@ export const LOGOUT = async () => {
       });
       toast.fire({
         icon: 'success',
-        title: 'Anda Berhasil Logout',
+        title: `Buku Berhasil Ditambahkan`,
         padding: '10px 20px',
       });
 
@@ -25,6 +25,7 @@ export const LOGOUT = async () => {
     }
   } catch (error) {
     console.log(error);
+
     const toast = Swal.mixin({
       toast: true,
       position: 'top',
@@ -33,7 +34,7 @@ export const LOGOUT = async () => {
     });
     toast.fire({
       icon: 'error',
-      title: 'Anda Gagal Logout',
+      title: 'Buku Gagal Ditambahkan!',
       padding: '10px 20px',
     });
 

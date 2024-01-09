@@ -6,7 +6,7 @@ import { validationSchema } from './validation/validationSchema';
 import InputFile from '../../../components/forms/Input/InputFile';
 import InputText from '../../../components/forms/Input/InputText';
 import ButtonSolidPrimary from '../../../components/buttons/solid/ButtonSolidPrimary';
-import API from '../../../configs/api';
+import API from '../../../configs/API_JSON';
 import Swal from 'sweetalert2';
 
 const Index = () => {

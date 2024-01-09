@@ -1,19 +1,13 @@
 import Swal from 'sweetalert2';
-import API from '../../../../configs/api';
 import auth from '../../../../configs/auth';
+import API_JSON from '../../../../configs/API_JSON';
 
-export const LOGIN = async (username: string, password: string): Promise<any> => {
+export const requestLogout = async () => {
   try {
-    const data = { username, password };
-    const response = await API.post('/auth/admin/login', data);
-
+    const response = await API_JSON.delete('/api/admin/logout');
     if (response.status === 200) {
-      const { data } = response;
-      const token = data.data.token;
-      const username = data.data.username;
-
-      auth.setToken(token);
-      auth.setUsername(username);
+      auth.removeToken();
+      auth.removeUsername();
 
       const toast = Swal.mixin({
         toast: true,
@@ -23,7 +17,7 @@ export const LOGIN = async (username: string, password: string): Promise<any> =>
       });
       toast.fire({
         icon: 'success',
-        title: `Selamat Datang ${username}`,
+        title: 'Anda Berhasil Logout',
         padding: '10px 20px',
       });
 
@@ -39,7 +33,7 @@ export const LOGIN = async (username: string, password: string): Promise<any> =>
     });
     toast.fire({
       icon: 'error',
-      title: 'Username atau Password Salah',
+      title: 'Anda Gagal Logout',
       padding: '10px 20px',
     });
 

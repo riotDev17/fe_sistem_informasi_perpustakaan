@@ -1,11 +1,11 @@
 import Swal from 'sweetalert2';
-import API from '../../../../../configs/api';
+import API_JSON from '../../../../../configs/API_JSON';
 
 const URL = 'rak-buku';
 
 export const requestUpdate = async (id_rak_buku: string, nama_rak_buku: string) => {
   try {
-    const response = await API.put(`/api/${URL}/${id_rak_buku}`, {
+    const response = await API_JSON.put(`/api/${URL}/${id_rak_buku}`, {
       nama_rak_buku: nama_rak_buku,
     });
 

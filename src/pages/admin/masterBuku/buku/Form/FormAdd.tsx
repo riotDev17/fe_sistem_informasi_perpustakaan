@@ -6,7 +6,6 @@ import InputText from '../../../../../components/forms/Input/InputText';
 import ButtonSolidPrimary from '../../../../../components/buttons/solid/ButtonSolidPrimary';
 import ButtonSolidDanger from '../../../../../components/buttons/solid/ButtonSolidDanger';
 import InputNumber from '../../../../../components/forms/Input/InputNumber';
-import QuillBasic from '../../../../../components/quills/QuillBasic';
 import InputFile from '../../../../../components/forms/Input/InputFile';
 import PreviewImage from './PreviewImage';
 import RakBukuSelect from '../../../../../utils/RakBukuSelect';
@@ -71,7 +70,7 @@ const FormAdd = () => {
           validationSchema={validationSchema}
           onSubmit={handleCreate}
         >
-          {({ errors, handleChange, submitCount, values, setFieldValue, setTouched }) => (
+          {({ errors, handleChange, submitCount, values, setFieldValue }) => (
             <Form className="space-y-5">
               <div className={submitCount ? (errors.judul_buku ? 'has-error' : 'has-success') : ''}>
                 <InputText

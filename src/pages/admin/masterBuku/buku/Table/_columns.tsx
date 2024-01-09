@@ -111,7 +111,7 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
       accessor: 'deskrfoto_bukuipsi',
       render: (item: any) => (
         <>
-          <img className="rounded-sm w-16 object-cover" src={`${import.meta.env.VITE_API_URL}/${item.foto_buku}`} alt="Foto Buku" />
+          <img className="rounded-sm w-20 object-cover" src={`${import.meta.env.VITE_API_URL}/${item.foto_buku}`} alt="Foto Buku" />
         </>
       ),
     },

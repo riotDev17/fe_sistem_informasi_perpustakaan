@@ -5,7 +5,7 @@ interface PreviewImageProps {
 }
 
 const PreviewImage = ({ image }: PreviewImageProps) => {
-  const [previewImage, setPreviewImage] = useState<any>(null);
+  const [previewImage, setPreviewImage] = useState<any>('');
 
   const reader = new FileReader();
   const imageBlob = new Blob([image]);

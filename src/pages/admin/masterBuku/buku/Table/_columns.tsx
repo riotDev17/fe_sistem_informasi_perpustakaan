@@ -81,11 +81,18 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
       key: 'deskripsi',
       title: 'Deskripsi Buku',
       accessor: 'deskripsi',
-      render: (item: any) => (
-        <>
-          <span className="dark:text-white">{item.deskripsi}</span>
-        </>
-      ),
+      render: (item: any) => {
+        const maxWords = 6; // Jumlah maksimal kata yang ingin ditampilkan
+        const words = item.deskripsi.split(' ');
+        const truncatedDescription = words.slice(0, maxWords).join(' ');
+
+        return (
+          <>
+            <span className="dark:text-white">{truncatedDescription}</span>
+            {words.length > maxWords && '...'}
+          </>
+        );
+      },
     },
     {
       id: 'rak_buku',

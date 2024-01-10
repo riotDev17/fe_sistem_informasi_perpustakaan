@@ -23,7 +23,11 @@ const Buku = lazy(() => import('../pages/admin/masterBuku/buku/Index'));
 const FormAddBuku = lazy(() => import('../pages/admin/masterBuku/buku/Form/FormAdd'));
 const FormEditBuku = lazy(() => import('../pages/admin/masterBuku/buku/Form/FormEdit'));
 
+// Siswa
 const Siswa = lazy(() => import('../pages/admin/siswa/Index'));
+const FormAddSiswa = lazy(() => import('../pages/admin/siswa/Form/FormAdd'));
+const FormEditSiswa = lazy(() => import('../pages/admin/siswa/Form/FormEdit'));
+
 const PeminjamanBuku = lazy(() => import('../pages/admin/peminjamanBuku/Index'));
 
 // Denda
@@ -96,9 +100,19 @@ const routes = [
     path: '/buku/edit-buku/:id_buku',
     element: <FormEditBuku />,
   },
+
+  // Siswa
   {
     path: '/siswa',
     element: <Siswa />,
+  },
+  {
+    path: '/siswa/tambah-siswa',
+    element: <FormAddSiswa />,
+  },
+  {
+    path: '/siswa/edit-siswa/:id_siswa',
+    element: <FormEditSiswa />,
   },
   {
     path: '/peminjaman-buku',

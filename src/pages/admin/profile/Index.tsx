@@ -1,75 +1,46 @@
 import { useDispatch } from 'react-redux';
 import { Form, Formik } from 'formik';
 import { setPageTitle } from '../../../store/themeConfigSlice';
-import React, { useEffect } from 'react';
-import { validationSchema } from './validation/validationSchema';
+import { useEffect, useState } from 'react';
+import { validationSchema } from './validationSchema';
 import InputFile from '../../../components/forms/Input/InputFile';
 import InputText from '../../../components/forms/Input/InputText';
 import ButtonSolidPrimary from '../../../components/buttons/solid/ButtonSolidPrimary';
-import API from '../../../configs/API_JSON';
-import Swal from 'sweetalert2';
+import { requestGet } from './api/requestGet';
+import { useNavigate, useParams } from 'react-router-dom';
+import { requestUpdate } from './api/requestUpdate';
 
 const Index = () => {
   const dispatch = useDispatch();
-  const [admin, setAdmin] = React.useState<any>({ data: { username: '', foto_admin: '' } });
-  const [imagePreview, setImagePreview] = React.useState<any>('');
+  const navigate = useNavigate();
+  const { id_admin } = useParams();
+  const [admin, setAdmin] = useState<any>({});
+  const [username, setUsername] = useState('');
+  const [fotoAdmin, setFotoAdmin] = useState('');
+  const [imagePreview, setImagePreview] = useState('');
 
   useEffect(() => {
     dispatch(setPageTitle('Admin | Profile'));
-    getAdmin();
-  }, []);
 
-  const getAdmin = async () => {
+    requestGet().then((adminData) => {
+      setAdmin(adminData);
+      setUsername(adminData?.data?.username || '');
+      setFotoAdmin(adminData?.data?.foto_admin || '');
+    });
+  }, [dispatch]);
+
+  const handleUpdateProfile = async (e: { username: string; foto_admin: string }): Promise<any> => {
     try {
-      const response = await API.get('/api/admin');
-      if (response.status === 200) {
-        setAdmin(response.data);
+      const { username, foto_admin } = e;
+      const request = await requestUpdate(id_admin ?? '', username, foto_admin);
+      console.log(request);
+
+      if (request) {
+        navigate('/auth/admin/login');
       }
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const handleUpdateProfile = async (values: any): Promise<any> => {
-    try {
-      const dataAdmin = new FormData();
-      dataAdmin.append('username', values.username);
-      dataAdmin.append('foto_admin', values.foto_admin);
-
-      const response = await API.put(`/api/admin/${admin?.data?.id_admin}`, dataAdmin);
-      console.log(response);
-      if (response.status === 200) {
-        const toast = Swal.mixin({
-          toast: true,
-          position: 'top',
-          showConfirmButton: false,
-          timer: 3000,
-        });
-        toast.fire({
-          icon: 'success',
-          title: 'Data Admin Berhasil Diubah',
-          padding: '10px 20px',
-        });
-      }
-    } catch (error) {
-      console.log(error);
-      const toast = Swal.mixin({
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 3000,
-      });
-      toast.fire({
-        icon: 'error',
-        title: 'Data Admin Gagal Diubah',
-        padding: '10px 20px',
-      });
-    }
-  };
-
-  const handleUploadImage = async (e: any) => {
-    const file = e.target.files[0];
-    setImagePreview(URL.createObjectURL(file));
   };
 
   return (
@@ -91,12 +62,15 @@ const Index = () => {
             </div>
             <div className="flex-1 ">
               <Formik
-                initialValues={{ username: admin?.data?.username || '', foto_admin: admin?.data?.foto_admin || '' }}
+                enableReinitialize={true}
+                initialValues={{
+                  username: username,
+                  foto_admin: fotoAdmin,
+                }}
                 validationSchema={validationSchema}
                 onSubmit={handleUpdateProfile}
-                enableReinitialize={true}
               >
-                {({ errors, handleChange, submitCount, values }) => (
+                {({ errors, handleChange, submitCount, setFieldValue, values }) => (
                   <Form className="">
                     <div className={submitCount ? (errors.username ? 'has-error' : 'has-success') : ''}>
                       <InputText
@@ -105,7 +79,7 @@ const Index = () => {
                         label={'Username'}
                         value={values.username || ''}
                         onChange={handleChange}
-                        error={typeof errors.username === 'string' ? errors.username : ''}
+                        error={errors.username || ''}
                         placeholder={'Masukkan Username'}
                         isInputFilled={'Username Sudah Terisi'}
                       />
@@ -118,15 +92,15 @@ const Index = () => {
                         label={'Foto Profil'}
                         value={values.foto_admin || ''}
                         error={typeof errors.foto_admin === 'string' ? errors.foto_admin : ''}
-                        onChange={(e) => {
-                          handleUploadImage(e);
-                          handleChange(e);
+                        onChange={(e: any) => {
+                          setFieldValue('foto_admin', e.target.files[0]);
+                          setImagePreview(URL.createObjectURL(e.target.files[0]));
                         }}
                         isInputFilled={'Foto Sudah Terisi'}
                       />
                     </div>
                     <div className="flex justify-end">
-                      <ButtonSolidPrimary text={'Update Profil Admin'} width="w-auto" />
+                      <ButtonSolidPrimary text={'Update Profil Admin'} width="w-auto" onClick={() => handleUpdateProfile(values)} />
                     </div>
                   </Form>
                 )}

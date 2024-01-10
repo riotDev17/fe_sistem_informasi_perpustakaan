@@ -11,7 +11,7 @@ import IconLaptop from '../components/Icons/IconLaptop';
 import IconUser from '../components/Icons/IconUser';
 import IconLogout from '../components/Icons/IconLogout';
 import { requestLogout } from '../pages/admin/auth/api/requestLogout';
-import { requestGet } from '../pages/admin/auth/api/requestGet';
+import { requestGet } from '../pages/admin/profile/api/requestGet';
 
 const Header = () => {
   const navigate = useNavigate();

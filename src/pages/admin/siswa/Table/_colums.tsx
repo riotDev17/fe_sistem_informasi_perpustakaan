@@ -3,6 +3,7 @@ import IconTrash from '../../../../components/Icons/IconTrash';
 import IconPencil from '../../../../components/Icons/IconPencil';
 import TippyDefault from '../../../../components/tippys/default/TippyDefault';
 import IconPrinter from '../../../../components/Icons/IconPrinter';
+import FormatTanggal from '../../../../helpers/FormatTanggal';
 
 interface ColumnsProps {
   handleDelete: (id_siswa: string) => void;
@@ -72,7 +73,7 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
       accessor: 'tanggal_lahir',
       render: (item: any) => (
         <>
-          <span className="dark:text-white">{item.tanggal_lahir}</span>
+          <span className="dark:text-white">{FormatTanggal(item.tanggal_lahir)}</span>
         </>
       ),
     },

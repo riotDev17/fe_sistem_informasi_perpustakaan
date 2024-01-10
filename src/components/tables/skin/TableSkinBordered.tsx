@@ -20,7 +20,7 @@ const TableSkinBordered: React.FC<TableSkinBorderedProps> = ({ page, onPageChang
           <DataTable
             striped
             page={page}
-            minHeight={300}
+            minHeight={200}
             records={records}
             columns={columns}
             totalRecords={totalRecords}

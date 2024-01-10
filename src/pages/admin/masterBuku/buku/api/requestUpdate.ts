@@ -3,27 +3,19 @@ import API_FORM from '../../../../../configs/API_FORM';
 
 const URL = 'buku';
 
-export const requestUpdate = async (
-  id_buku: string,
-  judul_buku: string,
-  pengarang: string,
-  penerbit: string,
-  tahun_terbit: number,
-  stok_buku: number,
-  deskripsi: string,
-  foto_buku: string,
-  id_rak_buku: string
-) => {
+export const requestUpdate = async (id_buku: string, data: any) => {
+  const { judul_buku, pengarang, penerbit, tahun_terbit, stok_buku, deskripsi, foto_buku, id_rak_buku } = data;
+
   try {
     const response = await API_FORM.put(`/api/${URL}/${id_buku}`, {
-      judul_buku: judul_buku,
-      pengarang: pengarang,
-      penerbit: penerbit,
-      tahun_terbit: tahun_terbit,
-      deskripsi: deskripsi,
-      stok_buku: stok_buku,
-      foto_buku: foto_buku,
-      id_rak_buku: id_rak_buku,
+      judul_buku,
+      pengarang,
+      penerbit,
+      tahun_terbit,
+      deskripsi,
+      stok_buku,
+      foto_buku,
+      id_rak_buku,
     });
 
     if (response.status === 200) {

@@ -17,42 +17,35 @@ import BreadcrumbsDefault from '../../../../../components/breadcrumbs/Breadcrumb
 const FormEdit = () => {
   const navigate = useNavigate();
   const { id_buku } = useParams();
-  const [judulBuku, setJudulBuku] = useState('');
-  const [pengarang, setPengarang] = useState('');
-  const [penerbit, setPenerbit] = useState('');
-  const [tahunTerbit, setTahunTerbit] = useState(0);
-  const [stokBuku, setStokBuku] = useState(0);
-  const [deskripsi, setDeskripsi] = useState('');
-  const [fotoBuku, setFotoBuku] = useState('');
-  const [idRakBuku, setIdRakBuku] = useState('');
+  const [formData, setFormData] = useState({
+    judulBuku: '',
+    pengarang: '',
+    penerbit: '',
+    tahunTerbit: 0,
+    stokBuku: 0,
+    deskripsi: '',
+    fotoBuku: '',
+    idRakBuku: '',
+  });
 
   useEffect(() => {
     requestGetByID(id_buku ?? '').then((response) => {
-      setJudulBuku(response?.data?.judul_buku || '');
-      setPengarang(response?.data?.pengarang || '');
-      setPenerbit(response?.data?.penerbit || '');
-      setTahunTerbit(response?.data?.tahun_terbit || '');
-      setStokBuku(response?.data?.stok_buku || '');
-      setDeskripsi(response?.data?.deskripsi || '');
-      setFotoBuku(response?.data?.foto_buku || '');
-      setIdRakBuku(response?.data?.rak_buku?.id_rak_buku || '');
+      setFormData({
+        judulBuku: response?.data?.judul_buku || '',
+        pengarang: response?.data?.pengarang || '',
+        penerbit: response?.data?.penerbit || '',
+        tahunTerbit: response?.data?.tahun_terbit || 0,
+        stokBuku: response?.data?.stok_buku || 0,
+        deskripsi: response?.data?.deskripsi || '',
+        fotoBuku: response?.data?.foto_buku || '',
+        idRakBuku: response?.data?.rak_buku?.id_rak_buku || '',
+      });
     });
   }, []);
 
-  const handleUpdate = async (e: {
-    judul_buku: string;
-    pengarang: string;
-    penerbit: string;
-    tahun_terbit: number;
-    stok_buku: number;
-    deskripsi: string;
-    foto_buku: string;
-    id_rak_buku: string;
-  }): Promise<any> => {
+  const handleUpdate = async (values: any) => {
     try {
-      const { judul_buku, pengarang, penerbit, tahun_terbit, stok_buku, deskripsi, foto_buku, id_rak_buku } = e;
-
-      const request = await requestUpdate(id_buku ?? '', judul_buku, pengarang, penerbit, tahun_terbit, stok_buku, deskripsi, foto_buku, id_rak_buku);
+      const request = await requestUpdate(id_buku ?? '', { ...values });
 
       if (request) {
         navigate('/buku');
@@ -83,14 +76,14 @@ const FormEdit = () => {
         <Formik
           enableReinitialize={true}
           initialValues={{
-            judul_buku: judulBuku,
-            pengarang: pengarang,
-            penerbit: penerbit,
-            tahun_terbit: tahunTerbit,
-            deskripsi: deskripsi,
-            stok_buku: stokBuku,
-            foto_buku: fotoBuku,
-            id_rak_buku: idRakBuku,
+            judul_buku: formData.judulBuku,
+            pengarang: formData.pengarang,
+            penerbit: formData.penerbit,
+            tahun_terbit: formData.tahunTerbit,
+            deskripsi: formData.deskripsi,
+            stok_buku: formData.stokBuku,
+            foto_buku: formData.fotoBuku,
+            id_rak_buku: formData.idRakBuku,
           }}
           validationSchema={validationSchema}
           onSubmit={handleUpdate}

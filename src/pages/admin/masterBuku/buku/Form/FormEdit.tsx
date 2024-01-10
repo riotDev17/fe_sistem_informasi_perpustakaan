@@ -7,7 +7,7 @@ import { Form, Link, useNavigate, useParams } from 'react-router-dom';
 import InputFile from '../../../../../components/forms/Input/InputFile';
 import InputText from '../../../../../components/forms/Input/InputText';
 import InputNumber from '../../../../../components/forms/Input/InputNumber';
-import PreviewImage from './PreviewImage';
+import PreviewImage from '../../../../../utils/PreviewImage';
 import RakBukuSelect from '../../../../../utils/RakBukuSelect';
 import InputTextarea from '../../../../../components/forms/Input/InputTexarea';
 import ButtonSolidDanger from '../../../../../components/buttons/solid/ButtonSolidDanger';

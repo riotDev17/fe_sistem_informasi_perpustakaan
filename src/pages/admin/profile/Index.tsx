@@ -9,6 +9,7 @@ import ButtonSolidPrimary from '../../../components/buttons/solid/ButtonSolidPri
 import { requestGet } from './api/requestGet';
 import { useNavigate, useParams } from 'react-router-dom';
 import { requestUpdate } from './api/requestUpdate';
+import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -46,11 +47,18 @@ const Index = () => {
   return (
     <div>
       <div className="pt-5">
-        <div className="flex items-center justify-between mb-5">
-          <h5 className="font-semibold text-lg dark:text-white-light">Profile</h5>
-        </div>
+        <BreadcrumbsDefault
+          header="Profile"
+          menus={[
+            {
+              label: 'Profile',
+              link: `/profile/${id_admin}`,
+              icon: 'mdi:user',
+            },
+          ]}
+        />
 
-        <div className="border border-[#ebedf2] dark:border-[#191e3a] rounded-md p-4 mb-5 bg-white dark:bg-black">
+        <div className="border border-[#ebedf2] dark:border-[#191e3a] rounded-md p-4 mb-5 mt-10 bg-white dark:bg-black">
           <h6 className="text-lg font-bold mb-5">Data Admin</h6>
           <div className="flex flex-col sm:flex-row">
             <div className="ltr:sm:mr-4 rtl:sm:ml-4 w-full sm:w-2/12 mb-5">

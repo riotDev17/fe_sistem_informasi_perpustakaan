@@ -168,7 +168,7 @@ const FormAdd = () => {
                   value={values.id_agama}
                   error={errors.id_agama || ''}
                   onChange={(e: any) => {
-                    setFieldValue('id_rak_buku', (values.id_agama = e.value));
+                    setFieldValue('id_agama', (values.id_agama = e.value));
                   }}
                   placeholder={'Pilih Agama'}
                   isInputFilled={'Form Agama Sudah Terisi'}

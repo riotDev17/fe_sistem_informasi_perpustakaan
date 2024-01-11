@@ -4,12 +4,19 @@ import IconPencil from '../../../../components/Icons/IconPencil';
 import TippyDefault from '../../../../components/tippys/default/TippyDefault';
 import IconPrinter from '../../../../components/Icons/IconPrinter';
 import FormatTanggal from '../../../../helpers/FormatTanggal';
+import { useState } from 'react';
 
 interface ColumnsProps {
   handleDelete: (id_siswa: string) => void;
 }
 
 const Columns = ({ handleDelete }: ColumnsProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
   return [
     {
       id: 'index',
@@ -151,11 +158,11 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
       render: (item: any) => (
         <>
           <div className="flex space-x-1 rtl:space-x-reverse gap-2">
-            <button>
+            <Link to={`/siswa/cetak-kartu-siswa/${item.id_siswa}`}>
               <TippyDefault content="Cetak Kartu">
                 <IconPrinter />
               </TippyDefault>
-            </button>
+            </Link>
             <Link to={`/siswa/edit-siswa/${item.id_siswa}`}>
               <TippyDefault content="Edit Data Siswa">
                 <IconPencil />

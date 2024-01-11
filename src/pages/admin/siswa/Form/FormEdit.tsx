@@ -33,8 +33,6 @@ const FormEdit = () => {
     foto_siswa: '',
   });
 
-  console.log(formData);
-
   useEffect(() => {
     requestGetByID(id_siswa ?? '').then((response) => {
       setFormData({

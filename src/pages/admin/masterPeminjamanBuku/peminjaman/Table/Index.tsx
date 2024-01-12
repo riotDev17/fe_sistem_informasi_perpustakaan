@@ -7,7 +7,7 @@ interface TableProps {
 }
 
 const Table: React.FC<TableProps> = ({ siswa }) => {
-  const PAGE_SIZES = [5, 15, 25, 50, 100];
+  const PAGE_SIZES = [10, 25, 50, 100];
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
   const [initialRecords, setInitialRecords] = useState(siswa);

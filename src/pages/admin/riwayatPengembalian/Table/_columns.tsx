@@ -71,23 +71,6 @@ const Columns = () => {
         </>
       ),
     },
-    // {
-    //   id: 'aksi',
-    //   key: 'aksi',
-    //   title: 'Aksi',
-    //   accessor: 'aksi',
-    //   render: (item: any) => (
-    //     <>
-    //       <div className="flex space-x-1 rtl:space-x-reverse gap-2">
-    //         <button onClick={() => handlePengembalianBuku(item.id_peminjaman)}>
-    //           <TippyDefault content="Kembalikan Buku">
-    //             <IconRestore />
-    //           </TippyDefault>
-    //         </button>
-    //       </div>
-    //     </>
-    //   ),
-    // },
   ];
 };
 

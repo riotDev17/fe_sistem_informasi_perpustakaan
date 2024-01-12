@@ -3,6 +3,7 @@ import { Icon } from '@iconify/react';
 import TippyDefault from '../../../../../components/tippys/default/TippyDefault';
 import BadgeBasicSuccess from '../../../../../components/badges/basic/BadgeBasicSuccess';
 import IconRestore from '../../../../../components/Icons/IconRestore';
+import FormatTanggal from '../../../../../helpers/FormatTanggal';
 
 interface ColumnsProps {
   handlePengembalianBuku: (id_peminjaman: string) => void;
@@ -55,6 +56,28 @@ const Columns = ({ handlePengembalianBuku }: ColumnsProps) => {
       ),
     },
     {
+      id: 'tanggal_pinjam',
+      key: 'tanggal_pinjam',
+      title: 'Tanggal Pinjam',
+      accessor: 'tanggal_pinjam',
+      render: (item: any) => (
+        <>
+          <span className="dark:text-white">{FormatTanggal(item.tanggal_pinjam)}</span>
+        </>
+      ),
+    },
+    {
+      id: 'tanggal_kembali',
+      key: 'tanggal_kembali',
+      title: 'Tanggal Kembali',
+      accessor: 'tanggal_kembali',
+      render: (item: any) => (
+        <>
+          <span className="dark:text-white">{FormatTanggal(item.tanggal_kembali)}</span>
+        </>
+      ),
+    },
+    {
       id: 'status',
       key: 'status',
       title: 'Status',
@@ -75,7 +98,6 @@ const Columns = ({ handlePengembalianBuku }: ColumnsProps) => {
           <div className="flex space-x-1 rtl:space-x-reverse gap-2">
             <button onClick={() => handlePengembalianBuku(item.id_peminjaman)}>
               <TippyDefault content="Kembalikan Buku">
-                {/* <Icon icon={'streamline:return-2'} width={20} /> */}
                 <IconRestore />
               </TippyDefault>
             </button>

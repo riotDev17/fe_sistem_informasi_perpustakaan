@@ -49,16 +49,16 @@ const CetakKartuSiswa = () => {
         </>
       )}
 
-      <div className="mb-5 flex items-center justify-start mt-5">
-        <div className="w-full bg-white  rounded border border-dark-light  dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none">
+      <div className="my-5 flex items-center justify-start ">
+        <div className="w-full bg-white  rounded border border-dark-light  dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none ">
           <div ref={componentPDF}>
             <div className="mb-2 bg-primary p-10 text-center text-white">
-              <h1 className="font-black text-5xl ">Kartu Anggota Perpustakaan</h1>
-              <p className="mt-3 text-lg font-medium">Jl. Surya Suci No 130, Pontianak Selatan ,Kalimantan Barat , Indonesia</p>
+              <h1 className="font-black text-4xl ">Kartu Anggota Perpustakaan</h1>
+              <p className="mt-3 text-base font-medium">Jl. Surya Suci No 130, Pontianak Selatan ,Kalimantan Barat , Indonesia</p>
             </div>
 
             <div className="data-siswa">
-              <h1 className="text-3xl text-center mt-6 font-black text-dark mb-2">DATA SISWA</h1>
+              <h1 className="text-3xl text-center mt-6 font-black text-dark dark:text-white mb-2">DATA SISWA</h1>
               <div className="p-10 flex flex-col sm:flex-row">
                 <div className="w-64">
                   <img className="rounded-sm h-auto object-cover" src={`${import.meta.env.VITE_API_URL}/${siswa?.foto_siswa}`} alt="Foto siswa" />

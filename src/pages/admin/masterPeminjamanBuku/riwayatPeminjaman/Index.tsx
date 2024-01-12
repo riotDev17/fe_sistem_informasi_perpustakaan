@@ -81,7 +81,7 @@ const Index = () => {
       </div>
 
       <div className="mt-5">
-        <Table siswa={initialRecords} handlePengembalianBuku={handlePengembalianBuku} />
+        <Table peminjaman={initialRecords} handlePengembalianBuku={handlePengembalianBuku} />
       </div>
     </>
   );

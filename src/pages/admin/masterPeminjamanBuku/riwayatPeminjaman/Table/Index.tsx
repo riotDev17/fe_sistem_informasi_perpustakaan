@@ -3,21 +3,21 @@ import Columns from './_columns';
 import TableSkinBordered from '../../../../../components/tables/skin/TableSkinBordered';
 
 interface TableProps {
-  siswa: any[];
+  peminjaman: any[];
   handlePengembalianBuku: (id_peminjaman: string) => void;
 }
 
-const Table: React.FC<TableProps> = ({ siswa, handlePengembalianBuku }) => {
+const Table: React.FC<TableProps> = ({ peminjaman, handlePengembalianBuku }) => {
   const PAGE_SIZES = [5, 15, 25, 50, 100];
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
-  const [initialRecords, setInitialRecords] = useState(siswa);
+  const [initialRecords, setInitialRecords] = useState(peminjaman);
   const [recordsData, setRecordsData] = useState(initialRecords);
 
   useEffect(() => {
-    setInitialRecords(siswa);
-    setRecordsData(siswa.slice(0, pageSize));
-  }, [siswa, pageSize]);
+    setInitialRecords(peminjaman);
+    setRecordsData(peminjaman.slice(0, pageSize));
+  }, [peminjaman, pageSize]);
 
   useEffect(() => {
     const from = (page - 1) * pageSize;
@@ -32,7 +32,7 @@ const Table: React.FC<TableProps> = ({ siswa, handlePengembalianBuku }) => {
         records={recordsData}
         columns={Columns({ handlePengembalianBuku })}
         recordsPerPage={pageSize}
-        totalRecords={siswa.length}
+        totalRecords={peminjaman.length}
         onPageChange={(page: number) => setPage(page)}
         recordsPerPageOptions={PAGE_SIZES}
         onRecordsPerPageChange={setPageSize}

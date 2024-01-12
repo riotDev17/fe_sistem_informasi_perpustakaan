@@ -18,7 +18,7 @@ const FormPeminjamanBuku = () => {
       const request = await requestPeminjamanBuku(id_siswa, id_buku);
 
       if (request) {
-        navigate('/peminjaman-buku');
+        navigate('/riwayat-peminjaman-buku');
       }
     } catch (error) {
       console.log(error);

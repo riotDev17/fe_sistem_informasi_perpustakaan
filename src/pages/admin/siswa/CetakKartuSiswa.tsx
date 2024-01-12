@@ -118,7 +118,7 @@ const CetakKartuSiswa = () => {
                 </div>
               </div>
               <div className="flex justify-center py-5">
-                <Barcode value={siswa?.no_anggota} width={5} height={60} />
+                <Barcode value={siswa?.no_anggota.toString() || 'No Anggota'} width={5} height={60} />
               </div>
             </div>
           </div>

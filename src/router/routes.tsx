@@ -29,7 +29,9 @@ const FormAddSiswa = lazy(() => import('../pages/admin/siswa/Form/FormAdd'));
 const FormEditSiswa = lazy(() => import('../pages/admin/siswa/Form/FormEdit'));
 const CetakKartuSiswa = lazy(() => import('../pages/admin/siswa/CetakKartuSiswa'));
 
+// Peminjaman Buku
 const PeminjamanBuku = lazy(() => import('../pages/admin/peminjamanBuku/Index'));
+const FormPeminjamanBuku = lazy(() => import('../pages/admin/peminjamanBuku/Form/FormPeminjamanBuku'));
 
 // Denda
 const Denda = lazy(() => import('../pages/admin/denda/Index'));
@@ -119,9 +121,15 @@ const routes = [
     path: '/siswa/cetak-kartu-siswa/:id_siswa',
     element: <CetakKartuSiswa />,
   },
+
+  // Peminjaman Buku
   {
     path: '/peminjaman-buku',
     element: <PeminjamanBuku />,
+  },
+  {
+    path: '/peminjaman-buku/tambah-peminjaman-buku/:id_siswa',
+    element: <FormPeminjamanBuku />,
   },
 
   // Denda

@@ -55,8 +55,8 @@ export const SidebarMenu = [
     link: '/denda',
   },
   {
-    title: 'Riwayat Peminjaman',
+    title: 'Riwayat Pengembalian',
     icon: 'material-symbols:history',
-    link: '/riwayat-peminjaman',
+    link: '/riwayat-pengembalian',
   },
 ];

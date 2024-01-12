@@ -39,7 +39,7 @@ const Denda = lazy(() => import('../pages/admin/denda/Index'));
 const FormAddDenda = lazy(() => import('../pages/admin/denda/Form/FormAdd'));
 const FormEditDenda = lazy(() => import('../pages/admin/denda/Form/FormEdit'));
 
-const RiwayatPeminjaman = lazy(() => import('../pages/admin/riwayatPeminjaman/Index'));
+const RiwayatPengembalian = lazy(() => import('../pages/admin/riwayatPengembalian/Index'));
 const Profile = lazy(() => import('../pages/admin/profile/Index'));
 const Login = lazy(() => import('../pages/admin/auth/SignIn'));
 
@@ -151,8 +151,8 @@ const routes = [
     element: <FormEditDenda />,
   },
   {
-    path: '/riwayat-peminjaman',
-    element: <RiwayatPeminjaman />,
+    path: '/riwayat-pengembalian',
+    element: <RiwayatPengembalian />,
   },
   {
     path: '/profile/:id_admin',

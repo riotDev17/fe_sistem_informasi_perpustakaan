@@ -1,17 +1,18 @@
-import { useCallback, useEffect, useState } from 'react';
+import { debounce } from 'lodash';
+import { requestGet } from './api/requestGet';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
-import { request } from 'http';
-import { requestGet } from './api/requestGet';
-import { debounce } from 'lodash';
-import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
+import { useReactToPrint } from 'react-to-print';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import Table from './Table/Index';
+import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
 import SearchBasic from '../../../components/searchs/SearchBasic';
 import TippyDefault from '../../../components/tippys/default/TippyDefault';
-import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
-import Table from './Table/Index';
+import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const Index = () => {
   const dispatch = useDispatch();
+  const componentPDF = useRef(null);
   const [riwayat, setRiwayat] = useState([]);
   const [initialRecords, setInitialRecords] = useState(riwayat);
   const [search, setSearch] = useState('');
@@ -49,6 +50,11 @@ const Index = () => {
     window.location.reload();
   };
 
+  const handleCetakRiwayat = useReactToPrint({
+    content: () => componentPDF.current,
+    documentTitle: 'Riwayat Pengembalian Buku',
+  });
+
   return (
     <>
       <BreadcrumbsDefault
@@ -65,12 +71,17 @@ const Index = () => {
       <div className="flex justify-between items-center mt-10">
         <SearchBasic value={search} placeholder="Cari No Anggota Atau Nama Siswa" onChange={handleSearch} width="w-1/2" />
 
-        <TippyDefault content="Refresh Halaman">
-          <ButtonIcon icon="material-symbols:refresh" backgroundColor="btn-info" onClick={handleRefresh} />
-        </TippyDefault>
+        <div className="flex gap-3">
+          <TippyDefault content="Cetak Riwayat Pengembalian">
+            <ButtonIcon icon="mdi:printer" backgroundColor="btn-success" onClick={handleCetakRiwayat} />
+          </TippyDefault>
+          <TippyDefault content="Refresh Halaman">
+            <ButtonIcon icon="material-symbols:refresh" backgroundColor="btn-info" onClick={handleRefresh} />
+          </TippyDefault>
+        </div>
       </div>
 
-      <div className="mt-5">
+      <div className="mt-5" ref={componentPDF}>
         <Table riwayat={initialRecords} />
       </div>
     </>

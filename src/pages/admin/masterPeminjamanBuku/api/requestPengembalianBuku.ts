@@ -10,7 +10,7 @@ export const requestPengembalianBuku = async (id_peminjaman: any) => {
       title: 'Apakah anda yakin?',
       text: 'Ingin melakukan pengembalian buku ini?',
       showCancelButton: true,
-      confirmButtonText: 'Hapus',
+      confirmButtonText: 'Kembalikan',
       padding: '2em',
       customClass: 'sweet-alerts',
     });

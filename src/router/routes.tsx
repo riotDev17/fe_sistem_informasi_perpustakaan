@@ -23,15 +23,23 @@ const Buku = lazy(() => import('../pages/admin/masterBuku/buku/Index'));
 const FormAddBuku = lazy(() => import('../pages/admin/masterBuku/buku/Form/FormAdd'));
 const FormEditBuku = lazy(() => import('../pages/admin/masterBuku/buku/Form/FormEdit'));
 
+// Siswa
 const Siswa = lazy(() => import('../pages/admin/siswa/Index'));
-const PeminjamanBuku = lazy(() => import('../pages/admin/peminjamanBuku/Index'));
+const FormAddSiswa = lazy(() => import('../pages/admin/siswa/Form/FormAdd'));
+const FormEditSiswa = lazy(() => import('../pages/admin/siswa/Form/FormEdit'));
+const CetakKartuSiswa = lazy(() => import('../pages/admin/siswa/CetakKartuSiswa'));
+
+// Peminjaman Buku
+const PeminjamanBuku = lazy(() => import('../pages/admin/masterPeminjamanBuku/peminjaman/Index'));
+const FormPeminjamanBuku = lazy(() => import('../pages/admin/masterPeminjamanBuku/peminjaman/Form/FormPeminjamanBuku'));
+const RiwayatPeminjamanBuku = lazy(() => import('../pages/admin/masterPeminjamanBuku/riwayatPeminjaman/Index'));
 
 // Denda
 const Denda = lazy(() => import('../pages/admin/denda/Index'));
 const FormAddDenda = lazy(() => import('../pages/admin/denda/Form/FormAdd'));
 const FormEditDenda = lazy(() => import('../pages/admin/denda/Form/FormEdit'));
 
-const RiwayatPeminjaman = lazy(() => import('../pages/admin/riwayatPeminjaman/Index'));
+const RiwayatPengembalian = lazy(() => import('../pages/admin/riwayatPengembalian/Index'));
 const Profile = lazy(() => import('../pages/admin/profile/Index'));
 const Login = lazy(() => import('../pages/admin/auth/SignIn'));
 
@@ -96,13 +104,37 @@ const routes = [
     path: '/buku/edit-buku/:id_buku',
     element: <FormEditBuku />,
   },
+
+  // Siswa
   {
     path: '/siswa',
     element: <Siswa />,
   },
   {
+    path: '/siswa/tambah-siswa',
+    element: <FormAddSiswa />,
+  },
+  {
+    path: '/siswa/edit-siswa/:id_siswa',
+    element: <FormEditSiswa />,
+  },
+  {
+    path: '/siswa/cetak-kartu-siswa/:id_siswa',
+    element: <CetakKartuSiswa />,
+  },
+
+  // Peminjaman Buku
+  {
     path: '/peminjaman-buku',
     element: <PeminjamanBuku />,
+  },
+  {
+    path: '/peminjaman-buku/tambah-peminjaman-buku/:id_siswa',
+    element: <FormPeminjamanBuku />,
+  },
+  {
+    path: '/riwayat-peminjaman-buku',
+    element: <RiwayatPeminjamanBuku />,
   },
 
   // Denda
@@ -119,8 +151,8 @@ const routes = [
     element: <FormEditDenda />,
   },
   {
-    path: '/riwayat-peminjaman',
-    element: <RiwayatPeminjaman />,
+    path: '/riwayat-pengembalian',
+    element: <RiwayatPengembalian />,
   },
   {
     path: '/profile/:id_admin',

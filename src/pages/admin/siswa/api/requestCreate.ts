@@ -1,22 +1,23 @@
 import Swal from 'sweetalert2';
-import API_FORM from '../../../../../configs/API_FORM';
+import API_FORM from '../../../../configs/API_FORM';
 
-const URL = 'buku';
+const URL = 'siswa';
 
-export const requestUpdate = async (id_buku: string, data: any) => {
-  const { judul_buku, pengarang, penerbit, tahun_terbit, stok_buku, deskripsi, foto_buku, id_rak_buku } = data;
-
+export const requestCreate = async (
+  nama_siswa: string,
+  nis: number,
+  nisn: number,
+  tanggal_lahir: string,
+  tempat_lahir: string,
+  jenis_kelamin: string,
+  id_agama: string,
+  alamat: string,
+  id_kelas: string,
+  foto_siswa: string
+) => {
   try {
-    const response = await API_FORM.put(`/api/${URL}/${id_buku}`, {
-      judul_buku,
-      pengarang,
-      penerbit,
-      tahun_terbit,
-      deskripsi,
-      stok_buku,
-      foto_buku,
-      id_rak_buku,
-    });
+    const data = { nama_siswa, nis, nisn, tanggal_lahir, tempat_lahir, jenis_kelamin, id_agama, alamat, id_kelas, foto_siswa };
+    const response = await API_FORM.post(`/api/${URL}`, data);
 
     if (response.status === 200) {
       const toast = Swal.mixin({
@@ -27,7 +28,7 @@ export const requestUpdate = async (id_buku: string, data: any) => {
       });
       toast.fire({
         icon: 'success',
-        title: `Buku Berhasil Diedit`,
+        title: `Siswa Berhasil Ditambahkan`,
         padding: '10px 20px',
       });
 
@@ -44,7 +45,7 @@ export const requestUpdate = async (id_buku: string, data: any) => {
     });
     toast.fire({
       icon: 'error',
-      title: 'Buku Gagal Diedit!',
+      title: 'Siswa Gagal Ditambahkan!',
       padding: '10px 20px',
     });
 

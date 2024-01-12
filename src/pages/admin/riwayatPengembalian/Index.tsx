@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom';
 import { debounce } from 'lodash';
 import { requestGet } from './api/requestGet';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
-import { requestDelete } from './api/requestDelete';
-import { useCallback, useEffect, useState } from 'react';
+import { useReactToPrint } from 'react-to-print';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Table from './Table/Index';
 import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
 import SearchBasic from '../../../components/searchs/SearchBasic';
@@ -13,31 +12,32 @@ import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefau
 
 const Index = () => {
   const dispatch = useDispatch();
-  const [siswa, setSiswa] = useState([]);
-  const [initialRecords, setInitialRecords] = useState(siswa);
+  const componentPDF = useRef(null);
+  const [riwayat, setRiwayat] = useState([]);
+  const [initialRecords, setInitialRecords] = useState(riwayat);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    dispatch(setPageTitle('Admin | Siswa'));
+    dispatch(setPageTitle('Admin | Riwayat Pengembalian Buku'));
 
-    requestGet().then((siswaData) => {
-      setSiswa(siswaData);
-      setInitialRecords(siswaData);
+    requestGet().then((riwayatData) => {
+      setRiwayat(riwayatData);
+      setInitialRecords(riwayatData);
     });
   }, [dispatch]);
 
   const debounceSearch = useCallback(
     debounce((searchQuery) => {
       const filteredData = initialRecords.filter((item: any) => {
-        const noAnggota = String(item?.no_anggota || '').toLowerCase();
-        const namaSiswa = String(item?.nama_siswa || '').toLowerCase();
+        const noAnggota = String(item?.siswa?.no_anggota || '').toLowerCase();
+        const namaSiswa = String(item?.siswa?.nama_siswa || '').toLowerCase();
         const searchLower = searchQuery.toLowerCase();
 
         return noAnggota.includes(searchLower) || namaSiswa.includes(searchLower);
       });
       setInitialRecords(filteredData as never[]);
     }, 500),
-    [siswa]
+    [riwayat]
   );
 
   const handleSearch = (e: any) => {
@@ -46,49 +46,43 @@ const Index = () => {
     debounceSearch(searchQuery);
   };
 
-  const handleDelete = async (id_siswa: string) => {
-    const isDeleted = await requestDelete(id_siswa);
-    if (isDeleted) {
-      requestGet().then((siswaData) => {
-        setSiswa(siswaData);
-        setInitialRecords(siswaData);
-      });
-    }
-  };
-
   const handleRefresh = () => {
     window.location.reload();
   };
 
+  const handleCetakRiwayat = useReactToPrint({
+    content: () => componentPDF.current,
+    documentTitle: 'Riwayat Pengembalian Buku',
+  });
+
   return (
     <>
       <BreadcrumbsDefault
-        header="Siswa"
+        header="Riwayat Pengembalian Buku"
         menus={[
           {
-            label: 'Siswa',
-            link: '/siswa',
-            icon: 'ph:student-fill',
+            label: 'Riwayat Peminjaman Buku',
+            link: '/riwayat-peminjaman-buku',
+            icon: 'material-symbols:book',
           },
         ]}
       />
 
       <div className="flex justify-between items-center mt-10">
         <SearchBasic value={search} placeholder="Cari No Anggota Atau Nama Siswa" onChange={handleSearch} width="w-1/2" />
+
         <div className="flex gap-3">
-          <Link to={'/siswa/tambah-siswa'}>
-            <TippyDefault content="Tambah Siswa">
-              <ButtonIcon icon="ic:baseline-plus" backgroundColor="btn-primary" />
-            </TippyDefault>
-          </Link>
+          <TippyDefault content="Cetak Riwayat Pengembalian">
+            <ButtonIcon icon="mdi:printer" backgroundColor="btn-success" onClick={handleCetakRiwayat} />
+          </TippyDefault>
           <TippyDefault content="Refresh Halaman">
             <ButtonIcon icon="material-symbols:refresh" backgroundColor="btn-info" onClick={handleRefresh} />
           </TippyDefault>
         </div>
       </div>
 
-      <div className="mt-5">
-        <Table siswa={initialRecords} handleDelete={handleDelete} />
+      <div className="mt-5" ref={componentPDF}>
+        <Table riwayat={initialRecords} />
       </div>
     </>
   );

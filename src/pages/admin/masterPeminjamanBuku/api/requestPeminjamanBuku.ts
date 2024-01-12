@@ -1,22 +1,12 @@
 import Swal from 'sweetalert2';
-import API_FORM from '../../../../../configs/API_FORM';
+import API_JSON from '../../../../configs/API_JSON';
 
-const URL = 'buku';
+const URL = 'peminjaman-buku';
 
-export const requestUpdate = async (id_buku: string, data: any) => {
-  const { judul_buku, pengarang, penerbit, tahun_terbit, stok_buku, deskripsi, foto_buku, id_rak_buku } = data;
-
+export const requestPeminjamanBuku = async (id_siswa: any, id_buku: string) => {
   try {
-    const response = await API_FORM.put(`/api/${URL}/${id_buku}`, {
-      judul_buku,
-      pengarang,
-      penerbit,
-      tahun_terbit,
-      deskripsi,
-      stok_buku,
-      foto_buku,
-      id_rak_buku,
-    });
+    const data = { id_buku };
+    const response = await API_JSON.post(`/api/${URL}/${id_siswa}`, data);
 
     if (response.status === 200) {
       const toast = Swal.mixin({
@@ -27,12 +17,12 @@ export const requestUpdate = async (id_buku: string, data: any) => {
       });
       toast.fire({
         icon: 'success',
-        title: `Buku Berhasil Diedit`,
+        title: `Peminjaman Buku Berhasil Dilakukan!`,
         padding: '10px 20px',
       });
-
-      return true;
     }
+
+    return true;
   } catch (error) {
     console.log(error);
 
@@ -44,7 +34,7 @@ export const requestUpdate = async (id_buku: string, data: any) => {
     });
     toast.fire({
       icon: 'error',
-      title: 'Buku Gagal Diedit!',
+      title: 'Peminjaman Buku Gagal Dilakukan!',
       padding: '10px 20px',
     });
 

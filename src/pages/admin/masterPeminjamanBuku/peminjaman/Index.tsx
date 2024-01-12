@@ -1,15 +1,13 @@
-import { Link } from 'react-router-dom';
 import { debounce } from 'lodash';
-import { requestGet } from './api/requestGet';
+import { requestGet } from '../../siswa/api/requestGet';
 import { useDispatch } from 'react-redux';
-import { setPageTitle } from '../../../store/themeConfigSlice';
-import { requestDelete } from './api/requestDelete';
+import { setPageTitle } from '../../../../store/themeConfigSlice';
 import { useCallback, useEffect, useState } from 'react';
+import ButtonIcon from '../../../../components/buttons/icon/ButtonIcon';
+import SearchBasic from '../../../../components/searchs/SearchBasic';
+import TippyDefault from '../../../../components/tippys/default/TippyDefault';
+import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
 import Table from './Table/Index';
-import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
-import SearchBasic from '../../../components/searchs/SearchBasic';
-import TippyDefault from '../../../components/tippys/default/TippyDefault';
-import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -18,7 +16,7 @@ const Index = () => {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    dispatch(setPageTitle('Admin | Siswa'));
+    dispatch(setPageTitle('Admin | Peminjaman Buku'));
 
     requestGet().then((siswaData) => {
       setSiswa(siswaData);
@@ -46,16 +44,6 @@ const Index = () => {
     debounceSearch(searchQuery);
   };
 
-  const handleDelete = async (id_siswa: string) => {
-    const isDeleted = await requestDelete(id_siswa);
-    if (isDeleted) {
-      requestGet().then((siswaData) => {
-        setSiswa(siswaData);
-        setInitialRecords(siswaData);
-      });
-    }
-  };
-
   const handleRefresh = () => {
     window.location.reload();
   };
@@ -63,32 +51,26 @@ const Index = () => {
   return (
     <>
       <BreadcrumbsDefault
-        header="Siswa"
+        header="Peminjaman Buku"
         menus={[
           {
-            label: 'Siswa',
-            link: '/siswa',
-            icon: 'ph:student-fill',
+            label: 'Peminjaman Buku',
+            link: '/peminjaman-buku',
+            icon: 'material-symbols:book',
           },
         ]}
       />
 
       <div className="flex justify-between items-center mt-10">
         <SearchBasic value={search} placeholder="Cari No Anggota Atau Nama Siswa" onChange={handleSearch} width="w-1/2" />
-        <div className="flex gap-3">
-          <Link to={'/siswa/tambah-siswa'}>
-            <TippyDefault content="Tambah Siswa">
-              <ButtonIcon icon="ic:baseline-plus" backgroundColor="btn-primary" />
-            </TippyDefault>
-          </Link>
-          <TippyDefault content="Refresh Halaman">
-            <ButtonIcon icon="material-symbols:refresh" backgroundColor="btn-info" onClick={handleRefresh} />
-          </TippyDefault>
-        </div>
+
+        <TippyDefault content="Refresh Halaman">
+          <ButtonIcon icon="material-symbols:refresh" backgroundColor="btn-info" onClick={handleRefresh} />
+        </TippyDefault>
       </div>
 
       <div className="mt-5">
-        <Table siswa={initialRecords} handleDelete={handleDelete} />
+        <Table siswa={initialRecords} />
       </div>
     </>
   );

@@ -11,7 +11,8 @@ import IconLaptop from '../components/Icons/IconLaptop';
 import IconUser from '../components/Icons/IconUser';
 import IconLogout from '../components/Icons/IconLogout';
 import { requestLogout } from '../pages/admin/auth/api/requestLogout';
-import { requestGet } from '../pages/admin/auth/api/requestGet';
+import { requestGet } from '../pages/admin/profile/api/requestGet';
+import { Icon } from '@iconify/react';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -152,7 +153,8 @@ const Header = () => {
                   </li>
                   <li>
                     <Link to={`/profile/${admin?.data?.id_admin}`} className="dark:hover:text-white-dark dark:text-white">
-                      <IconUser className="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 shrink-0" />
+                      <Icon width={22} icon="mdi:user" className="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 shrink-0 " />
+                      {/* <IconUser className="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 shrink-0" /> */}
                       Profile
                     </Link>
                   </li>

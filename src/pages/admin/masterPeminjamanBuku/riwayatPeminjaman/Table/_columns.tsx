@@ -1,9 +1,7 @@
-import { Link } from 'react-router-dom';
-import { Icon } from '@iconify/react';
-import TippyDefault from '../../../../../components/tippys/default/TippyDefault';
-import BadgeBasicSuccess from '../../../../../components/badges/basic/BadgeBasicSuccess';
 import IconRestore from '../../../../../components/Icons/IconRestore';
+import TippyDefault from '../../../../../components/tippys/default/TippyDefault';
 import FormatTanggal from '../../../../../helpers/FormatTanggal';
+import BadgeBasicPrimary from '../../../../../components/badges/basic/BadgesBasicPrimary';
 
 interface ColumnsProps {
   handlePengembalianBuku: (id_peminjaman: string) => void;
@@ -84,7 +82,7 @@ const Columns = ({ handlePengembalianBuku }: ColumnsProps) => {
       accessor: 'status',
       render: (item: any) => (
         <>
-          <BadgeBasicSuccess label={item.status} />
+          <BadgeBasicPrimary label={item.status} />
         </>
       ),
     },

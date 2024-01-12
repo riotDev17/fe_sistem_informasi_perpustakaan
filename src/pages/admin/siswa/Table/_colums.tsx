@@ -11,12 +11,6 @@ interface ColumnsProps {
 }
 
 const Columns = ({ handleDelete }: ColumnsProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleModalOpen = () => {
-    setIsModalOpen(true);
-  };
-
   return [
     {
       id: 'index',

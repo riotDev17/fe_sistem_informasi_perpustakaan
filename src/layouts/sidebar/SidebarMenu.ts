@@ -45,7 +45,7 @@ export const SidebarMenu = [
       },
       {
         childTitle: 'Riwayat Peminjaman',
-        childLink: '/riwayat-pengembalian-buku',
+        childLink: '/riwayat-peminjaman-buku',
       },
     ],
   },

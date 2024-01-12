@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Columns from './_columns';
-import TableSkinBordered from '../../../../components/tables/skin/TableSkinBordered';
+import TableSkinBordered from '../../../../../components/tables/skin/TableSkinBordered';
 
 interface TableProps {
   siswa: any[];

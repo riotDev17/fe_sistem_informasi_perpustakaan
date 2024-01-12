@@ -1,12 +1,12 @@
 import { debounce } from 'lodash';
-import { requestGet } from '../siswa/api/requestGet';
+import { requestGet } from '../../siswa/api/requestGet';
 import { useDispatch } from 'react-redux';
-import { setPageTitle } from '../../../store/themeConfigSlice';
+import { setPageTitle } from '../../../../store/themeConfigSlice';
 import { useCallback, useEffect, useState } from 'react';
-import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
-import SearchBasic from '../../../components/searchs/SearchBasic';
-import TippyDefault from '../../../components/tippys/default/TippyDefault';
-import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
+import ButtonIcon from '../../../../components/buttons/icon/ButtonIcon';
+import SearchBasic from '../../../../components/searchs/SearchBasic';
+import TippyDefault from '../../../../components/tippys/default/TippyDefault';
+import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
 import Table from './Table/Index';
 
 const Index = () => {

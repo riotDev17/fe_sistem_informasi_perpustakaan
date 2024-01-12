@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import TippyDefault from '../../../../components/tippys/default/TippyDefault';
+import TippyDefault from '../../../../../components/tippys/default/TippyDefault';
 
 const Columns = () => {
   return [

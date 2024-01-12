@@ -30,8 +30,9 @@ const FormEditSiswa = lazy(() => import('../pages/admin/siswa/Form/FormEdit'));
 const CetakKartuSiswa = lazy(() => import('../pages/admin/siswa/CetakKartuSiswa'));
 
 // Peminjaman Buku
-const PeminjamanBuku = lazy(() => import('../pages/admin/peminjamanBuku/Index'));
-const FormPeminjamanBuku = lazy(() => import('../pages/admin/peminjamanBuku/Form/FormPeminjamanBuku'));
+const PeminjamanBuku = lazy(() => import('../pages/admin/masterPeminjamanBuku/peminjaman/Index'));
+const FormPeminjamanBuku = lazy(() => import('../pages/admin/masterPeminjamanBuku/peminjaman/Form/FormPeminjamanBuku'));
+const RiwayatPeminjamanBuku = lazy(() => import('../pages/admin/masterPeminjamanBuku/riwayatPeminjaman/Index'));
 
 // Denda
 const Denda = lazy(() => import('../pages/admin/denda/Index'));
@@ -130,6 +131,10 @@ const routes = [
   {
     path: '/peminjaman-buku/tambah-peminjaman-buku/:id_siswa',
     element: <FormPeminjamanBuku />,
+  },
+  {
+    path: '/riwayat-peminjaman-buku',
+    element: <RiwayatPeminjamanBuku />,
   },
 
   // Denda

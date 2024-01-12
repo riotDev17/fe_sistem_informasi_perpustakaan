@@ -23,26 +23,31 @@ const CetakKartuSiswa = () => {
     documentTitle: `Kartu Perpustakaan ${siswa?.nama_siswa}`,
   });
 
+  const isCetakKartuSiswaPage = location.pathname.includes('/siswa/cetak-kartu-siswa');
+
   return (
     <>
-      <BreadcrumbsDefault
-        header="Siswa"
-        menus={[
-          {
-            label: 'Siswa',
-            link: '/siswa',
-            icon: 'ph:student-fill',
-          },
-          {
-            label: 'Cetak kartu Siswa',
-            link: `/siswa/cetak-kartu-siswa/:${id_siswa}`,
-          },
-        ]}
-      />
-
-      <div className="mt-5">
-        <ButtonIconTextLeft onClick={handleCetakKartu} backgroundColor="btn-success" icon="mdi:printer" text="Cetak Kartu " />
-      </div>
+      {isCetakKartuSiswaPage && (
+        <>
+          <BreadcrumbsDefault
+            header="Siswa"
+            menus={[
+              {
+                label: 'Siswa',
+                link: '/siswa',
+                icon: 'ph:student-fill',
+              },
+              {
+                label: 'Cetak kartu Siswa',
+                link: `/siswa/cetak-kartu-siswa/:${id_siswa}`,
+              },
+            ]}
+          />
+          <div className="mt-5">
+            <ButtonIconTextLeft onClick={handleCetakKartu} backgroundColor="btn-success" icon="mdi:printer" text="Cetak Kartu " />
+          </div>
+        </>
+      )}
 
       <div className="mb-5 flex items-center justify-start mt-5">
         <div className="w-full bg-white  rounded border border-dark-light  dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none">

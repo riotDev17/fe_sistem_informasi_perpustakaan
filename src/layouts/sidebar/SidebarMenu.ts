@@ -35,9 +35,19 @@ export const SidebarMenu = [
     link: '/siswa',
   },
   {
-    title: 'Peminjaman Buku',
+    title: 'Master Peminjaman Buku',
     icon: 'material-symbols:book',
-    link: '/peminjaman-buku',
+    link: '#',
+    child: [
+      {
+        childTitle: 'Peminjaman',
+        childLink: '/peminjaman-buku',
+      },
+      {
+        childTitle: 'Riwayat Peminjaman',
+        childLink: '/riwayat-pengembalian-buku',
+      },
+    ],
   },
   {
     title: 'Denda',

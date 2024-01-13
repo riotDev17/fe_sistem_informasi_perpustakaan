@@ -2,6 +2,8 @@ import IconRestore from '../../../../../components/Icons/IconRestore';
 import TippyDefault from '../../../../../components/tippys/default/TippyDefault';
 import FormatTanggal from '../../../../../helpers/FormatTanggal';
 import BadgeBasicPrimary from '../../../../../components/badges/basic/BadgesBasicPrimary';
+import BadgeBasicDanger from '../../../../../components/badges/basic/BadgeBasicDanger';
+import BadgeBasicSuccess from '../../../../../components/badges/basic/BadgeBasicSuccess';
 
 interface ColumnsProps {
   handlePengembalianBuku: (id_peminjaman: string) => void;
@@ -76,15 +78,29 @@ const Columns = ({ handlePengembalianBuku }: ColumnsProps) => {
       ),
     },
     {
+      id: 'keterlambatan',
+      key: 'keterlambatan',
+      title: 'Keterlambatan',
+      accessor: 'keterlambatan',
+      render: (item: any) => {
+        const tanggalKembali = new Date(item.tanggal_kembali);
+        const keterlambatan = new Date(item.keterlambatan);
+
+        // Menghitung selisih hari
+        const selisihHari = Math.ceil((keterlambatan.getTime() - tanggalKembali.getTime()) / (1000 * 60 * 60 * 24));
+
+        // Mengecek apakah terlambat
+        const isTerlambat = selisihHari > 0;
+
+        return <>{isTerlambat ? <BadgeBasicDanger label={`Terlambat ${selisihHari} hari`} /> : <span>-</span>}</>;
+      },
+    },
+    {
       id: 'status',
       key: 'status',
       title: 'Status',
       accessor: 'status',
-      render: (item: any) => (
-        <>
-          <BadgeBasicPrimary label={item.status} />
-        </>
-      ),
+      render: (item: any) => <>{item.status === 'Pinjam' ? <BadgeBasicSuccess label={item.status} /> : <BadgeBasicDanger label={item.status} />}</>,
     },
     {
       id: 'aksi',

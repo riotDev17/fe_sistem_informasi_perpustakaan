@@ -9,6 +9,7 @@ import TippyDefault from '../../../../components/tippys/default/TippyDefault';
 import ButtonIcon from '../../../../components/buttons/icon/ButtonIcon';
 import Table from './Table/Index';
 import { requestPengembalianBuku } from '../api/requestPengembalianBuku';
+import { requestUpdatePeminjamanBuku } from '../api/requestUpdatePeminjamanBuku';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -55,6 +56,10 @@ const Index = () => {
     }
   };
 
+  const handleUpdateRiwayat = () => {
+    requestUpdatePeminjamanBuku();
+  };
+
   const handleRefresh = () => {
     window.location.reload();
   };
@@ -75,9 +80,14 @@ const Index = () => {
       <div className="flex justify-between items-center mt-10">
         <SearchBasic value={search} placeholder="Cari No Anggota Atau Nama Siswa" onChange={handleSearch} width="w-1/2" />
 
-        <TippyDefault content="Refresh Halaman">
-          <ButtonIcon icon="material-symbols:refresh" backgroundColor="btn-info" onClick={handleRefresh} />
-        </TippyDefault>
+        <div className="flex gap-3">
+          <TippyDefault content="Refresh Halaman">
+            <ButtonIcon icon="material-symbols:refresh" backgroundColor="btn-info" onClick={handleRefresh} />
+          </TippyDefault>
+          <TippyDefault content="Update Riwayat">
+            <ButtonIcon icon="dashicons:update-alt" backgroundColor="btn-success" onClick={handleUpdateRiwayat} />
+          </TippyDefault>
+        </div>
       </div>
 
       <div className="mt-5">

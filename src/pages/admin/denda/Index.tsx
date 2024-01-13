@@ -77,7 +77,9 @@ const Index = () => {
             </TippyDefault>
           </Link>
 
-          <ButtonIconTextLeft icon="material-symbols:refresh" text="Refresh Halaman" backgroundColor="btn-info" onClick={handleRefresh} />
+          <TippyDefault content="Refresh Halaman">
+            <ButtonIcon icon="material-symbols:refresh" backgroundColor="btn-info" onClick={handleRefresh} />
+          </TippyDefault>
         </div>
       </div>
 

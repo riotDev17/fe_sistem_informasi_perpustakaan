@@ -9,6 +9,7 @@ import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
 import SearchBasic from '../../../components/searchs/SearchBasic';
 import TippyDefault from '../../../components/tippys/default/TippyDefault';
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
+import { requestDelete } from './api/requestDelete';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -46,6 +47,13 @@ const Index = () => {
     debounceSearch(searchQuery);
   };
 
+  const handleHapusRiwayat = () => {
+    requestDelete().then(() => {
+      setRiwayat([]);
+      setInitialRecords([]);
+    });
+  };
+
   const handleRefresh = () => {
     window.location.reload();
   };
@@ -72,6 +80,9 @@ const Index = () => {
         <SearchBasic value={search} placeholder="Cari No Anggota Atau Nama Siswa" onChange={handleSearch} width="w-1/2" />
 
         <div className="flex gap-3">
+          <TippyDefault content="Hapus Semua Riwayat Pengembalian">
+            <ButtonIcon icon="mdi:trash" backgroundColor="btn-danger" onClick={handleHapusRiwayat} />
+          </TippyDefault>
           <TippyDefault content="Cetak Riwayat Pengembalian">
             <ButtonIcon icon="mdi:printer" backgroundColor="btn-success" onClick={handleCetakRiwayat} />
           </TippyDefault>

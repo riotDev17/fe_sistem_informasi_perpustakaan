@@ -96,6 +96,17 @@ const Columns = ({ handlePengembalianBuku }: ColumnsProps) => {
       },
     },
     {
+      id: 'id_denda',
+      key: 'id_denda',
+      title: 'Denda',
+      accessor: 'id_denda',
+      render: (item: any) => (
+        <>
+          <span className="dark:text-white">{item.denda ? item.denda?.nominal : 0}</span>
+        </>
+      ),
+    },
+    {
       id: 'status',
       key: 'status',
       title: 'Status',

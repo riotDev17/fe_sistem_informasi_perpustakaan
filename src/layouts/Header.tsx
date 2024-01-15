@@ -1,18 +1,17 @@
+import { Icon } from '@iconify/react';
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { IRootState } from '../store';
+import { requestLogout } from '../pages/admin/auth/api/requestLogout';
+import { requestGetProfile } from '../pages/admin/profile/api/requestGetProfile';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme, toggleSidebar } from '../store/themeConfigSlice';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Dropdown from '../components/Dropdown';
 import IconMenu from '../components/Icons/IconMenu';
 import IconSun from '../components/Icons/IconSun';
 import IconMoon from '../components/Icons/IconMoon';
 import IconLaptop from '../components/Icons/IconLaptop';
-import IconUser from '../components/Icons/IconUser';
 import IconLogout from '../components/Icons/IconLogout';
-import { requestLogout } from '../pages/admin/auth/api/requestLogout';
-import { requestGet } from '../pages/admin/profile/api/requestGet';
-import { Icon } from '@iconify/react';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -48,7 +47,7 @@ const Header = () => {
   useEffect(() => {
     const getAdmin = async () => {
       try {
-        const adminData = await requestGet();
+        const adminData = await requestGetProfile();
         if (adminData) {
           setAdmin(adminData);
         }

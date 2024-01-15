@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { requestGetByID } from './api/requestGetByID';
 import { useReactToPrint } from 'react-to-print';
+import { requestGetByIDSiswa } from './api/requestGetByIDSiswa';
 import { useEffect, useRef, useState } from 'react';
 import Barcode from 'react-barcode';
 import FormatTanggal from '../../../helpers/FormatTanggal';
@@ -13,7 +13,7 @@ const CetakKartuSiswa = () => {
   const [siswa, setSiswa] = useState<any>();
 
   useEffect(() => {
-    requestGetByID(id_siswa ?? '').then((response) => {
+    requestGetByIDSiswa(id_siswa ?? '').then((response) => {
       setSiswa(response?.data);
     });
   }, []);

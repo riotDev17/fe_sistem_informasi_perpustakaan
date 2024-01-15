@@ -1,12 +1,11 @@
 import { Formik } from 'formik';
-import { requestCreate } from '../api/requestCreate';
 import { validationSchema } from './validationSchema';
+import { requestCreateDenda } from '../api/requestCreateDenda';
 import { Form, Link, useNavigate } from 'react-router-dom';
-import InputText from '../../../../components/forms/Input/InputText';
+import InputNumber from '../../../../components/forms/Input/InputNumber';
 import ButtonSolidDanger from '../../../../components/buttons/solid/ButtonSolidDanger';
 import ButtonSolidPrimary from '../../../../components/buttons/solid/ButtonSolidPrimary';
 import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
-import InputNumber from '../../../../components/forms/Input/InputNumber';
 
 const FormAdd = () => {
   const navigate = useNavigate();
@@ -14,7 +13,7 @@ const FormAdd = () => {
   const handleCreate = async (e: { nominal: number }): Promise<any> => {
     try {
       const { nominal } = e;
-      const request = await requestCreate(nominal);
+      const request = await requestCreateDenda(nominal);
 
       if (request) {
         navigate('/denda');

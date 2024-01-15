@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
-import IconPencil from '../../../../../components/Icons/IconPencil';
 import IconTrash from '../../../../../components/Icons/IconTrash';
+import IconPencil from '../../../../../components/Icons/IconPencil';
 import TippyDefault from '../../../../../components/tippys/default/TippyDefault';
+import BadgeBasicInfo from '../../../../../components/badges/basic/BadgeBasicInfo';
+import BadgeBasicDanger from '../../../../../components/badges/basic/BadgeBasicDanger';
 
 interface ColumnsProps {
   handleDelete: (id_buku: string) => void;
@@ -69,11 +71,7 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
       key: 'stok_buku',
       title: 'Stok Buku',
       accessor: 'stok_buku',
-      render: (item: any) => (
-        <>
-          <span className="dark:text-white">{item.stok_buku}</span>
-        </>
-      ),
+      render: (item: any) => <>{item.stok_buku < 1 ? <BadgeBasicDanger label={`Stok Buku ${item.stok_buku}`} /> : <BadgeBasicInfo label={`Stok Buku ${item.stok_buku}`} />}</>,
     },
     {
       id: 'deskripsi',

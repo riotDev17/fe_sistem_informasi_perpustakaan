@@ -1,21 +1,21 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { requestGetByID } from '../api/requestGetByID';
-import { useEffect, useState } from 'react';
-import { requestUpdate } from '../api/requestUpdate';
-import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
 import { Form, Formik } from 'formik';
 import { validationSchema } from './validationSchema';
+import { requestUpdateSiswa } from '../api/requestUpdateSiswa';
+import { useEffect, useState } from 'react';
+import { requestGetByIDSiswa } from '../api/requestGetByIDSiswa';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import InputText from '../../../../components/forms/Input/InputText';
-import InputNumber from '../../../../components/forms/Input/InputNumber';
-import DateDefault from '../../../../components/forms/date/DateDefault';
+import InputFile from '../../../../components/forms/Input/InputFile';
 import TrimValue from '../../../../helpers/TrimValue';
-import JenisKelaminSelect from '../../../../utils/JenisKelaminSelect';
 import AgamaSelect from '../../../../utils/AgamaSelect';
 import KelasSelect from '../../../../utils/KelasSelect';
-import InputFile from '../../../../components/forms/Input/InputFile';
+import DateDefault from '../../../../components/forms/date/DateDefault';
+import InputNumber from '../../../../components/forms/Input/InputNumber';
 import PreviewImage from '../../../../utils/PreviewImage';
+import JenisKelaminSelect from '../../../../utils/JenisKelaminSelect';
 import ButtonSolidDanger from '../../../../components/buttons/solid/ButtonSolidDanger';
 import ButtonSolidSuccess from '../../../../components/buttons/solid/ButtonSolidSuccess';
+import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const FormEdit = () => {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ const FormEdit = () => {
   });
 
   useEffect(() => {
-    requestGetByID(id_siswa ?? '').then((response) => {
+    requestGetByIDSiswa(id_siswa ?? '').then((response) => {
       setFormData({
         nama_siswa: response?.data?.nama_siswa || '',
         nis: response?.data?.nis || 0,
@@ -52,7 +52,7 @@ const FormEdit = () => {
 
   const handleUpdate = async (values: any) => {
     try {
-      const request = await requestUpdate(id_siswa ?? '', { ...values });
+      const request = await requestUpdateSiswa(id_siswa ?? '', { ...values });
 
       if (request) {
         navigate('/siswa');

@@ -1,14 +1,15 @@
-import { useCallback, useEffect, useState } from 'react';
-import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
+import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../../store/themeConfigSlice';
-import { requestGet } from '../api/requestGet';
-import { debounce } from 'lodash';
+import { requestGetPeminjamanBuku } from '../api/requestGetPeminjamanBuku';
+import { requestDeletePeminjamanBuku } from '../api/requestDeletePeminjamanBuku';
+import { requestUpdatePeminjamanBuku } from '../api/requestUpdatePeminjamanBuku';
+import { useCallback, useEffect, useState } from 'react';
+import Table from './Table/Index';
+import ButtonIcon from '../../../../components/buttons/icon/ButtonIcon';
 import SearchBasic from '../../../../components/searchs/SearchBasic';
 import TippyDefault from '../../../../components/tippys/default/TippyDefault';
-import ButtonIcon from '../../../../components/buttons/icon/ButtonIcon';
-import Table from './Table/Index';
-import { requestPengembalianBuku } from '../api/requestPengembalianBuku';
+import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const Index = () => {
   useEffect(() => {
     dispatch(setPageTitle('Admin | Riwayat Peminjaman'));
 
-    requestGet().then((peminjamanData) => {
+    requestGetPeminjamanBuku().then((peminjamanData) => {
       setPeminjaman(peminjamanData);
       setInitialRecords(peminjamanData);
     });
@@ -45,14 +46,18 @@ const Index = () => {
     debounceSearch(searchQuery);
   };
 
-  const handlePengembalianBuku = async (id_peminjaman: string) => {
-    const isDeleted = await requestPengembalianBuku(id_peminjaman);
+  const handleDeletePeminjamanBuku = async (id_peminjaman: string) => {
+    const isDeleted = await requestDeletePeminjamanBuku(id_peminjaman);
     if (isDeleted) {
-      requestGet().then((peminjamanData) => {
+      requestGetPeminjamanBuku().then((peminjamanData) => {
         setPeminjaman(peminjamanData);
         setInitialRecords(peminjamanData);
       });
     }
+  };
+
+  const handleUpdateRiwayat = async (id_peminjaman: string) => {
+    await requestUpdatePeminjamanBuku(id_peminjaman);
   };
 
   const handleRefresh = () => {
@@ -75,13 +80,15 @@ const Index = () => {
       <div className="flex justify-between items-center mt-10">
         <SearchBasic value={search} placeholder="Cari No Anggota Atau Nama Siswa" onChange={handleSearch} width="w-1/2" />
 
-        <TippyDefault content="Refresh Halaman">
-          <ButtonIcon icon="material-symbols:refresh" backgroundColor="btn-info" onClick={handleRefresh} />
-        </TippyDefault>
+        <div className="flex gap-3">
+          <TippyDefault content="Refresh Halaman">
+            <ButtonIcon icon="material-symbols:refresh" backgroundColor="btn-info" onClick={handleRefresh} />
+          </TippyDefault>
+        </div>
       </div>
 
       <div className="mt-5">
-        <Table peminjaman={initialRecords} handlePengembalianBuku={handlePengembalianBuku} />
+        <Table peminjaman={initialRecords} handleDeletePeminjamanBuku={handleDeletePeminjamanBuku} handleUpdateRiwayat={handleUpdateRiwayat} />
       </div>
     </>
   );

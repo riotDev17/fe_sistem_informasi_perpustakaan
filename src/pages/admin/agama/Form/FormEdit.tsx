@@ -1,8 +1,8 @@
 import { Formik } from 'formik';
-import { requestUpdate } from '../api/requestUpdate';
-import { requestGetByID } from '../api/requestGetByID';
 import { validationSchema } from './validationSchema';
+import { requestUpdateAgama } from '../api/requestUpdateAgama';
 import { useState, useEffect } from 'react';
+import { requestGetByIDAgama } from '../api/requestGetByIDAgama';
 import { Form, Link, useNavigate, useParams } from 'react-router-dom';
 import InputText from '../../../../components/forms/Input/InputText';
 import ButtonSolidDanger from '../../../../components/buttons/solid/ButtonSolidDanger';
@@ -15,7 +15,7 @@ const FormEdit = () => {
   const [namaAgama, setNamaAgama] = useState('');
 
   useEffect(() => {
-    requestGetByID(id_agama ?? '').then((response) => {
+    requestGetByIDAgama(id_agama ?? '').then((response) => {
       setNamaAgama(response?.data?.nama_agama || '');
     });
   }, []);
@@ -23,7 +23,7 @@ const FormEdit = () => {
   const handleUpdate = async (e: { nama_agama: string }): Promise<any> => {
     try {
       const { nama_agama } = e;
-      const request = await requestUpdate(id_agama ?? '', nama_agama);
+      const request = await requestUpdateAgama(id_agama ?? '', nama_agama);
 
       if (request) {
         navigate('/agama');

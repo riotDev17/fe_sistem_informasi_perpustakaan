@@ -1,4 +1,4 @@
-import { requestGet } from '../pages/admin/agama/api/requestGet';
+import { requestGetAgama } from '../pages/admin/agama/api/requestGetAgama';
 import { useEffect, useState } from 'react';
 import SelectSearch from '../components/forms/Select/SelectSearch';
 
@@ -17,7 +17,7 @@ const AgamaSelect = ({ id, name, label, placeholder, error, isInputFilled, onCha
   const [agama, setAgama] = useState<any[]>([]);
 
   useEffect(() => {
-    requestGet().then((agamaData) => {
+    requestGetAgama().then((agamaData) => {
       const transformedData = agamaData.map((item: any) => ({
         value: item.id_agama,
         label: item.nama_agama,

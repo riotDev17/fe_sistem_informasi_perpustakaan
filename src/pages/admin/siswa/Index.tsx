@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { debounce } from 'lodash';
-import { requestGet } from './api/requestGet';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
-import { requestDelete } from './api/requestDelete';
+import { requestGetSiswa } from './api/requestGetSiswa';
+import { requestDeleteSiswa } from './api/requestDeleteSiswa';
 import { useCallback, useEffect, useState } from 'react';
 import Table from './Table/Index';
 import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
@@ -20,7 +20,7 @@ const Index = () => {
   useEffect(() => {
     dispatch(setPageTitle('Admin | Siswa'));
 
-    requestGet().then((siswaData) => {
+    requestGetSiswa().then((siswaData) => {
       setSiswa(siswaData);
       setInitialRecords(siswaData);
     });
@@ -47,9 +47,9 @@ const Index = () => {
   };
 
   const handleDelete = async (id_siswa: string) => {
-    const isDeleted = await requestDelete(id_siswa);
+    const isDeleted = await requestDeleteSiswa(id_siswa);
     if (isDeleted) {
-      requestGet().then((siswaData) => {
+      requestGetSiswa().then((siswaData) => {
         setSiswa(siswaData);
         setInitialRecords(siswaData);
       });

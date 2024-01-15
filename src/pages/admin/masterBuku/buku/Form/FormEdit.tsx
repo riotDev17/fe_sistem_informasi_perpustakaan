@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
-import { requestUpdate } from '../api/requestUpdate';
-import { requestGetByID } from '../api/requestGetByID';
 import { validationSchema } from './validationSchema';
+import { requestUpdateBuku } from '../api/requestUpdateBuku';
+import { requestGetByIDBuku } from '../api/requestGetByIDBuku';
 import { useEffect, useState } from 'react';
 import { Form, Link, useNavigate, useParams } from 'react-router-dom';
 import InputFile from '../../../../../components/forms/Input/InputFile';
@@ -29,7 +29,7 @@ const FormEdit = () => {
   });
 
   useEffect(() => {
-    requestGetByID(id_buku ?? '').then((response) => {
+    requestGetByIDBuku(id_buku ?? '').then((response) => {
       setFormData({
         judulBuku: response?.data?.judul_buku || '',
         pengarang: response?.data?.pengarang || '',
@@ -45,7 +45,7 @@ const FormEdit = () => {
 
   const handleUpdate = async (values: any) => {
     try {
-      const request = await requestUpdate(id_buku ?? '', { ...values });
+      const request = await requestUpdateBuku(id_buku ?? '', { ...values });
 
       if (request) {
         navigate('/buku');

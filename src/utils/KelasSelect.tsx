@@ -1,4 +1,4 @@
-import { requestGet } from '../pages/admin/kelas/api/requestGet';
+import { requestGetKelas } from '../pages/admin/kelas/api/requestGetKelas';
 import { useEffect, useState } from 'react';
 import SelectSearch from '../components/forms/Select/SelectSearch';
 
@@ -17,7 +17,7 @@ const KelasSelect = ({ id, name, label, placeholder, error, isInputFilled, onCha
   const [kelas, setKelas] = useState<any[]>([]);
 
   useEffect(() => {
-    requestGet().then((kelasData) => {
+    requestGetKelas().then((kelasData) => {
       const transformedData = kelasData.map((item: any) => ({
         value: item.id_kelas,
         label: item.nama_kelas,

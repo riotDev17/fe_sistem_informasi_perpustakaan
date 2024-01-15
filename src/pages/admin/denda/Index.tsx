@@ -1,16 +1,15 @@
 import { Link } from 'react-router-dom';
 import { debounce } from 'lodash';
-import { requestGet } from './api/requestGet';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
-import { requestDelete } from './api/requestDelete';
+import { requestGetDenda } from './api/requestGetDenda';
+import { requestDeleteDenda } from './api/requestDeleteDenda';
 import { useCallback, useEffect, useState } from 'react';
 import Table from './Table/Index';
-import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
-import SearchBasic from '../../../components/searchs/SearchBasic';
-import ButtonIconTextLeft from '../../../components/buttons/icon/ButtonIconTextLeft';
-import TippyDefault from '../../../components/tippys/default/TippyDefault';
 import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
+import SearchBasic from '../../../components/searchs/SearchBasic';
+import TippyDefault from '../../../components/tippys/default/TippyDefault';
+import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -21,7 +20,7 @@ const Index = () => {
   useEffect(() => {
     dispatch(setPageTitle('Admin | Denda'));
 
-    requestGet().then((dendaData) => {
+    requestGetDenda().then((dendaData) => {
       setDenda(dendaData);
       setInitialRecords(dendaData);
     });
@@ -42,9 +41,9 @@ const Index = () => {
   };
 
   const handleDelete = async (id_denda: string) => {
-    const isDeleted = await requestDelete(id_denda);
+    const isDeleted = await requestDeleteDenda(id_denda);
     if (isDeleted) {
-      requestGet().then((dendaData) => {
+      requestGetDenda().then((dendaData) => {
         setDenda(dendaData);
         setInitialRecords(dendaData);
       });
@@ -77,7 +76,9 @@ const Index = () => {
             </TippyDefault>
           </Link>
 
-          <ButtonIconTextLeft icon="material-symbols:refresh" text="Refresh Halaman" backgroundColor="btn-info" onClick={handleRefresh} />
+          <TippyDefault content="Refresh Halaman">
+            <ButtonIcon icon="material-symbols:refresh" backgroundColor="btn-info" onClick={handleRefresh} />
+          </TippyDefault>
         </div>
       </div>
 

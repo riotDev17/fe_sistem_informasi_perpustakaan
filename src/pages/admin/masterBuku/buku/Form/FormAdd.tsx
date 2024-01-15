@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
-import { requestCreate } from '../api/requestCreate';
 import { validationSchema } from './validationSchema';
+import { requestCreateBuku } from '../api/requestCreateBuku';
 import { Form, Link, useNavigate } from 'react-router-dom';
 import InputText from '../../../../../components/forms/Input/InputText';
 import InputFile from '../../../../../components/forms/Input/InputFile';
@@ -28,7 +28,7 @@ const FormAdd = () => {
     try {
       const { judul_buku, pengarang, penerbit, tahun_terbit, deskripsi, stok_buku, foto_buku, id_rak_buku } = e;
 
-      const request = await requestCreate(judul_buku, pengarang, penerbit, tahun_terbit, deskripsi, stok_buku, foto_buku, id_rak_buku);
+      const request = await requestCreateBuku(judul_buku, pengarang, penerbit, tahun_terbit, deskripsi, stok_buku, foto_buku, id_rak_buku);
 
       if (request) {
         navigate('/buku');

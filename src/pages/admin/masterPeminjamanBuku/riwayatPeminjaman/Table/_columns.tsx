@@ -1,13 +1,15 @@
-import IconRestore from '../../../../../components/Icons/IconRestore';
+import { Icon } from '@iconify/react';
 import TippyDefault from '../../../../../components/tippys/default/TippyDefault';
 import FormatTanggal from '../../../../../helpers/FormatTanggal';
-import BadgeBasicPrimary from '../../../../../components/badges/basic/BadgesBasicPrimary';
+import BadgeBasicDanger from '../../../../../components/badges/basic/BadgeBasicDanger';
+import BadgeBasicSuccess from '../../../../../components/badges/basic/BadgeBasicSuccess';
 
 interface ColumnsProps {
-  handlePengembalianBuku: (id_peminjaman: string) => void;
+  handleDeletePeminjamanBuku: (id_peminjaman: string) => void;
+  handleUpdateRiwayat: (id_peminjaman: string) => void;
 }
 
-const Columns = ({ handlePengembalianBuku }: ColumnsProps) => {
+const Columns = ({ handleDeletePeminjamanBuku, handleUpdateRiwayat }: ColumnsProps) => {
   return [
     {
       id: 'index',
@@ -76,15 +78,40 @@ const Columns = ({ handlePengembalianBuku }: ColumnsProps) => {
       ),
     },
     {
+      id: 'keterlambatan',
+      key: 'keterlambatan',
+      title: 'Keterlambatan',
+      accessor: 'keterlambatan',
+      render: (item: any) => {
+        const tanggalKembali = new Date(item.tanggal_kembali);
+        const keterlambatan = new Date(item.keterlambatan);
+
+        // Menghitung selisih hari
+        const selisihHari = Math.ceil((keterlambatan.getTime() - tanggalKembali.getTime()) / (1000 * 60 * 60 * 24));
+
+        // Mengecek apakah terlambat
+        const isTerlambat = selisihHari > 0;
+
+        return <>{isTerlambat ? <BadgeBasicDanger label={`Terlambat ${selisihHari} hari`} /> : <span>-</span>}</>;
+      },
+    },
+    {
+      id: 'id_denda',
+      key: 'id_denda',
+      title: 'Denda',
+      accessor: 'id_denda',
+      render: (item: any) => (
+        <>
+          <span className="dark:text-white">{item.denda ? item.denda?.nominal : 0}</span>
+        </>
+      ),
+    },
+    {
       id: 'status',
       key: 'status',
       title: 'Status',
       accessor: 'status',
-      render: (item: any) => (
-        <>
-          <BadgeBasicPrimary label={item.status} />
-        </>
-      ),
+      render: (item: any) => <>{item.status === 'Pinjam' ? <BadgeBasicSuccess label={item.status} /> : <BadgeBasicDanger label={item.status} />}</>,
     },
     {
       id: 'aksi',
@@ -94,9 +121,14 @@ const Columns = ({ handlePengembalianBuku }: ColumnsProps) => {
       render: (item: any) => (
         <>
           <div className="flex space-x-1 rtl:space-x-reverse gap-2">
-            <button onClick={() => handlePengembalianBuku(item.id_peminjaman)}>
+            <button onClick={() => handleDeletePeminjamanBuku(item.id_peminjaman)}>
               <TippyDefault content="Kembalikan Buku">
-                <IconRestore />
+                <Icon icon={'streamline:return-2'} width={18} />
+              </TippyDefault>
+            </button>
+            <button onClick={() => handleUpdateRiwayat(item.id_peminjaman)}>
+              <TippyDefault content="Update Peminjaman">
+                <Icon icon={'dashicons:update-alt'} width={20} />
               </TippyDefault>
             </button>
           </div>

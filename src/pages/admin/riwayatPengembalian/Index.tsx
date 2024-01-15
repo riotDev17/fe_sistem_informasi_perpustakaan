@@ -1,8 +1,9 @@
 import { debounce } from 'lodash';
-import { requestGet } from './api/requestGet';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
 import { useReactToPrint } from 'react-to-print';
+import { requestGetRiwayatPengembalian } from './api/requestGetRiwayatPengembalian';
+import { requestDeleteRiwayatPengembalian } from './api/requestDeleteRiwayatPengembalian';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Table from './Table/Index';
 import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
@@ -20,7 +21,7 @@ const Index = () => {
   useEffect(() => {
     dispatch(setPageTitle('Admin | Riwayat Pengembalian Buku'));
 
-    requestGet().then((riwayatData) => {
+    requestGetRiwayatPengembalian().then((riwayatData) => {
       setRiwayat(riwayatData);
       setInitialRecords(riwayatData);
     });
@@ -44,6 +45,13 @@ const Index = () => {
     const searchQuery = e.target.value;
     setSearch(searchQuery);
     debounceSearch(searchQuery);
+  };
+
+  const handleHapusRiwayat = () => {
+    requestDeleteRiwayatPengembalian().then(() => {
+      setRiwayat([]);
+      setInitialRecords([]);
+    });
   };
 
   const handleRefresh = () => {
@@ -72,6 +80,9 @@ const Index = () => {
         <SearchBasic value={search} placeholder="Cari No Anggota Atau Nama Siswa" onChange={handleSearch} width="w-1/2" />
 
         <div className="flex gap-3">
+          <TippyDefault content="Hapus Semua Riwayat Pengembalian">
+            <ButtonIcon icon="mdi:trash" backgroundColor="btn-danger" onClick={handleHapusRiwayat} />
+          </TippyDefault>
           <TippyDefault content="Cetak Riwayat Pengembalian">
             <ButtonIcon icon="mdi:printer" backgroundColor="btn-success" onClick={handleCetakRiwayat} />
           </TippyDefault>

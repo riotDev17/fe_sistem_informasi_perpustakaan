@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import { validationSchema } from './validationSchema';
-import { requestPeminjamanBuku } from '../../api/requestPeminjamanBuku';
+import { requestCreatePeminjamanBuku } from '../../api/requestCreatePeminjamanBuku';
 import { Form, Link, useNavigate, useParams } from 'react-router-dom';
 import BukuSelect from '../../../../../utils/BukuSelect';
 import CetakKartuSiswa from '../../../siswa/CetakKartuSiswa';
@@ -15,7 +15,7 @@ const FormPeminjamanBuku = () => {
   const handlePeminjamanBuku = async (e: { id_buku: string }) => {
     try {
       const { id_buku } = e;
-      const request = await requestPeminjamanBuku(id_siswa, id_buku);
+      const request = await requestCreatePeminjamanBuku(id_siswa, id_buku);
 
       if (request) {
         navigate('/riwayat-peminjaman-buku');

@@ -1,19 +1,19 @@
 import { Form, Formik } from 'formik';
-import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
 import { validationSchema } from './validationSchema';
-import InputText from '../../../../components/forms/Input/InputText';
-import ButtonSolidPrimary from '../../../../components/buttons/solid/ButtonSolidPrimary';
 import { Link, useNavigate } from 'react-router-dom';
-import ButtonSolidDanger from '../../../../components/buttons/solid/ButtonSolidDanger';
-import PreviewImage from '../../../../utils/PreviewImage';
+import { requestCreateSiswa } from '../api/requestCreateSiswa';
+import InputText from '../../../../components/forms/Input/InputText';
 import InputFile from '../../../../components/forms/Input/InputFile';
-import InputNumber from '../../../../components/forms/Input/InputNumber';
-import DateDefault from '../../../../components/forms/date/DateDefault';
 import TrimValue from '../../../../helpers/TrimValue';
-import JenisKelaminSelect from '../../../../utils/JenisKelaminSelect';
+import InputNumber from '../../../../components/forms/Input/InputNumber';
 import AgamaSelect from '../../../../utils/AgamaSelect';
+import DateDefault from '../../../../components/forms/date/DateDefault';
 import KelasSelect from '../../../../utils/KelasSelect';
-import { requestCreate } from '../api/requestCreate';
+import PreviewImage from '../../../../utils/PreviewImage';
+import ButtonSolidDanger from '../../../../components/buttons/solid/ButtonSolidDanger';
+import JenisKelaminSelect from '../../../../utils/JenisKelaminSelect';
+import ButtonSolidPrimary from '../../../../components/buttons/solid/ButtonSolidPrimary';
+import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const FormAdd = () => {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const FormAdd = () => {
     try {
       const { nama_siswa, nis, nisn, tanggal_lahir, tempat_lahir, jenis_kelamin, id_agama, alamat, id_kelas, foto_siswa } = e;
 
-      const request = await requestCreate(nama_siswa, nis, nisn, tanggal_lahir, tempat_lahir, jenis_kelamin, id_agama, alamat, id_kelas, foto_siswa);
+      const request = await requestCreateSiswa(nama_siswa, nis, nisn, tanggal_lahir, tempat_lahir, jenis_kelamin, id_agama, alamat, id_kelas, foto_siswa);
 
       if (request) {
         navigate('/siswa');

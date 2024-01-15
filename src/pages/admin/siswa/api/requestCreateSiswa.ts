@@ -3,7 +3,7 @@ import API_FORM from '../../../../configs/API_FORM';
 
 const URL = 'siswa';
 
-export const requestCreate = async (
+export const requestCreateSiswa = async (
   nama_siswa: string,
   nis: number,
   nisn: number,

@@ -1,5 +1,5 @@
 import { debounce } from 'lodash';
-import { requestGet } from '../../siswa/api/requestGet';
+import { requestGet } from '../../siswa/api/requestGetSiswa';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../../store/themeConfigSlice';
 import { useCallback, useEffect, useState } from 'react';

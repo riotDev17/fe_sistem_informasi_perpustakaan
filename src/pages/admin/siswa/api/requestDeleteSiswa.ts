@@ -1,26 +1,22 @@
 import Swal from 'sweetalert2';
-import API_FORM from '../../../../configs/API_FORM';
+import API_JSON from '../../../../configs/API_JSON';
 
 const URL = 'siswa';
 
-export const requestUpdate = async (id_siswa: string, data: any) => {
-  const { nama_siswa, nis, nisn, tanggal_lahir, tempat_lahir, jenis_kelamin, id_agama, alamat, id_kelas, foto_siswa } = data;
-
+export const requestDeleteSiswa = async (id_siswa: string) => {
   try {
-    const response = await API_FORM.put(`/api/${URL}/${id_siswa}`, {
-      nama_siswa,
-      nis,
-      nisn,
-      tanggal_lahir,
-      tempat_lahir,
-      jenis_kelamin,
-      id_agama,
-      alamat,
-      id_kelas,
-      foto_siswa,
+    const alert = await Swal.fire({
+      icon: 'warning',
+      title: 'Apakah anda yakin?',
+      text: 'Ingin menghapus siswa ini?',
+      showCancelButton: true,
+      confirmButtonText: 'Hapus',
+      padding: '2em',
+      customClass: 'sweet-alerts',
     });
 
-    if (response.status === 200) {
+    if (alert.isConfirmed) {
+      await API_JSON.delete(`/api/${URL}/${id_siswa}`);
       const toast = Swal.mixin({
         toast: true,
         position: 'top',
@@ -29,7 +25,7 @@ export const requestUpdate = async (id_siswa: string, data: any) => {
       });
       toast.fire({
         icon: 'success',
-        title: `Siswa Berhasil Diedit`,
+        title: 'Siswa Berhasil Dihapus',
         padding: '10px 20px',
       });
 
@@ -46,7 +42,7 @@ export const requestUpdate = async (id_siswa: string, data: any) => {
     });
     toast.fire({
       icon: 'error',
-      title: 'Siswa Gagal Diedit!',
+      title: 'Siswa Gagal Dihapus',
       padding: '10px 20px',
     });
 

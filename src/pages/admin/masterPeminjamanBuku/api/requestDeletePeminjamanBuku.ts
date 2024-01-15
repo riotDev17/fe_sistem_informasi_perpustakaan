@@ -3,7 +3,7 @@ import API_JSON from '../../../../configs/API_JSON';
 
 const URL = 'peminjaman-buku';
 
-export const requestPengembalianBuku = async (id_peminjaman: any) => {
+export const requestDeletePeminjamanBuku = async (id_peminjaman: any) => {
   try {
     const alert = await Swal.fire({
       icon: 'warning',

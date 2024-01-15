@@ -2,7 +2,7 @@ import API_JSON from '../../../../configs/API_JSON';
 
 const URL = 'peminjaman-buku';
 
-export const requestGet = async () => {
+export const requestGetPeminjamanBuku = async () => {
   try {
     const response = await API_JSON.get(`/api/${URL}`);
     const peminjamanBuku = response.data.data.map((item: any, index: number) => ({ ...item, index }));

@@ -1,8 +1,8 @@
 import { debounce } from 'lodash';
-import { requestGet } from '../api/requestGet';
+import { requestGetPeminjamanBuku } from '../api/requestGetPeminjamanBuku';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../../store/themeConfigSlice';
-import { requestPengembalianBuku } from '../api/requestPengembalianBuku';
+import { requestDeletePeminjamanBuku } from '../api/requestDeletePeminjamanBuku';
 import { requestUpdatePeminjamanBuku } from '../api/requestUpdatePeminjamanBuku';
 import { useCallback, useEffect, useState } from 'react';
 import Table from './Table/Index';
@@ -20,7 +20,7 @@ const Index = () => {
   useEffect(() => {
     dispatch(setPageTitle('Admin | Riwayat Peminjaman'));
 
-    requestGet().then((peminjamanData) => {
+    requestGetPeminjamanBuku().then((peminjamanData) => {
       setPeminjaman(peminjamanData);
       setInitialRecords(peminjamanData);
     });
@@ -46,10 +46,10 @@ const Index = () => {
     debounceSearch(searchQuery);
   };
 
-  const handlePengembalianBuku = async (id_peminjaman: string) => {
-    const isDeleted = await requestPengembalianBuku(id_peminjaman);
+  const handleDeletePeminjamanBuku = async (id_peminjaman: string) => {
+    const isDeleted = await requestDeletePeminjamanBuku(id_peminjaman);
     if (isDeleted) {
-      requestGet().then((peminjamanData) => {
+      requestGetPeminjamanBuku().then((peminjamanData) => {
         setPeminjaman(peminjamanData);
         setInitialRecords(peminjamanData);
       });
@@ -57,13 +57,7 @@ const Index = () => {
   };
 
   const handleUpdateRiwayat = async (id_peminjaman: string) => {
-    const isUpdated = await requestUpdatePeminjamanBuku(id_peminjaman);
-    if (isUpdated) {
-      requestGet().then((peminjamanData) => {
-        setPeminjaman(peminjamanData);
-        setInitialRecords(peminjamanData);
-      });
-    }
+    await requestUpdatePeminjamanBuku(id_peminjaman);
   };
 
   const handleRefresh = () => {
@@ -94,7 +88,7 @@ const Index = () => {
       </div>
 
       <div className="mt-5">
-        <Table peminjaman={initialRecords} handlePengembalianBuku={handlePengembalianBuku} handleUpdateRiwayat={handleUpdateRiwayat} />
+        <Table peminjaman={initialRecords} handleDeletePeminjamanBuku={handleDeletePeminjamanBuku} handleUpdateRiwayat={handleUpdateRiwayat} />
       </div>
     </>
   );

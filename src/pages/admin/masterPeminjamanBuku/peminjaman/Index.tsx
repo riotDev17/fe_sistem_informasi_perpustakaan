@@ -1,13 +1,13 @@
 import { debounce } from 'lodash';
-import { requestGet } from '../../siswa/api/requestGetSiswa';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../../store/themeConfigSlice';
+import { requestGetSiswa } from '../../siswa/api/requestGetSiswa';
 import { useCallback, useEffect, useState } from 'react';
+import Table from './Table/Index';
 import ButtonIcon from '../../../../components/buttons/icon/ButtonIcon';
 import SearchBasic from '../../../../components/searchs/SearchBasic';
 import TippyDefault from '../../../../components/tippys/default/TippyDefault';
 import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
-import Table from './Table/Index';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const Index = () => {
   useEffect(() => {
     dispatch(setPageTitle('Admin | Peminjaman Buku'));
 
-    requestGet().then((siswaData) => {
+    requestGetSiswa().then((siswaData) => {
       setSiswa(siswaData);
       setInitialRecords(siswaData);
     });

@@ -3,7 +3,7 @@ import API_JSON from '../../../../configs/API_JSON';
 
 const URL = 'peminjaman-buku';
 
-export const requestPeminjamanBuku = async (id_siswa: any, id_buku: string) => {
+export const requestCreatePeminjamanBuku = async (id_siswa: any, id_buku: string) => {
   try {
     const data = { id_buku };
     const response = await API_JSON.post(`/api/${URL}/${id_siswa}`, data);

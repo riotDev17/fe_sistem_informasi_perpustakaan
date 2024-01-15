@@ -5,11 +5,11 @@ import BadgeBasicDanger from '../../../../../components/badges/basic/BadgeBasicD
 import BadgeBasicSuccess from '../../../../../components/badges/basic/BadgeBasicSuccess';
 
 interface ColumnsProps {
-  handlePengembalianBuku: (id_peminjaman: string) => void;
+  handleDeletePeminjamanBuku: (id_peminjaman: string) => void;
   handleUpdateRiwayat: (id_peminjaman: string) => void;
 }
 
-const Columns = ({ handlePengembalianBuku, handleUpdateRiwayat }: ColumnsProps) => {
+const Columns = ({ handleDeletePeminjamanBuku, handleUpdateRiwayat }: ColumnsProps) => {
   return [
     {
       id: 'index',
@@ -121,7 +121,7 @@ const Columns = ({ handlePengembalianBuku, handleUpdateRiwayat }: ColumnsProps) 
       render: (item: any) => (
         <>
           <div className="flex space-x-1 rtl:space-x-reverse gap-2">
-            <button onClick={() => handlePengembalianBuku(item.id_peminjaman)}>
+            <button onClick={() => handleDeletePeminjamanBuku(item.id_peminjaman)}>
               <TippyDefault content="Kembalikan Buku">
                 <Icon icon={'streamline:return-2'} width={18} />
               </TippyDefault>

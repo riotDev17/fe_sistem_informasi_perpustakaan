@@ -3,7 +3,7 @@ import API_JSON from '../../../../configs/API_JSON';
 
 const URL = 'riwayat';
 
-export const requestDelete = async () => {
+export const requestDeleteRiwayatPengembalian = async () => {
   try {
     const alert = await Swal.fire({
       icon: 'warning',

@@ -1,15 +1,15 @@
 import { debounce } from 'lodash';
-import { requestGet } from './api/requestGet';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
 import { useReactToPrint } from 'react-to-print';
+import { requestGetRiwayatPengembalian } from './api/requestGetRiwayatPengembalian';
+import { requestDeleteRiwayatPengembalian } from './api/requestDeleteRiwayatPengembalian';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Table from './Table/Index';
 import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
 import SearchBasic from '../../../components/searchs/SearchBasic';
 import TippyDefault from '../../../components/tippys/default/TippyDefault';
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
-import { requestDelete } from './api/requestDelete';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const Index = () => {
   useEffect(() => {
     dispatch(setPageTitle('Admin | Riwayat Pengembalian Buku'));
 
-    requestGet().then((riwayatData) => {
+    requestGetRiwayatPengembalian().then((riwayatData) => {
       setRiwayat(riwayatData);
       setInitialRecords(riwayatData);
     });
@@ -48,7 +48,7 @@ const Index = () => {
   };
 
   const handleHapusRiwayat = () => {
-    requestDelete().then(() => {
+    requestDeleteRiwayatPengembalian().then(() => {
       setRiwayat([]);
       setInitialRecords([]);
     });

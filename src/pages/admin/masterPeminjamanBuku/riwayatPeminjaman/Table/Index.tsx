@@ -5,9 +5,10 @@ import TableSkinBordered from '../../../../../components/tables/skin/TableSkinBo
 interface TableProps {
   peminjaman: any[];
   handlePengembalianBuku: (id_peminjaman: string) => void;
+  handleUpdateRiwayat: (id_peminjaman: string) => void;
 }
 
-const Table: React.FC<TableProps> = ({ peminjaman, handlePengembalianBuku }) => {
+const Table: React.FC<TableProps> = ({ peminjaman, handlePengembalianBuku, handleUpdateRiwayat }) => {
   const PAGE_SIZES = [5, 15, 25, 50, 100];
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
@@ -30,7 +31,7 @@ const Table: React.FC<TableProps> = ({ peminjaman, handlePengembalianBuku }) => 
       <TableSkinBordered
         page={page}
         records={recordsData}
-        columns={Columns({ handlePengembalianBuku })}
+        columns={Columns({ handlePengembalianBuku, handleUpdateRiwayat })}
         recordsPerPage={pageSize}
         totalRecords={peminjaman.length}
         onPageChange={(page: number) => setPage(page)}

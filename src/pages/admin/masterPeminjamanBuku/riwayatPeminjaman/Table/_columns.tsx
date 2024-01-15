@@ -1,15 +1,15 @@
-import IconRestore from '../../../../../components/Icons/IconRestore';
+import { Icon } from '@iconify/react';
 import TippyDefault from '../../../../../components/tippys/default/TippyDefault';
 import FormatTanggal from '../../../../../helpers/FormatTanggal';
-import BadgeBasicPrimary from '../../../../../components/badges/basic/BadgesBasicPrimary';
 import BadgeBasicDanger from '../../../../../components/badges/basic/BadgeBasicDanger';
 import BadgeBasicSuccess from '../../../../../components/badges/basic/BadgeBasicSuccess';
 
 interface ColumnsProps {
   handlePengembalianBuku: (id_peminjaman: string) => void;
+  handleUpdateRiwayat: (id_peminjaman: string) => void;
 }
 
-const Columns = ({ handlePengembalianBuku }: ColumnsProps) => {
+const Columns = ({ handlePengembalianBuku, handleUpdateRiwayat }: ColumnsProps) => {
   return [
     {
       id: 'index',
@@ -123,7 +123,12 @@ const Columns = ({ handlePengembalianBuku }: ColumnsProps) => {
           <div className="flex space-x-1 rtl:space-x-reverse gap-2">
             <button onClick={() => handlePengembalianBuku(item.id_peminjaman)}>
               <TippyDefault content="Kembalikan Buku">
-                <IconRestore />
+                <Icon icon={'streamline:return-2'} width={18} />
+              </TippyDefault>
+            </button>
+            <button onClick={() => handleUpdateRiwayat(item.id_peminjaman)}>
+              <TippyDefault content="Update Peminjaman">
+                <Icon icon={'dashicons:update-alt'} width={20} />
               </TippyDefault>
             </button>
           </div>

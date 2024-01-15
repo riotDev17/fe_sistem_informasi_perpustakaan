@@ -1,15 +1,15 @@
-import { useCallback, useEffect, useState } from 'react';
-import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
+import { debounce } from 'lodash';
+import { requestGet } from '../api/requestGet';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../../store/themeConfigSlice';
-import { requestGet } from '../api/requestGet';
-import { debounce } from 'lodash';
-import SearchBasic from '../../../../components/searchs/SearchBasic';
-import TippyDefault from '../../../../components/tippys/default/TippyDefault';
-import ButtonIcon from '../../../../components/buttons/icon/ButtonIcon';
-import Table from './Table/Index';
 import { requestPengembalianBuku } from '../api/requestPengembalianBuku';
 import { requestUpdatePeminjamanBuku } from '../api/requestUpdatePeminjamanBuku';
+import { useCallback, useEffect, useState } from 'react';
+import Table from './Table/Index';
+import ButtonIcon from '../../../../components/buttons/icon/ButtonIcon';
+import SearchBasic from '../../../../components/searchs/SearchBasic';
+import TippyDefault from '../../../../components/tippys/default/TippyDefault';
+import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -56,8 +56,14 @@ const Index = () => {
     }
   };
 
-  const handleUpdateRiwayat = () => {
-    requestUpdatePeminjamanBuku();
+  const handleUpdateRiwayat = async (id_peminjaman: string) => {
+    const isUpdated = await requestUpdatePeminjamanBuku(id_peminjaman);
+    if (isUpdated) {
+      requestGet().then((peminjamanData) => {
+        setPeminjaman(peminjamanData);
+        setInitialRecords(peminjamanData);
+      });
+    }
   };
 
   const handleRefresh = () => {
@@ -84,14 +90,11 @@ const Index = () => {
           <TippyDefault content="Refresh Halaman">
             <ButtonIcon icon="material-symbols:refresh" backgroundColor="btn-info" onClick={handleRefresh} />
           </TippyDefault>
-          <TippyDefault content="Update Riwayat">
-            <ButtonIcon icon="dashicons:update-alt" backgroundColor="btn-success" onClick={handleUpdateRiwayat} />
-          </TippyDefault>
         </div>
       </div>
 
       <div className="mt-5">
-        <Table peminjaman={initialRecords} handlePengembalianBuku={handlePengembalianBuku} />
+        <Table peminjaman={initialRecords} handlePengembalianBuku={handlePengembalianBuku} handleUpdateRiwayat={handleUpdateRiwayat} />
       </div>
     </>
   );

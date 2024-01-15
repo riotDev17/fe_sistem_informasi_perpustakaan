@@ -50,13 +50,13 @@ export const SidebarMenu = [
     ],
   },
   {
-    title: 'Denda',
-    icon: 'mdi:dollar',
-    link: '/denda',
-  },
-  {
     title: 'Riwayat Pengembalian',
     icon: 'material-symbols:history',
     link: '/riwayat-pengembalian',
+  },
+  {
+    title: 'Denda',
+    icon: 'mdi:dollar',
+    link: '/denda',
   },
 ];

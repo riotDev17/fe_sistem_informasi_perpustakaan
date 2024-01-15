@@ -3,11 +3,10 @@ import API_JSON from '../../../../configs/API_JSON';
 
 const URL = 'agama';
 
-export const requestUpdate = async (id_agama: string, nama_agama: string) => {
+export const requestCreateAgama = async (nama_agama: any): Promise<any> => {
   try {
-    const response = await API_JSON.put(`/api/${URL}/${id_agama}`, {
-      nama_agama: nama_agama,
-    });
+    const data = { nama_agama };
+    const response = await API_JSON.post(`/api/${URL}`, data);
 
     if (response.status === 200) {
       const toast = Swal.mixin({
@@ -18,7 +17,7 @@ export const requestUpdate = async (id_agama: string, nama_agama: string) => {
       });
       toast.fire({
         icon: 'success',
-        title: `Agama Berhasil Diedit`,
+        title: `Agama Berhasil Ditambahkan!`,
         padding: '10px 20px',
       });
 
@@ -26,6 +25,7 @@ export const requestUpdate = async (id_agama: string, nama_agama: string) => {
     }
   } catch (error) {
     console.log(error);
+
     const toast = Swal.mixin({
       toast: true,
       position: 'top',
@@ -34,7 +34,7 @@ export const requestUpdate = async (id_agama: string, nama_agama: string) => {
     });
     toast.fire({
       icon: 'error',
-      title: 'Agama Gagal Diedit!',
+      title: 'Agama Gagal Ditambahkan!',
       padding: '10px 20px',
     });
 

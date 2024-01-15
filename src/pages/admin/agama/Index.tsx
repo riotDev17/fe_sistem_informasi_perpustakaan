@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { debounce } from 'lodash';
-import { requestGet } from './api/requestGet';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
-import { requestDelete } from './api/requestDelete';
+import { requestGetAgama } from './api/requestGetAgama';
+import { requestDeleteAgama } from './api/requestDeleteAgama';
 import { useCallback, useEffect, useState } from 'react';
 import Table from './Table/Index';
 import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
@@ -20,7 +20,7 @@ const Index = () => {
   useEffect(() => {
     dispatch(setPageTitle('Admin | Agama'));
 
-    requestGet().then((agamaData) => {
+    requestGetAgama().then((agamaData) => {
       setAgama(agamaData);
       setInitialRecords(agamaData);
     });
@@ -41,9 +41,9 @@ const Index = () => {
   };
 
   const handleDelete = async (id_agama: string) => {
-    const isDeleted = await requestDelete(id_agama);
+    const isDeleted = await requestDeleteAgama(id_agama);
     if (isDeleted) {
-      requestGet().then((agamaData) => {
+      requestGetAgama().then((agamaData) => {
         setAgama(agamaData);
         setInitialRecords(agamaData);
       });

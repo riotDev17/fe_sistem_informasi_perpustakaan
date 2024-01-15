@@ -3,12 +3,20 @@ import API_JSON from '../../../../configs/API_JSON';
 
 const URL = 'agama';
 
-export const requestCreate = async (nama_agama: any): Promise<any> => {
+export const requestDeleteAgama = async (id_agama: string) => {
   try {
-    const data = { nama_agama };
-    const response = await API_JSON.post(`/api/${URL}`, data);
+    const alert = await Swal.fire({
+      icon: 'warning',
+      title: 'Apakah anda yakin?',
+      text: 'Ingin menghapus agama ini?',
+      showCancelButton: true,
+      confirmButtonText: 'Hapus',
+      padding: '2em',
+      customClass: 'sweet-alerts',
+    });
 
-    if (response.status === 200) {
+    if (alert.isConfirmed) {
+      await API_JSON.delete(`/api/${URL}/${id_agama}`);
       const toast = Swal.mixin({
         toast: true,
         position: 'top',
@@ -17,7 +25,7 @@ export const requestCreate = async (nama_agama: any): Promise<any> => {
       });
       toast.fire({
         icon: 'success',
-        title: `Agama Berhasil Ditambahkan`,
+        title: 'Agama Berhasil Dihapus!',
         padding: '10px 20px',
       });
 
@@ -34,7 +42,7 @@ export const requestCreate = async (nama_agama: any): Promise<any> => {
     });
     toast.fire({
       icon: 'error',
-      title: 'Agama Gagal Ditambahkan!',
+      title: 'Agama Gagal Dihapus!',
       padding: '10px 20px',
     });
 

@@ -1,4 +1,4 @@
-import { requestGet } from '../pages/admin/agama/api/requestGet';
+import { requestGet } from '../pages/admin/agama/api/requestGetAgama';
 import { useEffect, useState } from 'react';
 import SelectSearch from '../components/forms/Select/SelectSearch';
 

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { debounce } from 'lodash';
-import { requestGet } from './api/requestGet';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../../store/themeConfigSlice';
-import { requestDelete } from './api/requestDelete';
+import { requestGetBuku } from './api/requestGetBuku';
+import { requestDeleteBuku } from './api/requestDeleteBuku';
 import { useCallback, useEffect, useState } from 'react';
 import Table from './Table/Index';
 import ButtonIcon from '../../../../components/buttons/icon/ButtonIcon';
@@ -20,7 +20,7 @@ const Index = () => {
   useEffect(() => {
     dispatch(setPageTitle('Admin | Buku'));
 
-    requestGet().then((bukuData) => {
+    requestGetBuku().then((bukuData) => {
       setBuku(bukuData);
       setInitialRecords(bukuData);
     });
@@ -41,9 +41,9 @@ const Index = () => {
   };
 
   const handleDelete = async (id_buku: string) => {
-    const isDeleted = await requestDelete(id_buku);
+    const isDeleted = await requestDeleteBuku(id_buku);
     if (isDeleted) {
-      requestGet().then((bukuData) => {
+      requestGetBuku().then((bukuData) => {
         setBuku(bukuData);
         setInitialRecords(bukuData);
       });

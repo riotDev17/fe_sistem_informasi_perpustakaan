@@ -3,7 +3,16 @@ import API_FORM from '../../../../../configs/API_FORM';
 
 const URL = 'buku';
 
-export const requestCreate = async (judul_buku: string, pengarang: string, penerbit: string, tahun_terbit: number, deskripsi: string, stok_buku: number, foto_buku: string, id_rak_buku: string) => {
+export const requestCreateBuku = async (
+  judul_buku: string,
+  pengarang: string,
+  penerbit: string,
+  tahun_terbit: number,
+  deskripsi: string,
+  stok_buku: number,
+  foto_buku: string,
+  id_rak_buku: string
+) => {
   try {
     const data = { judul_buku, pengarang, penerbit, tahun_terbit, deskripsi, stok_buku, foto_buku, id_rak_buku };
     const response = await API_FORM.post(`/api/${URL}`, data);
@@ -17,7 +26,7 @@ export const requestCreate = async (judul_buku: string, pengarang: string, pener
       });
       toast.fire({
         icon: 'success',
-        title: `Buku Berhasil Ditambahkan`,
+        title: `Buku Berhasil Ditambahkan!`,
         padding: '10px 20px',
       });
 

@@ -3,7 +3,7 @@ import API_FORM from '../../../../../configs/API_FORM';
 
 const URL = 'buku';
 
-export const requestUpdate = async (id_buku: string, data: any) => {
+export const requestUpdateBuku = async (id_buku: string, data: any) => {
   const { judul_buku, pengarang, penerbit, tahun_terbit, stok_buku, deskripsi, foto_buku, id_rak_buku } = data;
 
   try {
@@ -27,7 +27,7 @@ export const requestUpdate = async (id_buku: string, data: any) => {
       });
       toast.fire({
         icon: 'success',
-        title: `Buku Berhasil Diedit`,
+        title: 'Buku Berhasil Diedit!',
         padding: '10px 20px',
       });
 

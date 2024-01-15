@@ -1,4 +1,4 @@
-import { requestGet } from '../pages/admin/masterBuku/buku/api/requestGet';
+import { requestGetBuku } from '../pages/admin/masterBuku/buku/api/requestGetBuku';
 import { useEffect, useState } from 'react';
 import SelectSearch from '../components/forms/Select/SelectSearch';
 
@@ -17,7 +17,7 @@ const BukuSelect = ({ id, name, label, placeholder, error, isInputFilled, onChan
   const [buku, setBuku] = useState<any[]>([]);
 
   useEffect(() => {
-    requestGet().then((bukuData) => {
+    requestGetBuku().then((bukuData) => {
       const transformedData = bukuData.map((item: any) => ({
         value: item.id_buku,
         label: item.judul_buku,

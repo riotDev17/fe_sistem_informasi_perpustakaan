@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
-import IconEye from '../../../components/Icons/IconEye';
-import IconArrowLeft from '../../../components/Icons/IconArrowLeft';
-import { requestGetKelas } from '../kelas/api/requestGetKelas';
 import { requestGetBuku } from '../masterBuku/buku/api/requestGetBuku';
 import { requestGetSiswa } from '../siswa/api/requestGetSiswa';
+import { requestGetKelas } from '../kelas/api/requestGetKelas';
+import { useEffect, useState } from 'react';
 import { requestGetPeminjamanBuku } from '../masterPeminjamanBuku/api/requestGetPeminjamanBuku';
+import IconArrowLeft from '../../../components/Icons/IconArrowLeft';
 
 const Index = () => {
   const dispatch = useDispatch();

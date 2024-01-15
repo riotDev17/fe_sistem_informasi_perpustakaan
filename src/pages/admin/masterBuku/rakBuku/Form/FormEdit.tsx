@@ -1,8 +1,8 @@
 import { Formik } from 'formik';
-import { requestUpdate } from '../api/requestUpdate';
-import { requestGetByID } from '../api/requestGetByID';
 import { validationSchema } from './validationSchema';
 import { useState, useEffect } from 'react';
+import { requestUpdateRakBuku } from '../api/requestUpdateRakBuku';
+import { requestGetByIDRakBuku } from '../api/requestGetByIDRakBuku';
 import { Form, Link, useNavigate, useParams } from 'react-router-dom';
 import InputText from '../../../../../components/forms/Input/InputText';
 import ButtonSolidDanger from '../../../../../components/buttons/solid/ButtonSolidDanger';
@@ -15,7 +15,7 @@ const FormEdit = () => {
   const [namaRakBuku, setNamaRakBuku] = useState('');
 
   useEffect(() => {
-    requestGetByID(id_rak_buku ?? '').then((response) => {
+    requestGetByIDRakBuku(id_rak_buku ?? '').then((response) => {
       setNamaRakBuku(response?.data?.nama_rak_buku || '');
     });
   }, []);
@@ -23,7 +23,7 @@ const FormEdit = () => {
   const handleUpdate = async (e: { nama_rak_buku: string }): Promise<any> => {
     try {
       const { nama_rak_buku } = e;
-      const request = await requestUpdate(id_rak_buku ?? '', nama_rak_buku);
+      const request = await requestUpdateRakBuku(id_rak_buku ?? '', nama_rak_buku);
 
       if (request) {
         navigate('/rak-buku');

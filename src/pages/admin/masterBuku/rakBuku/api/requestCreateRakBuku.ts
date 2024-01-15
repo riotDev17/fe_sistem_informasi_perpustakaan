@@ -3,7 +3,7 @@ import API_JSON from '../../../../../configs/API_JSON';
 
 const URL = 'rak-buku';
 
-export const requestCreate = async (nama_rak_buku: any): Promise<any> => {
+export const requestCreateRakBuku = async (nama_rak_buku: any): Promise<any> => {
   try {
     const data = { nama_rak_buku };
     const response = await API_JSON.post(`/api/${URL}`, data);
@@ -17,7 +17,7 @@ export const requestCreate = async (nama_rak_buku: any): Promise<any> => {
       });
       toast.fire({
         icon: 'success',
-        title: `Rak Buku Berhasil Ditambahkan`,
+        title: `Rak Buku Berhasil Ditambahkan!`,
         padding: '10px 20px',
       });
 

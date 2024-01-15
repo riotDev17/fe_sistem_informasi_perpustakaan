@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
-import { requestCreate } from '../api/requestCreate';
 import { validationSchema } from './validationSchema';
+import { requestCreateRakBuku } from '../api/requestCreateRakBuku';
 import { Form, Link, useNavigate } from 'react-router-dom';
 import InputText from '../../../../../components/forms/Input/InputText';
 import ButtonSolidDanger from '../../../../../components/buttons/solid/ButtonSolidDanger';
@@ -13,7 +13,7 @@ const FormAdd = () => {
   const handleCreate = async (e: { nama_rak_buku: string }): Promise<any> => {
     try {
       const { nama_rak_buku } = e;
-      const request = await requestCreate(nama_rak_buku);
+      const request = await requestCreateRakBuku(nama_rak_buku);
 
       if (request) {
         navigate('/rak-buku');

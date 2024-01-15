@@ -3,7 +3,7 @@ import API_JSON from '../../../../configs/API_JSON';
 
 const URL = 'denda';
 
-export const requestUpdate = async (id_denda: string, nominal: number) => {
+export const requestUpdateDenda = async (id_denda: string, nominal: number) => {
   try {
     const response = await API_JSON.put(`/api/${URL}/${id_denda}`, {
       nominal: nominal,

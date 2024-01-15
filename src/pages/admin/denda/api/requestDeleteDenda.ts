@@ -3,12 +3,20 @@ import API_JSON from '../../../../configs/API_JSON';
 
 const URL = 'denda';
 
-export const requestCreate = async (nominal: number): Promise<any> => {
+export const requestDeleteDenda = async (id_denda: string) => {
   try {
-    const data = { nominal };
-    const response = await API_JSON.post(`/api/${URL}`, data);
+    const alert = await Swal.fire({
+      icon: 'warning',
+      title: 'Apakah anda yakin?',
+      text: 'Ingin menghapus nominal denda ini?',
+      showCancelButton: true,
+      confirmButtonText: 'Hapus',
+      padding: '2em',
+      customClass: 'sweet-alerts',
+    });
 
-    if (response.status === 200) {
+    if (alert.isConfirmed) {
+      await API_JSON.delete(`/api/${URL}/${id_denda}`);
       const toast = Swal.mixin({
         toast: true,
         position: 'top',
@@ -17,7 +25,7 @@ export const requestCreate = async (nominal: number): Promise<any> => {
       });
       toast.fire({
         icon: 'success',
-        title: `Denda Berhasil Ditambahkan`,
+        title: 'Denda Berhasil Dihapus!',
         padding: '10px 20px',
       });
 
@@ -34,7 +42,7 @@ export const requestCreate = async (nominal: number): Promise<any> => {
     });
     toast.fire({
       icon: 'error',
-      title: 'Denda Gagal Ditambahkan!',
+      title: 'Denda Gagal Dihapus!',
       padding: '10px 20px',
     });
 

@@ -1,8 +1,8 @@
 import { Formik } from 'formik';
-import { requestUpdate } from '../api/requestUpdate';
-import { requestGetByID } from '../api/requestGetByID';
 import { validationSchema } from './validationSchema';
+import { requestUpdateDenda } from '../api/requestUpdateDenda';
 import { useState, useEffect } from 'react';
+import { requestGetByIDDenda } from '../api/requestGetByIDDenda';
 import { Form, Link, useNavigate, useParams } from 'react-router-dom';
 import InputText from '../../../../components/forms/Input/InputText';
 import ButtonSolidDanger from '../../../../components/buttons/solid/ButtonSolidDanger';
@@ -15,7 +15,7 @@ const FormEdit = () => {
   const [nominal, setNominal] = useState(0);
 
   useEffect(() => {
-    requestGetByID(id_denda ?? '').then((response) => {
+    requestGetByIDDenda(id_denda ?? '').then((response) => {
       setNominal(response?.data?.nominal || '');
     });
   }, []);
@@ -23,7 +23,7 @@ const FormEdit = () => {
   const handleUpdate = async (e: { nominal: number }): Promise<any> => {
     try {
       const { nominal } = e;
-      const request = await requestUpdate(id_denda ?? '', nominal);
+      const request = await requestUpdateDenda(id_denda ?? '', nominal);
 
       if (request) {
         navigate('/denda');

@@ -4,11 +4,16 @@ import { setPageTitle } from '../../../store/themeConfigSlice';
 import IconEye from '../../../components/Icons/IconEye';
 import IconArrowLeft from '../../../components/Icons/IconArrowLeft';
 import { requestGetKelas } from '../kelas/api/requestGetKelas';
+import { requestGetBuku } from '../masterBuku/buku/api/requestGetBuku';
+import { requestGetSiswa } from '../siswa/api/requestGetSiswa';
+import { requestGetPeminjamanBuku } from '../masterPeminjamanBuku/api/requestGetPeminjamanBuku';
 
 const Index = () => {
   const dispatch = useDispatch();
   const [Kelas, setKelas] = useState([]);
   const [buku, setBuku] = useState([]);
+  const [siswa, setSiswa] = useState([]);
+  const [peminjamanBuku, setPeminjamanBuku] = useState([]);
 
   useEffect(() => {
     dispatch(setPageTitle('Admin | Dashboard'));
@@ -19,9 +24,25 @@ const Index = () => {
     });
 
     // Buku
+    requestGetBuku().then((res) => {
+      setBuku(res);
+    });
+
+    // Siswa
+    requestGetSiswa().then((res) => {
+      setSiswa(res);
+    });
+
+    // Riwayat Peminjaman Buku
+    requestGetPeminjamanBuku().then((res) => {
+      setPeminjamanBuku(res);
+    });
   }, [dispatch]);
 
   const totalKelas = Kelas.length;
+  const totalBuku = buku.length;
+  const totalSiswa = siswa.length;
+  const totalPeminjamanBuku = peminjamanBuku.length;
 
   return (
     <>
@@ -39,48 +60,45 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Sessions */}
+        {/* Buku */}
         <div className="panel bg-gradient-to-r from-violet-500 to-violet-400">
           <div className="flex justify-between">
-            <div className="ltr:mr-1 rtl:ml-1 text-md font-semibold">Sessions</div>
+            <div className="ltr:mr-1 rtl:ml-1 text-md font-semibold">Buku</div>
           </div>
           <div className="flex items-center mt-5">
-            <div className="text-3xl font-bold ltr:mr-3 rtl:ml-3"> 74,137 </div>
-            <div className="badge bg-white/30">- 2.35% </div>
+            <div className="text-3xl font-bold ltr:mr-3 rtl:ml-3"> {totalBuku} Buku </div>
           </div>
           <div className="flex items-center font-semibold mt-5">
-            <IconEye className="ltr:mr-2 rtl:ml-2 shrink-0" />
-            Last Week 84,709
+            <IconArrowLeft className="ltr:mr-2 rtl:ml-2 shrink-0" />
+            Data Buku
           </div>
         </div>
 
-        {/*  Time On-Site */}
+        {/*  Siswa */}
         <div className="panel bg-gradient-to-r from-blue-500 to-blue-400">
           <div className="flex justify-between">
-            <div className="ltr:mr-1 rtl:ml-1 text-md font-semibold">Time On-Site</div>
+            <div className="ltr:mr-1 rtl:ml-1 text-md font-semibold">Siswa</div>
           </div>
           <div className="flex items-center mt-5">
-            <div className="text-3xl font-bold ltr:mr-3 rtl:ml-3"> 38,085 </div>
-            <div className="badge bg-white/30">+ 1.35% </div>
+            <div className="text-3xl font-bold ltr:mr-3 rtl:ml-3"> {totalSiswa} Siswa </div>
           </div>
           <div className="flex items-center font-semibold mt-5">
-            <IconEye className="ltr:mr-2 rtl:ml-2 shrink-0" />
-            Last Week 37,894
+            <IconArrowLeft className="ltr:mr-2 rtl:ml-2 shrink-0" />
+            Data Siswa
           </div>
         </div>
 
-        {/* Bounce Rate */}
+        {/* Peminjaman Buku */}
         <div className="panel bg-gradient-to-r from-fuchsia-500 to-fuchsia-400">
           <div className="flex justify-between">
-            <div className="ltr:mr-1 rtl:ml-1 text-md font-semibold">Bounce Rate</div>
+            <div className="ltr:mr-1 rtl:ml-1 text-md font-semibold">Peminjaman Buku</div>
           </div>
           <div className="flex items-center mt-5">
-            <div className="text-3xl font-bold ltr:mr-3 rtl:ml-3"> 49.10% </div>
-            <div className="badge bg-white/30">- 0.35% </div>
+            <div className="text-3xl font-bold ltr:mr-3 rtl:ml-3"> {totalPeminjamanBuku} Peminjaman Buku</div>
           </div>
           <div className="flex items-center font-semibold mt-5">
-            <IconEye className="ltr:mr-2 rtl:ml-2 shrink-0" />
-            Last Week 50.01%
+            <IconArrowLeft className="ltr:mr-2 rtl:ml-2 shrink-0" />
+            Data Peminjaman Buku
           </div>
         </div>
       </div>

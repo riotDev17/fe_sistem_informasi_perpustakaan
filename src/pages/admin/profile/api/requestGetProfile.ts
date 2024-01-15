@@ -1,6 +1,6 @@
 import API_JSON from '../../../../configs/API_JSON';
 
-export const requestGet = async () => {
+export const requestGetProfile = async () => {
   try {
     const response = await API_JSON.get('/api/admin');
     const admin = response.data;

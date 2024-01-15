@@ -1,14 +1,14 @@
 import { useDispatch } from 'react-redux';
 import { Form, Formik } from 'formik';
 import { setPageTitle } from '../../../store/themeConfigSlice';
-import { useEffect, useState } from 'react';
 import { validationSchema } from './validationSchema';
-import InputFile from '../../../components/forms/Input/InputFile';
-import InputText from '../../../components/forms/Input/InputText';
-import ButtonSolidPrimary from '../../../components/buttons/solid/ButtonSolidPrimary';
-import { requestGet } from './api/requestGet';
+import { requestGetProfile } from './api/requestGetProfile';
+import { useEffect, useState } from 'react';
+import { requestUpdateProfile } from './api/requestUpdateProfile';
 import { useNavigate, useParams } from 'react-router-dom';
-import { requestUpdate } from './api/requestUpdate';
+import InputText from '../../../components/forms/Input/InputText';
+import InputFile from '../../../components/forms/Input/InputFile';
+import ButtonSolidPrimary from '../../../components/buttons/solid/ButtonSolidPrimary';
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const Index = () => {
@@ -23,7 +23,7 @@ const Index = () => {
   useEffect(() => {
     dispatch(setPageTitle('Admin | Profile'));
 
-    requestGet().then((adminData) => {
+    requestGetProfile().then((adminData) => {
       setAdmin(adminData);
       setUsername(adminData?.data?.username || '');
       setFotoAdmin(adminData?.data?.foto_admin || '');
@@ -33,7 +33,7 @@ const Index = () => {
   const handleUpdateProfile = async (e: { username: string; foto_admin: string }): Promise<any> => {
     try {
       const { username, foto_admin } = e;
-      const request = await requestUpdate(id_admin ?? '', username, foto_admin);
+      const request = await requestUpdateProfile(id_admin ?? '', username, foto_admin);
       console.log(request);
 
       if (request) {

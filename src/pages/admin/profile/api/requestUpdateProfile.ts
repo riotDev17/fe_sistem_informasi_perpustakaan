@@ -3,7 +3,7 @@ import API_FORM from '../../../../configs/API_FORM';
 
 const URL = 'admin';
 
-export const requestUpdate = async (id_admin: string, username: string, foto_admin: string) => {
+export const requestUpdateProfile = async (id_admin: string, username: string, foto_admin: string) => {
   try {
     const alert = await Swal.fire({
       icon: 'warning',

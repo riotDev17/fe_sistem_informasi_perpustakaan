@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 
 const URL = 'kelas';
 
-export const requestCreate = async (nama_kelas: any): Promise<any> => {
+export const requestCreateKelas = async (nama_kelas: any): Promise<any> => {
   try {
     const data = { nama_kelas };
     const response = await API_JSON.post(`/api/${URL}`, data);

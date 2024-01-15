@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
-import { requestCreate } from '../api/requestCreate';
 import { validationSchema } from './validationSchema';
+import { requestCreateKelas } from '../api/requestCreateKelas';
 import { Form, Link, useNavigate } from 'react-router-dom';
 import InputText from '../../../../components/forms/Input/InputText';
 import ButtonSolidPrimary from '../../../../components/buttons/solid/ButtonSolidPrimary';
@@ -13,7 +13,7 @@ const FormAdd = () => {
   const handleCreate = async (e: { nama_kelas: string }): Promise<any> => {
     try {
       const { nama_kelas } = e;
-      const request = await requestCreate(nama_kelas);
+      const request = await requestCreateKelas(nama_kelas);
 
       if (request) {
         navigate('/kelas');

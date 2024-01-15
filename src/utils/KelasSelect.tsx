@@ -1,4 +1,4 @@
-import { requestGet } from '../pages/admin/kelas/api/requestGet';
+import { requestGet } from '../pages/admin/kelas/api/requestGetKelas';
 import { useEffect, useState } from 'react';
 import SelectSearch from '../components/forms/Select/SelectSearch';
 

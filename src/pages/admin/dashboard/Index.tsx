@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
 import IconEye from '../../../components/Icons/IconEye';
 import IconArrowLeft from '../../../components/Icons/IconArrowLeft';
-import { requestGet } from '../kelas/api/requestGet';
+import { requestGetKelas } from '../kelas/api/requestGetKelas';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const Index = () => {
     dispatch(setPageTitle('Admin | Dashboard'));
 
     // Kelas
-    requestGet().then((res) => {
+    requestGetKelas().then((res) => {
       setKelas(res);
     });
 

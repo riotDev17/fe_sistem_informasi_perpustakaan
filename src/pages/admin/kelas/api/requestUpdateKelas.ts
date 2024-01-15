@@ -3,7 +3,7 @@ import API_JSON from '../../../../configs/API_JSON';
 
 const URL = 'kelas';
 
-export const requestUpdate = async (id_kelas: string, nama_kelas: string) => {
+export const requestUpdateKelas = async (id_kelas: string, nama_kelas: string) => {
   try {
     const response = await API_JSON.put(`/api/${URL}/${id_kelas}`, {
       nama_kelas: nama_kelas,

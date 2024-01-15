@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { debounce } from 'lodash';
-import { requestGet } from './api/requestGet';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
-import { requestDelete } from './api/requestDelete';
+import { requestGetKelas } from './api/requestGetKelas';
+import { requestDeleteKelas } from './api/requestDeleteKelas';
 import { useCallback, useEffect, useState } from 'react';
 import Table from './Table/Index';
 import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
@@ -20,7 +20,7 @@ const Index = () => {
   useEffect(() => {
     dispatch(setPageTitle('Admin | Kelas'));
 
-    requestGet().then((kelasData) => {
+    requestGetKelas().then((kelasData) => {
       setKelas(kelasData);
       setInitialRecords(kelasData);
     });
@@ -41,9 +41,9 @@ const Index = () => {
   };
 
   const handleDelete = async (id_kelas: string) => {
-    const isDeleted = await requestDelete(id_kelas);
+    const isDeleted = await requestDeleteKelas(id_kelas);
     if (isDeleted) {
-      requestGet().then((kelasData) => {
+      requestGetKelas().then((kelasData) => {
         setKelas(kelasData);
         setInitialRecords(kelasData);
       });

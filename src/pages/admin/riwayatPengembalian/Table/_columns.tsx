@@ -1,5 +1,3 @@
-import IconRestore from '../../../../components/Icons/IconRestore';
-import TippyDefault from '../../../../components/tippys/default/TippyDefault';
 import FormatTanggal from '../../../../helpers/FormatTanggal';
 import BadgeBasicSuccess from '../../../../components/badges/basic/BadgeBasicSuccess';
 
@@ -12,7 +10,7 @@ const Columns = () => {
       accessor: 'index',
       render: (item: any) => (
         <>
-          <span className="dark:text-white">{item.index + 1}</span>
+          <span className="dark:text-white">{item?.index + 1}</span>
         </>
       ),
     },
@@ -50,13 +48,24 @@ const Columns = () => {
       ),
     },
     {
+      id: 'tanggal_pinjam',
+      key: 'tanggal_kembali',
+      title: 'Tanggal Pinjam',
+      accessor: 'tanggal_pinjam',
+      render: (item: any) => (
+        <>
+          <span className="dark:text-white">{FormatTanggal(item?.tanggal_pinjam)}</span>
+        </>
+      ),
+    },
+    {
       id: 'tanggal_kembali',
       key: 'tanggal_kembali',
       title: 'Tanggal Kembali',
       accessor: 'tanggal_kembali',
       render: (item: any) => (
         <>
-          <span className="dark:text-white">{FormatTanggal(item.tanggal_kembali)}</span>
+          <span className="dark:text-white">{FormatTanggal(item?.tanggal_kembali)}</span>
         </>
       ),
     },

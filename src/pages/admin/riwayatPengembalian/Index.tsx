@@ -2,6 +2,7 @@ import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
 import { useReactToPrint } from 'react-to-print';
+import { downloadExcel } from 'react-export-table-to-excel';
 import { requestGetRiwayatPengembalian } from './api/requestGetRiwayatPengembalian';
 import { requestDeleteRiwayatPengembalian } from './api/requestDeleteRiwayatPengembalian';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -10,12 +11,14 @@ import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
 import SearchBasic from '../../../components/searchs/SearchBasic';
 import TippyDefault from '../../../components/tippys/default/TippyDefault';
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
+import FormatTanggal from '../../../helpers/FormatTanggal';
 
 const Index = () => {
   const dispatch = useDispatch();
   const componentPDF = useRef(null);
   const [riwayat, setRiwayat] = useState([]);
   const [initialRecords, setInitialRecords] = useState(riwayat);
+
   const [search, setSearch] = useState('');
 
   useEffect(() => {
@@ -58,10 +61,29 @@ const Index = () => {
     window.location.reload();
   };
 
-  const handleCetakRiwayat = useReactToPrint({
-    content: () => componentPDF.current,
-    documentTitle: 'Riwayat Pengembalian Buku',
-  });
+  const recordsRiwayat = () => {
+    return initialRecords.map((item: any, index: any) => {
+      return {
+        index: index + 1,
+        no_anggota: item?.siswa?.no_anggota,
+        nama_siswa: item?.siswa?.nama_siswa,
+        judul_buku: item?.buku?.judul_buku,
+        tanggal_pinjam: FormatTanggal(item?.tanggal_pinjam),
+        tanggal_kembali: FormatTanggal(item?.tanggal_kembali),
+      };
+    });
+  };
+
+  const handleCetakRiwayat = () => {
+    downloadExcel({
+      fileName: 'Riwayat Pengembalian Buku',
+      sheet: 'react-export-table-to-excel',
+      tablePayload: {
+        header: ['No', 'No Anggota', 'Nama Siswa', 'Judul Buku', 'Tanggal Pinjam', 'Tanggal Kembali'],
+        body: recordsRiwayat(),
+      },
+    });
+  };
 
   return (
     <>

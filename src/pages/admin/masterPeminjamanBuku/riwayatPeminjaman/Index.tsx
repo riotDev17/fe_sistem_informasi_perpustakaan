@@ -57,7 +57,13 @@ const Index = () => {
   };
 
   const handleUpdateRiwayat = async (id_peminjaman: string) => {
-    await requestUpdatePeminjamanBuku(id_peminjaman);
+    const request = await requestUpdatePeminjamanBuku(id_peminjaman);
+    if (request === true) {
+      requestGetPeminjamanBuku().then((peminjamanData) => {
+        setPeminjaman(peminjamanData);
+        setInitialRecords(peminjamanData);
+      });
+    }
   };
 
   const handleRefresh = () => {

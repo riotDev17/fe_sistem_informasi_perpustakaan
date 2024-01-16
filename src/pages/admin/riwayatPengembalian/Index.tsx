@@ -1,7 +1,6 @@
 import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
-import { useReactToPrint } from 'react-to-print';
 import { downloadExcel } from 'react-export-table-to-excel';
 import { requestGetRiwayatPengembalian } from './api/requestGetRiwayatPengembalian';
 import { requestDeleteRiwayatPengembalian } from './api/requestDeleteRiwayatPengembalian';
@@ -10,15 +9,13 @@ import Table from './Table/Index';
 import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
 import SearchBasic from '../../../components/searchs/SearchBasic';
 import TippyDefault from '../../../components/tippys/default/TippyDefault';
-import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 import FormatTanggal from '../../../helpers/FormatTanggal';
+import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const Index = () => {
   const dispatch = useDispatch();
-  const componentPDF = useRef(null);
   const [riwayat, setRiwayat] = useState([]);
   const [initialRecords, setInitialRecords] = useState(riwayat);
-
   const [search, setSearch] = useState('');
 
   useEffect(() => {
@@ -70,6 +67,7 @@ const Index = () => {
         judul_buku: item?.buku?.judul_buku,
         tanggal_pinjam: FormatTanggal(item?.tanggal_pinjam),
         tanggal_kembali: FormatTanggal(item?.tanggal_kembali),
+        status: item?.status,
       };
     });
   };
@@ -79,7 +77,7 @@ const Index = () => {
       fileName: 'Riwayat Pengembalian Buku',
       sheet: 'react-export-table-to-excel',
       tablePayload: {
-        header: ['No', 'No Anggota', 'Nama Siswa', 'Judul Buku', 'Tanggal Pinjam', 'Tanggal Kembali'],
+        header: ['No', 'No Anggota', 'Nama Siswa', 'Judul Buku', 'Tanggal Pinjam', 'Tanggal Kembali', 'Status'],
         body: recordsRiwayat(),
       },
     });
@@ -114,7 +112,7 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="mt-5" ref={componentPDF}>
+      <div className="mt-5">
         <Table riwayat={initialRecords} />
       </div>
     </>

@@ -92,7 +92,7 @@ const Columns = ({ handleDeletePeminjamanBuku, handleUpdateRiwayat }: ColumnsPro
         // Mengecek apakah terlambat
         const isTerlambat = selisihHari > 0;
 
-        return <>{isTerlambat ? <BadgeBasicDanger label={`Terlambat ${selisihHari} hari`} /> : <span>{FormatTanggal(item.keterlambatan)}</span>}</>;
+        return <>{isTerlambat ? <BadgeBasicDanger label={`Terlambat ${selisihHari} hari`} /> : <span>-</span>}</>;
       },
     },
     {

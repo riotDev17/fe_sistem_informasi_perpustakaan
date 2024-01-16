@@ -1,5 +1,6 @@
 import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { setPageTitle } from '../../../../store/themeConfigSlice';
 import { requestGetPeminjamanBuku } from '../api/requestGetPeminjamanBuku';
 import { requestDeletePeminjamanBuku } from '../api/requestDeletePeminjamanBuku';
@@ -12,6 +13,7 @@ import TippyDefault from '../../../../components/tippys/default/TippyDefault';
 import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const Index = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [peminjaman, setPeminjaman] = useState([]);
   const [initialRecords, setInitialRecords] = useState(peminjaman);
@@ -53,6 +55,8 @@ const Index = () => {
         setPeminjaman(peminjamanData);
         setInitialRecords(peminjamanData);
       });
+
+      navigate('/riwayat-pengembalian');
     }
   };
 

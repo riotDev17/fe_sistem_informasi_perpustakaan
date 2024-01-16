@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
 import { downloadExcel } from 'react-export-table-to-excel';
 import { requestGetRiwayatPengembalian } from './api/requestGetRiwayatPengembalian';
+import { useCallback, useEffect, useState } from 'react';
 import { requestDeleteRiwayatPengembalian } from './api/requestDeleteRiwayatPengembalian';
-import { useCallback, useEffect, useRef, useState } from 'react';
 import Table from './Table/Index';
 import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
 import SearchBasic from '../../../components/searchs/SearchBasic';
@@ -47,11 +47,14 @@ const Index = () => {
     debounceSearch(searchQuery);
   };
 
-  const handleHapusRiwayat = () => {
-    requestDeleteRiwayatPengembalian().then(() => {
-      setRiwayat([]);
-      setInitialRecords([]);
-    });
+  const handleHapusRiwayat = async () => {
+    const isDeleted = await requestDeleteRiwayatPengembalian();
+    if (isDeleted) {
+      requestGetRiwayatPengembalian().then((riwayatData) => {
+        setRiwayat(riwayatData);
+        setInitialRecords(riwayatData);
+      });
+    }
   };
 
   const handleRefresh = () => {

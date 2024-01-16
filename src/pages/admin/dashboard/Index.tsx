@@ -39,8 +39,8 @@ const Index = () => {
   }, [dispatch]);
 
   const totalKelas = Kelas.length;
-  const totalBuku = buku.length;
   const totalSiswa = siswa.length;
+  const totalBuku = buku.length;
   const totalPeminjamanBuku = peminjamanBuku.length;
 
   return (
@@ -59,20 +59,6 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Buku */}
-        <div className="panel bg-gradient-to-r from-violet-500 to-violet-400">
-          <div className="flex justify-between">
-            <div className="ltr:mr-1 rtl:ml-1 text-md font-semibold">Buku</div>
-          </div>
-          <div className="flex items-center mt-5">
-            <div className="text-3xl font-bold ltr:mr-3 rtl:ml-3"> {totalBuku} Buku </div>
-          </div>
-          <div className="flex items-center font-semibold mt-5">
-            <IconArrowLeft className="ltr:mr-2 rtl:ml-2 shrink-0" />
-            Data Buku
-          </div>
-        </div>
-
         {/*  Siswa */}
         <div className="panel bg-gradient-to-r from-blue-500 to-blue-400">
           <div className="flex justify-between">
@@ -84,6 +70,20 @@ const Index = () => {
           <div className="flex items-center font-semibold mt-5">
             <IconArrowLeft className="ltr:mr-2 rtl:ml-2 shrink-0" />
             Data Siswa
+          </div>
+        </div>
+
+        {/* Buku */}
+        <div className="panel bg-gradient-to-r from-violet-500 to-violet-400">
+          <div className="flex justify-between">
+            <div className="ltr:mr-1 rtl:ml-1 text-md font-semibold">Buku</div>
+          </div>
+          <div className="flex items-center mt-5">
+            <div className="text-3xl font-bold ltr:mr-3 rtl:ml-3"> {totalBuku} Buku </div>
+          </div>
+          <div className="flex items-center font-semibold mt-5">
+            <IconArrowLeft className="ltr:mr-2 rtl:ml-2 shrink-0" />
+            Data Buku
           </div>
         </div>
 

@@ -34,11 +34,6 @@ const PeminjamanBuku = lazy(() => import('../pages/admin/masterPeminjamanBuku/pe
 const FormPeminjamanBuku = lazy(() => import('../pages/admin/masterPeminjamanBuku/peminjaman/Form/FormPeminjamanBuku'));
 const RiwayatPeminjamanBuku = lazy(() => import('../pages/admin/masterPeminjamanBuku/riwayatPeminjaman/Index'));
 
-// Denda
-const Denda = lazy(() => import('../pages/admin/denda/Index'));
-const FormAddDenda = lazy(() => import('../pages/admin/denda/Form/FormAdd'));
-const FormEditDenda = lazy(() => import('../pages/admin/denda/Form/FormEdit'));
-
 const RiwayatPengembalian = lazy(() => import('../pages/admin/riwayatPengembalian/Index'));
 const Profile = lazy(() => import('../pages/admin/profile/Index'));
 const Login = lazy(() => import('../pages/admin/auth/SignIn'));
@@ -137,19 +132,6 @@ const routes = [
     element: <RiwayatPeminjamanBuku />,
   },
 
-  // Denda
-  {
-    path: '/denda',
-    element: <Denda />,
-  },
-  {
-    path: '/denda/tambah-denda',
-    element: <FormAddDenda />,
-  },
-  {
-    path: '/denda/edit-denda/:id_denda',
-    element: <FormEditDenda />,
-  },
   {
     path: '/riwayat-pengembalian',
     element: <RiwayatPengembalian />,

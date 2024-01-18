@@ -54,9 +54,4 @@ export const SidebarMenu = [
     icon: 'material-symbols:history',
     link: '/riwayat-pengembalian',
   },
-  {
-    title: 'Denda',
-    icon: 'mdi:dollar',
-    link: '/denda',
-  },
 ];

@@ -8,7 +8,7 @@ export const requestUpdatePeminjamanBuku = async (id_peminjaman: any) => {
     const alert = await Swal.fire({
       icon: 'warning',
       title: 'Apakah anda yakin?',
-      text: 'Ingin menghapus mengupdate riwayat peminjaman?',
+      text: 'Ingin mengupdate riwayat peminjaman?',
       showCancelButton: true,
       confirmButtonText: 'Update',
       padding: '2em',

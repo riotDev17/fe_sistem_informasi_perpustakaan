@@ -87,10 +87,10 @@ const Columns = ({ handleDeletePeminjamanBuku, handleUpdateRiwayat }: ColumnsPro
         const keterlambatan = new Date(item.keterlambatan);
 
         // Menghitung selisih hari
-        const selisihHari = Math.ceil((keterlambatan.getTime() - tanggalKembali.getTime()) / (1000 * 60 * 60 * 24));
+        const selisihHari = Math.floor((keterlambatan.getTime() - tanggalKembali.getTime()) / (1000 * 60 * 60 * 24));
 
         // Mengecek apakah terlambat
-        const isTerlambat = selisihHari > 0;
+        const isTerlambat = selisihHari >= 0;
 
         return <>{isTerlambat ? <BadgeBasicDanger label={`Terlambat ${selisihHari} hari`} /> : <span>-</span>}</>;
       },
@@ -102,7 +102,7 @@ const Columns = ({ handleDeletePeminjamanBuku, handleUpdateRiwayat }: ColumnsPro
       accessor: 'id_denda',
       render: (item: any) => (
         <>
-          <span className="dark:text-white">{item.denda ? item.denda?.nominal : 0}</span>
+          <span className="dark:text-white">Rp. {item.denda ? item.denda : 0}</span>
         </>
       ),
     },

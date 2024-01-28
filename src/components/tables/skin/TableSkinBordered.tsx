@@ -20,8 +20,8 @@ const TableSkinBordered: React.FC<TableSkinBorderedProps> = ({ page, onPageChang
           <DataTable
             striped
             page={page}
-            minHeight={300}
             records={records}
+            minHeight={200}
             columns={columns}
             totalRecords={totalRecords}
             onPageChange={onPageChange}
@@ -29,7 +29,7 @@ const TableSkinBordered: React.FC<TableSkinBorderedProps> = ({ page, onPageChang
             recordsPerPageOptions={recordsPerPageOptions}
             onRecordsPerPageChange={onRecordsPerPageChange}
             noRecordsText="Tidak Ada Data"
-            className="whitespace-nowrap table-bordered dark:text-white text-black"
+            className="whitespace-nowrap table-bordered  dark:text-white text-black"
             paginationText={({ from, to, totalRecords }) => `Showing  ${from} to ${to} of ${totalRecords} entries`}
           />
         </div>

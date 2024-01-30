@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
-import { setPageTitle } from '../../../../store/themeConfigSlice';
+import { setPageTitle } from '../../../store/themeConfigSlice';
 import { requestGetRakBuku } from './api/requestGetRakBuku';
 import { requestDeleteRakBuku } from './api/requestDeleteRakBuku';
 import { useCallback, useEffect, useState } from 'react';
 import Table from './Table/Index';
-import ButtonIcon from '../../../../components/buttons/icon/ButtonIcon';
-import SearchBasic from '../../../../components/searchs/SearchBasic';
-import TippyDefault from '../../../../components/tippys/default/TippyDefault';
-import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
+import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
+import SearchBasic from '../../../components/searchs/SearchBasic';
+import TippyDefault from '../../../components/tippys/default/TippyDefault';
+import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const Index = () => {
   const dispatch = useDispatch();

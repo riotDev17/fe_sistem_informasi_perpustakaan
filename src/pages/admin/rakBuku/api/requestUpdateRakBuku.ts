@@ -1,22 +1,15 @@
 import Swal from 'sweetalert2';
-import API_JSON from '../../../../../configs/API_JSON';
+import API_JSON from '../../../../configs/API_JSON';
 
 const URL = 'rak-buku';
 
-export const requestDeleteRakBuku = async (id_rak_buku: string) => {
+export const requestUpdateRakBuku = async (id_rak_buku: string, nama_rak_buku: string) => {
   try {
-    const alert = await Swal.fire({
-      icon: 'warning',
-      title: 'Apakah anda yakin?',
-      text: 'Ingin menghapus rak buku ini?',
-      showCancelButton: true,
-      confirmButtonText: 'Hapus',
-      padding: '2em',
-      customClass: 'sweet-alerts',
+    const response = await API_JSON.put(`/api/${URL}/${id_rak_buku}`, {
+      nama_rak_buku: nama_rak_buku,
     });
 
-    if (alert.isConfirmed) {
-      await API_JSON.delete(`/api/${URL}/${id_rak_buku}`);
+    if (response.status === 200) {
       const toast = Swal.mixin({
         toast: true,
         position: 'top',
@@ -25,7 +18,7 @@ export const requestDeleteRakBuku = async (id_rak_buku: string) => {
       });
       toast.fire({
         icon: 'success',
-        title: 'Rak Buku Berhasil Dihapus!',
+        title: `Rak Buku Berhasil Diedit!`,
         padding: '10px 20px',
       });
 
@@ -33,7 +26,6 @@ export const requestDeleteRakBuku = async (id_rak_buku: string) => {
     }
   } catch (error) {
     console.log(error);
-
     const toast = Swal.mixin({
       toast: true,
       position: 'top',
@@ -42,7 +34,7 @@ export const requestDeleteRakBuku = async (id_rak_buku: string) => {
     });
     toast.fire({
       icon: 'error',
-      title: 'Rak Buku Gagal Dihapus!',
+      title: 'Rak Buku Gagal Diedit!',
       padding: '10px 20px',
     });
 

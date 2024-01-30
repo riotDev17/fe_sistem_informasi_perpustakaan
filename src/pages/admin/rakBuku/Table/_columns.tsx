@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import IconTrash from '../../../../../components/Icons/IconTrash';
-import IconPencil from '../../../../../components/Icons/IconPencil';
-import TippyDefault from '../../../../../components/tippys/default/TippyDefault';
+import IconTrash from '../../../../components/Icons/IconTrash';
+import IconPencil from '../../../../components/Icons/IconPencil';
+import TippyDefault from '../../../../components/tippys/default/TippyDefault';
 
 interface ColumnsProps {
   handleDelete: (id_rak_buku: string) => void;

@@ -1,29 +1,19 @@
 import { Formik } from 'formik';
 import { validationSchema } from './validationSchema';
-import { useState, useEffect } from 'react';
-import { requestUpdateRakBuku } from '../api/requestUpdateRakBuku';
-import { requestGetByIDRakBuku } from '../api/requestGetByIDRakBuku';
-import { Form, Link, useNavigate, useParams } from 'react-router-dom';
-import InputText from '../../../../../components/forms/Input/InputText';
-import ButtonSolidDanger from '../../../../../components/buttons/solid/ButtonSolidDanger';
-import ButtonSolidSuccess from '../../../../../components/buttons/solid/ButtonSolidSuccess';
-import BreadcrumbsDefault from '../../../../../components/breadcrumbs/BreadcrumbsDefault';
+import { requestCreateRakBuku } from '../api/requestCreateRakBuku';
+import { Form, Link, useNavigate } from 'react-router-dom';
+import InputText from '../../../../components/forms/Input/InputText';
+import ButtonSolidDanger from '../../../../components/buttons/solid/ButtonSolidDanger';
+import ButtonSolidPrimary from '../../../../components/buttons/solid/ButtonSolidPrimary';
+import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
 
-const FormEdit = () => {
+const FormAdd = () => {
   const navigate = useNavigate();
-  const { id_rak_buku } = useParams();
-  const [namaRakBuku, setNamaRakBuku] = useState('');
 
-  useEffect(() => {
-    requestGetByIDRakBuku(id_rak_buku ?? '').then((response) => {
-      setNamaRakBuku(response?.data?.nama_rak_buku || '');
-    });
-  }, []);
-
-  const handleUpdate = async (e: { nama_rak_buku: string }): Promise<any> => {
+  const handleCreate = async (e: { nama_rak_buku: string }): Promise<any> => {
     try {
       const { nama_rak_buku } = e;
-      const request = await requestUpdateRakBuku(id_rak_buku ?? '', nama_rak_buku);
+      const request = await requestCreateRakBuku(nama_rak_buku);
 
       if (request) {
         navigate('/rak-buku');
@@ -44,20 +34,19 @@ const FormEdit = () => {
             icon: 'mdi:bookshelf',
           },
           {
-            label: 'Edit Rak Buku',
-            link: `/rak-buku/edit-rak-buku/${id_rak_buku}`,
+            label: 'Tambah Rak Buku',
+            link: '/rak-buku/tambah-rak-buku',
           },
         ]}
       />
 
       <div className="mt-10">
         <Formik
-          enableReinitialize={true}
           initialValues={{
-            nama_rak_buku: namaRakBuku,
+            nama_rak_buku: '',
           }}
           validationSchema={validationSchema}
-          onSubmit={handleUpdate}
+          onSubmit={handleCreate}
         >
           {({ errors, handleChange, submitCount, values }) => (
             <Form className="space-y-5">
@@ -75,7 +64,7 @@ const FormEdit = () => {
               </div>
 
               <div className="flex gap-3 justify-end">
-                <ButtonSolidSuccess text={'Edit Rak Buku'} width={'w-auto'} onClick={() => handleUpdate(values)} />
+                <ButtonSolidPrimary text={'Tambah Rak Buku'} width={'w-auto'} onClick={() => handleCreate(values)} />
                 <Link to={'/rak-buku'}>
                   <ButtonSolidDanger text={'Batal'} width={'w-auto'} />
                 </Link>
@@ -88,4 +77,4 @@ const FormEdit = () => {
   );
 };
 
-export default FormEdit;
+export default FormAdd;

@@ -1,4 +1,4 @@
-import API_JSON from '../../../../../configs/API_JSON';
+import API_JSON from '../../../../configs/API_JSON';
 
 const URL = 'buku';
 

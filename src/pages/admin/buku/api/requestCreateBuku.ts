@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import API_FORM from '../../../../../configs/API_FORM';
+import API_FORM from '../../../../configs/API_FORM';
 
 const URL = 'buku';
 

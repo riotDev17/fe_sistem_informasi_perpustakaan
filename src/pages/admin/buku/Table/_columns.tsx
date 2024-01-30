@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import IconTrash from '../../../../../components/Icons/IconTrash';
-import IconPencil from '../../../../../components/Icons/IconPencil';
-import TippyDefault from '../../../../../components/tippys/default/TippyDefault';
-import BadgeBasicInfo from '../../../../../components/badges/basic/BadgeBasicInfo';
-import BadgeBasicDanger from '../../../../../components/badges/basic/BadgeBasicDanger';
+import IconTrash from '../../../../components/Icons/IconTrash';
+import IconPencil from '../../../../components/Icons/IconPencil';
+import TippyDefault from '../../../../components/tippys/default/TippyDefault';
+import BadgeBasicInfo from '../../../../components/badges/basic/BadgeBasicInfo';
+import BadgeBasicDanger from '../../../../components/badges/basic/BadgeBasicDanger';
 
 interface ColumnsProps {
   handleDelete: (id_buku: string) => void;

@@ -1,4 +1,4 @@
-import { requestGetBuku } from '../pages/admin/masterBuku/buku/api/requestGetBuku';
+import { requestGetBuku } from '../pages/admin/buku/api/requestGetBuku';
 import { useEffect, useState } from 'react';
 import SelectSearch from '../components/forms/Select/SelectSearch';
 

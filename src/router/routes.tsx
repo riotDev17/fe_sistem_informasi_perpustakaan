@@ -19,9 +19,9 @@ const FormAddRakBuku = lazy(() => import('../pages/admin/rakBuku/Form/FormAdd'))
 const FormEditRakBuku = lazy(() => import('../pages/admin/rakBuku/Form/FormEdit'));
 
 // Buku
-const Buku = lazy(() => import('../pages/admin/masterBuku/buku/Index'));
-const FormAddBuku = lazy(() => import('../pages/admin/masterBuku/buku/Form/FormAdd'));
-const FormEditBuku = lazy(() => import('../pages/admin/masterBuku/buku/Form/FormEdit'));
+const Buku = lazy(() => import('../pages/admin/buku/Index'));
+const FormAddBuku = lazy(() => import('../pages/admin/buku/Form/FormAdd'));
+const FormEditBuku = lazy(() => import('../pages/admin/buku/Form/FormEdit'));
 
 // Siswa
 const Siswa = lazy(() => import('../pages/admin/siswa/Index'));

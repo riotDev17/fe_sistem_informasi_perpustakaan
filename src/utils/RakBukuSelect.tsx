@@ -1,4 +1,4 @@
-import { requestGetRakBuku } from '../pages/admin/masterBuku/rakBuku/api/requestGetRakBuku';
+import { requestGetRakBuku } from '../pages/admin/rakBuku/api/requestGetRakBuku';
 import { useEffect, useState } from 'react';
 import SelectSearch from '../components/forms/Select/SelectSearch';
 

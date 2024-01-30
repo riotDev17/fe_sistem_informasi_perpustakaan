@@ -56,7 +56,7 @@ const Index = () => {
         setInitialRecords(peminjamanData);
       });
 
-      navigate('/riwayat-pengembalian');
+      navigate('/riwayat-pengembalian-buku');
     }
   };
 

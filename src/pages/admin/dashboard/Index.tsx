@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
-import { requestGetBuku } from '../masterBuku/buku/api/requestGetBuku';
+import { requestGetBuku } from '../buku/api/requestGetBuku';
 import { requestGetSiswa } from '../siswa/api/requestGetSiswa';
 import { requestGetKelas } from '../kelas/api/requestGetKelas';
 import { useEffect, useState } from 'react';

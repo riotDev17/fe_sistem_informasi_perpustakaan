@@ -5,29 +5,28 @@ export const SidebarMenu = [
     link: '/',
   },
   {
-    title: 'Agama',
-    icon: 'mdi:religion-christian',
-    link: '/agama',
-  },
-  {
-    title: 'Kelas',
-    icon: 'streamline:class-lesson-solid',
-    link: '/kelas',
-  },
-  {
-    title: 'Master Buku',
-    icon: 'iconoir:book-solid',
+    title: 'Master',
+    icon: 'material-symbols:database',
     link: '#',
     child: [
+      {
+        childTitle: 'Agama',
+        childLink: '/agama',
+      },
+      {
+        childTitle: 'Kelas',
+        childLink: '/kelas',
+      },
       {
         childTitle: 'Rak Buku',
         childLink: '/rak-buku',
       },
-      {
-        childTitle: 'Buku',
-        childLink: '/buku',
-      },
     ],
+  },
+  {
+    title: 'Buku',
+    icon: 'iconoir:book-solid',
+    link: '/buku',
   },
   {
     title: 'Siswa',
@@ -35,23 +34,23 @@ export const SidebarMenu = [
     link: '/siswa',
   },
   {
-    title: 'Master Peminjaman Buku',
+    title: 'Peminjaman Buku',
     icon: 'material-symbols:book',
+    link: '/peminjaman-buku',
+  },
+  {
+    title: 'Riwayat',
+    icon: 'material-symbols:history',
     link: '#',
     child: [
       {
-        childTitle: 'Peminjaman',
-        childLink: '/peminjaman-buku',
-      },
-      {
-        childTitle: 'Riwayat Peminjaman',
+        childTitle: 'Peminjaman Buku',
         childLink: '/riwayat-peminjaman-buku',
       },
+      {
+        childTitle: 'Pengembalian Buku',
+        childLink: '/riwayat-pengembalian-buku',
+      },
     ],
-  },
-  {
-    title: 'Riwayat Pengembalian',
-    icon: 'material-symbols:history',
-    link: '/riwayat-pengembalian',
   },
 ];

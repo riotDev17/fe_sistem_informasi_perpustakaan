@@ -14,14 +14,14 @@ const FormAddKelas = lazy(() => import('../pages/admin/kelas/Form/FormAdd'));
 const FormEditKelas = lazy(() => import('../pages/admin/kelas/Form/FormEdit'));
 
 // Rak Buku
-const RakBuku = lazy(() => import('../pages/admin/masterBuku/rakBuku/Index'));
-const FormAddRakBuku = lazy(() => import('../pages/admin/masterBuku/rakBuku/Form/FormAdd'));
-const FormEditRakBuku = lazy(() => import('../pages/admin/masterBuku/rakBuku/Form/FormEdit'));
+const RakBuku = lazy(() => import('../pages/admin/rakBuku/Index'));
+const FormAddRakBuku = lazy(() => import('../pages/admin/rakBuku/Form/FormAdd'));
+const FormEditRakBuku = lazy(() => import('../pages/admin/rakBuku/Form/FormEdit'));
 
 // Buku
-const Buku = lazy(() => import('../pages/admin/masterBuku/buku/Index'));
-const FormAddBuku = lazy(() => import('../pages/admin/masterBuku/buku/Form/FormAdd'));
-const FormEditBuku = lazy(() => import('../pages/admin/masterBuku/buku/Form/FormEdit'));
+const Buku = lazy(() => import('../pages/admin/buku/Index'));
+const FormAddBuku = lazy(() => import('../pages/admin/buku/Form/FormAdd'));
+const FormEditBuku = lazy(() => import('../pages/admin/buku/Form/FormEdit'));
 
 // Siswa
 const Siswa = lazy(() => import('../pages/admin/siswa/Index'));
@@ -133,7 +133,7 @@ const routes = [
   },
 
   {
-    path: '/riwayat-pengembalian',
+    path: '/riwayat-pengembalian-buku',
     element: <RiwayatPengembalian />,
   },
   {

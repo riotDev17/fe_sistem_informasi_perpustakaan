@@ -133,7 +133,7 @@ const routes = [
   },
 
   {
-    path: '/riwayat-pengembalian',
+    path: '/riwayat-pengembalian-buku',
     element: <RiwayatPengembalian />,
   },
   {

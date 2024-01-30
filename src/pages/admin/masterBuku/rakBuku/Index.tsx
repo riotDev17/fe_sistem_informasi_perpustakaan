@@ -62,7 +62,7 @@ const Index = () => {
           {
             label: 'Rak Buku',
             link: '/rak-buku',
-            icon: 'bxs:book',
+            icon: 'mdi:bookshelf',
           },
         ]}
       />

@@ -41,7 +41,7 @@ const FormEdit = () => {
           {
             label: 'Rak Buku',
             link: '/rak-buku',
-            icon: 'bxs:book',
+            icon: 'mdi:bookshelf',
           },
           {
             label: 'Edit Rak Buku',

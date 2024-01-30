@@ -4,15 +4,15 @@ import { requestUpdateBuku } from '../api/requestUpdateBuku';
 import { requestGetByIDBuku } from '../api/requestGetByIDBuku';
 import { useEffect, useState } from 'react';
 import { Form, Link, useNavigate, useParams } from 'react-router-dom';
-import InputFile from '../../../../../components/forms/Input/InputFile';
-import InputText from '../../../../../components/forms/Input/InputText';
-import InputNumber from '../../../../../components/forms/Input/InputNumber';
-import PreviewImage from '../../../../../utils/PreviewImage';
-import RakBukuSelect from '../../../../../utils/RakBukuSelect';
-import InputTextarea from '../../../../../components/forms/Input/InputTexarea';
-import ButtonSolidDanger from '../../../../../components/buttons/solid/ButtonSolidDanger';
-import ButtonSolidSuccess from '../../../../../components/buttons/solid/ButtonSolidSuccess';
-import BreadcrumbsDefault from '../../../../../components/breadcrumbs/BreadcrumbsDefault';
+import InputFile from '../../../../components/forms/Input/InputFile';
+import InputText from '../../../../components/forms/Input/InputText';
+import InputNumber from '../../../../components/forms/Input/InputNumber';
+import PreviewImage from '../../../../utils/PreviewImage';
+import RakBukuSelect from '../../../../utils/RakBukuSelect';
+import InputTextarea from '../../../../components/forms/Input/InputTexarea';
+import ButtonSolidDanger from '../../../../components/buttons/solid/ButtonSolidDanger';
+import ButtonSolidSuccess from '../../../../components/buttons/solid/ButtonSolidSuccess';
+import BreadcrumbsDefault from '../../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const FormEdit = () => {
   const navigate = useNavigate();
